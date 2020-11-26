@@ -26,7 +26,7 @@ namespace SoftwareVets.WorkoutBuilder.Domain.Tests
         [TestCase(null)]
         public void TestConstructor_Length_CannotBeNull_Exception(TimeSpan param)
         {
-            Assert.Throws(typeof(IndexOutOfRangeException), new TestDelegate(contructWorkoutObject), "Set constructor: Length parameter must be greater than 0 seconds");
+            Assert.Throws(typeof(ArgumentOutOfRangeException), new TestDelegate(contructWorkoutObject), "Set constructor: Length parameter must be greater than 0 seconds");
 
             void contructWorkoutObject()
             {
@@ -39,7 +39,7 @@ namespace SoftwareVets.WorkoutBuilder.Domain.Tests
         {
             var timeSpan = new TimeSpan(0,0,0);
 
-            Assert.Throws(typeof(IndexOutOfRangeException), new TestDelegate(contructWorkoutObject), "Set constructor: Length parameter must be greater than 0 seconds");
+            Assert.Throws(typeof(ArgumentOutOfRangeException), new TestDelegate(contructWorkoutObject), "Set constructor: Length parameter must be greater than 0 seconds");
 
             void contructWorkoutObject()
             {
@@ -52,7 +52,7 @@ namespace SoftwareVets.WorkoutBuilder.Domain.Tests
         {            
             var set = new Set(_exercise, _length);
 
-            Assert.AreEqual(set.Length.TotalSeconds, _expectedSeconds);
+            Assert.AreEqual(_expectedSeconds, set.Length.TotalSeconds);
         }
 
         [Test]
@@ -78,7 +78,7 @@ namespace SoftwareVets.WorkoutBuilder.Domain.Tests
         [TestCase(-123)]
         public void TestConstructor_Reps_CannotBeZero_Exception(int parm)
         {
-            Assert.Throws(typeof(IndexOutOfRangeException), new TestDelegate(contructWorkoutObject), "Set constructor: Reps must be greater than zero");
+            Assert.Throws(typeof(ArgumentOutOfRangeException), new TestDelegate(contructWorkoutObject), "Set constructor: Reps must be greater than zero");
 
             void contructWorkoutObject()
             {
@@ -91,7 +91,7 @@ namespace SoftwareVets.WorkoutBuilder.Domain.Tests
         {
             var set = new Set(_exercise, _expectedReps);
 
-            Assert.AreEqual(set.Reps, _expectedReps);
+            Assert.AreEqual(_expectedReps, set.Reps);
         }
 
         [Test]
@@ -113,12 +113,5 @@ namespace SoftwareVets.WorkoutBuilder.Domain.Tests
             }
         }
 
-        //[TestCase("Exercise Name")]
-        //public void TestConstructor_Round_IsNotNull(string param)
-        //{
-        //    var exercise = new Exercise(_round, param);
-
-        //    Assert.IsNotNull(exercise.Round);
-        //}
     }
 }
