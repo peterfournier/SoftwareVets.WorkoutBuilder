@@ -1,10 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SoftwareVets.WorkoutBuilder.Domain
 {
@@ -18,7 +14,20 @@ namespace SoftwareVets.WorkoutBuilder.Domain
 
         public Workout([NotNull] string workoutName)
         {
-            Name = workoutName;
+            Name = string.IsNullOrWhiteSpace(workoutName) ? throw new ArgumentNullException(nameof(workoutName)) : workoutName;
+
+            addDefaultRound();
+        }
+
+        private void addDefaultRound()
+        {
+            Rounds = new List<Round>()
+            {
+                new Round(this, "Round 1")
+                {
+
+                }
+            };
         }
     }
 }
