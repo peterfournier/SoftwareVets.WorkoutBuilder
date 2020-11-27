@@ -5,13 +5,14 @@ namespace SoftwareVets.WorkoutBuilder.Domain
 {
     internal class Exercise : VersionedDomainModelBase
     {
-        public string Name { get; set; }
+        private List<Set> _sets;
+
+        public string Name { get; private set; }
 
         public string Description { get; set; }
 
-        public Round Round { get; set; }
+        public Round Round { get; private set; }
 
-        public List<Set> Sets { get; set; }
 
         public Exercise(Round round, string exerciseName)
         {
@@ -21,15 +22,25 @@ namespace SoftwareVets.WorkoutBuilder.Domain
             addDefaultSet();
         }
 
+        public List<Set> GetSets()
+        {
+            return _sets;
+        }
+
         private void addDefaultSet()
         {
-            Sets = new List<Set>()
+            _sets = new List<Set>()
             {
                 new Set(this, new TimeSpan(0,0,30))
                 {
 
                 }
             };
+        }
+
+        internal void AddSet(Set set)
+        {
+            _sets.Add(set);
         }
     }
 }
