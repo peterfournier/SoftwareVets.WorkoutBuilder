@@ -24,6 +24,8 @@ namespace SoftwareVets.WorkoutBuilder.Domain
             if (exercise == null)
                 throw new ArgumentNullException(nameof(exercise));
 
+            exercise.SetRound(this);
+
             _exercises.Add(exercise);
         }
 

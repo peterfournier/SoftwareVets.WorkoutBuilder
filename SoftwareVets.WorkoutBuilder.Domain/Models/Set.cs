@@ -15,7 +15,7 @@ namespace SoftwareVets.WorkoutBuilder.Domain
             Length = setLength.TotalMilliseconds <= 0 ? throw new ArgumentOutOfRangeException(nameof(setLength)) : setLength;
 
             //Exercise.Round.Workout.Length = Exercise.Round.Workout.Length.Add(Length);
-            Exercise.Round.Length = Exercise.Round.Length.Add(Length);
+            //Exercise.Round.Length = Exercise.Round.Length.Add(Length);
         }
 
         public Set(Exercise exercise, 
