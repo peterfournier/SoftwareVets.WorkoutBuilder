@@ -43,7 +43,7 @@ namespace SoftwareVets.WorkoutBuilder.Domain.Tests
         {
             var round = new Round(workout, param);
 
-            Assert.AreEqual(1, round.Exercises.Count);
+            Assert.AreEqual(1, round.GetExercises().Count);
         }
 
         [Test]
