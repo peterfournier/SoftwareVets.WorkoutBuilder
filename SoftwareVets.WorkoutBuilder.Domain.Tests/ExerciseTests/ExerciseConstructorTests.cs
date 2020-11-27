@@ -13,7 +13,7 @@ namespace SoftwareVets.WorkoutBuilder.Domain.Tests.ExerciseTests
         public void Setup()
         {
             _workout = new Workout("Workout 1");
-            _round = new Round(_workout, "Round 1");
+            _round = new Round("Round 1");
         }
 
         [TestCase("")]

@@ -38,7 +38,7 @@ namespace SoftwareVets.WorkoutBuilder.Domain.Tests.WorkoutTests
         {
             var workout = new Workout(param);
 
-            workout.AddRound(new Round(workout, "Round 1"));
+            workout.AddRound(new Round("Round 1"));
 
             Assert.AreEqual(1, workout.GetRounds().Count);
         }

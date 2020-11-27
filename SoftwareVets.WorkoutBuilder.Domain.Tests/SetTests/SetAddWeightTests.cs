@@ -19,7 +19,7 @@ namespace SoftwareVets.WorkoutBuilder.Domain.Tests.SetTests
         public void Setup()
         {
             _workout = new Workout("Workout 1");
-            _round = new Round(_workout, "Round 1");
+            _round = new Round("Round 1");
             _exercise = new Exercise(_round, "Set 1");
             _length = new TimeSpan(0,0, _expectedSeconds);
         }

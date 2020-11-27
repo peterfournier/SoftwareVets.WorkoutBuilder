@@ -23,6 +23,8 @@ namespace SoftwareVets.WorkoutBuilder.Domain
             if (round == null)
                 throw new ArgumentNullException(nameof(round));
 
+            round.SetWorkout(this);
+
             _rounds.Add(round);
         }
 

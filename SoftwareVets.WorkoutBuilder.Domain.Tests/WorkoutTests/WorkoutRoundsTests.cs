@@ -12,17 +12,27 @@ namespace SoftwareVets.WorkoutBuilder.Domain.Tests.WorkoutTests
         }
 
         [TestCase("Workout Name")]
-        public void TestConstructor_Add_Round_Exists(string param)
+        public void Test_Add_Round_Exists(string param)
         {
             var workout = new Workout(param);
 
-            workout.AddRound(new Round(workout, "Round 1"));
+            workout.AddRound(new Round("Round 1"));
 
             Assert.AreEqual(1, workout.GetRounds().Count);
         }
 
+        [TestCase("Workout Name")]
+        public void Test_Add_Round_Sets_Workout_Property(string param)
+        {
+            var workout = new Workout(param);
+            var round = new Round("Round 1");
+            workout.AddRound(round);
+
+            Assert.AreEqual(workout, round.Workout);
+        }
+
         [Test]
-        public void TestConstructor_AddRound_CannotBeNull_Exception()
+        public void Test_AddRound_CannotBeNull_Exception()
         {
             Assert.Throws(typeof(ArgumentNullException), new TestDelegate(addRoundTest), "AddRound: Round parameter does not allow nulls");
 

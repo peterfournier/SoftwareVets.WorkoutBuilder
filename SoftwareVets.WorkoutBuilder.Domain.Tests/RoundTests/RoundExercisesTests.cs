@@ -20,7 +20,7 @@ namespace SoftwareVets.WorkoutBuilder.Domain.Tests.RoundTests
         [TestCase("Round 1")]
         public void TestConstructor_Add_Exercise_Exists(string param)
         {
-            var round = new Round(workout, param);
+            var round = new Round(param);
 
             round.AddExercise(new Exercise(round, "Exercise 1"));
 
@@ -34,7 +34,7 @@ namespace SoftwareVets.WorkoutBuilder.Domain.Tests.RoundTests
 
             void addExerciseTest()
             {
-                var round = new Round(workout, "Round 1");
+                var round = new Round("Round 1");
 
                 round.AddExercise(null);
             }
