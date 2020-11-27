@@ -11,6 +11,7 @@ namespace SoftwareVets.WorkoutBuilder.Domain.Tests
         private int _expectedReps = 10;
         private decimal _expectedWeight = 100;
         private Round _round;
+        private TimeSpan _length;
         private Workout _workout;
 
 

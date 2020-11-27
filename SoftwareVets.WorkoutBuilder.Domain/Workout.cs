@@ -6,28 +6,29 @@ namespace SoftwareVets.WorkoutBuilder.Domain
 {
     internal class Workout : VersionedDomainModelBase
     {
-        public List<Round> Rounds { get; set; }
-        public Plan Plan { get; set; }
+        private List<Round> _rounds = new List<Round>();
+        
+        public Plan Plan { get; private set; }
         public string Description { get; set; }
-        public string Name { get; set; }
-        public TimeSpan Length { get; set; }
+        public string Name { get; private set; }
+        public TimeSpan Length { get; private set; }
 
         public Workout([NotNull] string workoutName)
         {
             Name = string.IsNullOrWhiteSpace(workoutName) ? throw new ArgumentNullException(nameof(workoutName)) : workoutName;
+        }
+        
+        public void AddRound(Round round)
+        {
+            if (round == null)
+                throw new ArgumentNullException(nameof(round));
 
-            addDefaultRound();
+            _rounds.Add(round);
         }
 
-        private void addDefaultRound()
+        public List<Round> GetRounds()
         {
-            Rounds = new List<Round>()
-            {
-                new Round(this, "Round 1")
-                {
-
-                }
-            };
+            return _rounds;
         }
     }
 }
