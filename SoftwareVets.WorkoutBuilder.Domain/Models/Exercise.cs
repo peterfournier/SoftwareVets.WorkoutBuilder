@@ -5,7 +5,7 @@ namespace SoftwareVets.WorkoutBuilder.Domain
 {
     internal class Exercise : VersionedDomainModelBase
     {
-        private List<Set> _sets;
+        private List<Set> _sets = new List<Set>();
 
         public string Name { get; private set; }
 
@@ -19,7 +19,7 @@ namespace SoftwareVets.WorkoutBuilder.Domain
             Name = string.IsNullOrWhiteSpace(exerciseName) ? throw new ArgumentNullException(nameof(exerciseName)) : exerciseName;
             Round = round == null ? throw new ArgumentNullException(nameof(round)) : round;
 
-            addDefaultSet();
+            //addDefaultSet();
         }
 
         public List<Set> GetSets()
@@ -27,16 +27,16 @@ namespace SoftwareVets.WorkoutBuilder.Domain
             return _sets;
         }
 
-        private void addDefaultSet()
-        {
-            _sets = new List<Set>()
-            {
-                new Set(this, new TimeSpan(0,0,30))
-                {
+        //private void addDefaultSet()
+        //{
+        //    _sets = new List<Set>()
+        //    {
+        //        new Set(this, new TimeSpan(0,0,30))
+        //        {
 
-                }
-            };
-        }
+        //        }
+        //    };
+        //}
 
         internal void AddSet(Set set)
         {

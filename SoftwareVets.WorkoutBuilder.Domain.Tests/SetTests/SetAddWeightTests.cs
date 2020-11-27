@@ -2,7 +2,7 @@
 using System;
 using System.Linq;
 
-namespace SoftwareVets.WorkoutBuilder.Domain.Tests
+namespace SoftwareVets.WorkoutBuilder.Domain.Tests.SetTests
 {
     public class SetAddWeightTests
     {

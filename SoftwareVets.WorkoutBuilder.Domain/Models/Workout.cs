@@ -11,7 +11,7 @@ namespace SoftwareVets.WorkoutBuilder.Domain
         public Plan Plan { get; private set; }
         public string Description { get; set; }
         public string Name { get; private set; }
-        public TimeSpan Length { get; private set; }
+        public TimeSpan Length { get; internal set; }
 
         public Workout([NotNull] string workoutName)
         {

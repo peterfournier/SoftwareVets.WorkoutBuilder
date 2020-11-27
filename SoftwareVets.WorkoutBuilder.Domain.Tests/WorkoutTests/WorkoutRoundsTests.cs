@@ -1,9 +1,7 @@
 using NUnit.Framework;
 using System;
-using SoftwareVets.WorkoutBuilder.Domain;
-using System.Linq;
 
-namespace SoftwareVets.WorkoutBuilder.Domain.Tests
+namespace SoftwareVets.WorkoutBuilder.Domain.Tests.WorkoutTests
 {
     public class WorkoutRoundsTests
     {

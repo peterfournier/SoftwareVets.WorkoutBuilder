@@ -2,7 +2,7 @@
 using System;
 using System.Linq;
 
-namespace SoftwareVets.WorkoutBuilder.Domain.Tests
+namespace SoftwareVets.WorkoutBuilder.Domain.Tests.SetTests
 {
     public class SetConstructorTests
     {
@@ -53,6 +53,52 @@ namespace SoftwareVets.WorkoutBuilder.Domain.Tests
             var set = new Set(_exercise, _length);
 
             Assert.AreEqual(_expectedSeconds, set.Length.TotalSeconds);
+        }
+
+        [Test]
+        public void TestContructor_WorkoutLength_Matches()
+        {
+            var workout2 = new Workout("Workout 2");
+            var round2 = new Round(workout2, "Round 1");
+            var exercise2 = new Exercise(round2, "Exercise 1");
+            _ = new Set(exercise2, _length);
+
+            Assert.AreEqual(_length.TotalSeconds, workout2.Length.TotalSeconds);
+        }
+
+        [Test]
+        public void TestContructor_RoundLength_Matches()
+        {
+            var workout2 = new Workout("Workout 2");
+            var round2 = new Round(workout2, "Round 1");
+            var exercise2 = new Exercise(round2, "Exercise 1");
+            _ = new Set(exercise2, _length);
+
+            Assert.AreEqual(_length.TotalSeconds, round2.Length.TotalSeconds);
+        }
+
+        [Test]
+        public void TestContructor_WorkoutLength_With_Two_SetsMatches()
+        {
+            var workout2 = new Workout("Workout 2");
+            var round2 = new Round(workout2, "Round 1");
+            var exercise2 = new Exercise(round2, "Exercise 1");
+            _ = new Set(exercise2, _length);
+            _ = new Set(exercise2, _length);
+
+            Assert.AreEqual(_length.TotalSeconds * 2, workout2.Length.TotalSeconds);
+        }
+
+        [Test]
+        public void TestContructor_RoundLength_With_Two_SetsMatches()
+        {
+            var workout2 = new Workout("Workout 2");
+            var round2 = new Round(workout2, "Round 1");
+            var exercise2 = new Exercise(round2, "Exercise 1");
+            _ = new Set(exercise2, _length);
+            _ = new Set(exercise2, _length);
+
+            Assert.AreEqual(_length.TotalSeconds * 2, round2.Length.TotalSeconds);
         }
 
         [Test]

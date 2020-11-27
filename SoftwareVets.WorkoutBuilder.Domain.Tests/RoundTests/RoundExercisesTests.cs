@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SoftwareVets.WorkoutBuilder.Domain.Tests
+namespace SoftwareVets.WorkoutBuilder.Domain.Tests.RoundTests
 {
     public class RoundExercisesTests
     {
@@ -24,7 +24,7 @@ namespace SoftwareVets.WorkoutBuilder.Domain.Tests
 
             round.AddExercise(new Exercise(round, "Exercise 1"));
 
-            Assert.AreEqual(2, round.GetExercises().Count);
+            Assert.AreEqual(1, round.GetExercises().Count);
         }
 
         [Test]

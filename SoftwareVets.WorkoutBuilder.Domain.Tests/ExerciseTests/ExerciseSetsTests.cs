@@ -1,6 +1,6 @@
 ﻿using NUnit.Framework;
 
-namespace SoftwareVets.WorkoutBuilder.Domain.Tests
+namespace SoftwareVets.WorkoutBuilder.Domain.Tests.ExerciseTests
 {
     public class ExerciseSetsTests
     {
@@ -23,7 +23,7 @@ namespace SoftwareVets.WorkoutBuilder.Domain.Tests
 
             exercise.AddSet(set);
 
-            Assert.AreEqual(2, exercise.GetSets().Count);
+            Assert.AreEqual(1, exercise.GetSets().Count);
         }
     }
 }

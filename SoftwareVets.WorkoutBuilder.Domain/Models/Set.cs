@@ -12,7 +12,10 @@ namespace SoftwareVets.WorkoutBuilder.Domain
         public Set(Exercise exercise,
                    TimeSpan setLength) : this(exercise)
         {
-            Length = setLength.TotalMilliseconds == 0 ? throw new ArgumentOutOfRangeException(nameof(setLength)) : setLength;
+            Length = setLength.TotalMilliseconds <= 0 ? throw new ArgumentOutOfRangeException(nameof(setLength)) : setLength;
+
+            Exercise.Round.Workout.Length = Exercise.Round.Workout.Length.Add(Length);
+            Exercise.Round.Length = Exercise.Round.Length.Add(Length);
         }
 
         public Set(Exercise exercise, 

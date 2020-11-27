@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SoftwareVets.WorkoutBuilder.Domain.Tests
+namespace SoftwareVets.WorkoutBuilder.Domain.Tests.RoundTests
 {
     public class RoundConstructorTests
     {
@@ -36,14 +36,6 @@ namespace SoftwareVets.WorkoutBuilder.Domain.Tests
             var round = new Round(workout, param);
 
             Assert.AreEqual(param, round.Name);
-        }
-
-        [TestCase("Round Name")]
-        public void TestConstructor_Exercises_Has_Default(string param)
-        {
-            var round = new Round(workout, param);
-
-            Assert.AreEqual(1, round.GetExercises().Count);
         }
 
         [Test]

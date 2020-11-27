@@ -5,10 +5,10 @@ namespace SoftwareVets.WorkoutBuilder.Domain
 {
     internal class Round : VersionedDomainModelBase
     {
-        private List<Exercise> _exercises;
+        private List<Exercise> _exercises = new List<Exercise>();
 
         public string Name { get; private set; }
-        public TimeSpan Length { get; private set; }
+        public TimeSpan Length { get; internal set; }
         public int Iterations { get; set; }
         public string Description { get; set; }
         public Workout Workout { get; private set; }
@@ -18,19 +18,19 @@ namespace SoftwareVets.WorkoutBuilder.Domain
             Name = string.IsNullOrWhiteSpace(roundName) ? throw new ArgumentNullException(nameof(roundName)) : roundName;
             Workout = workout == null ? throw new ArgumentNullException(nameof(workout)) : workout;
 
-            addDefaultExercise();
+            //addDefaultExercise();
         }
 
-        private void addDefaultExercise()
-        {
-            _exercises = new List<Exercise>()
-            {
-                new Exercise(this, "Exercise 1")
-                {
+        //private void addDefaultExercise()
+        //{
+        //    _exercises = new List<Exercise>()
+        //    {
+        //        new Exercise(this, "Exercise 1")
+        //        {
 
-                }
-            };
-        }
+        //        }
+        //    };
+        //}
 
         public void AddExercise(Exercise exercise)
         {

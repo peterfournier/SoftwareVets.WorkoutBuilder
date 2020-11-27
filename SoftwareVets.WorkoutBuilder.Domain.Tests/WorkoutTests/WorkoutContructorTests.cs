@@ -2,7 +2,7 @@ using NUnit.Framework;
 using System;
 using SoftwareVets.WorkoutBuilder.Domain;
 
-namespace SoftwareVets.WorkoutBuilder.Domain.Tests
+namespace SoftwareVets.WorkoutBuilder.Domain.Tests.WorkoutTests
 {
     public class WorkoutContructorTests
     {

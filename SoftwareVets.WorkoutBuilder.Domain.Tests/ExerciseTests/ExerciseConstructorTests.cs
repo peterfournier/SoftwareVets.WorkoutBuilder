@@ -2,7 +2,7 @@
 using System;
 using System.Linq;
 
-namespace SoftwareVets.WorkoutBuilder.Domain.Tests
+namespace SoftwareVets.WorkoutBuilder.Domain.Tests.ExerciseTests
 {
     public class ExerciseConstructorTests
     {
@@ -35,14 +35,6 @@ namespace SoftwareVets.WorkoutBuilder.Domain.Tests
             var exercise = new Exercise(_round, param);
 
             Assert.AreEqual(param, exercise.Name);
-        }
-
-        [TestCase("Exercise")]
-        public void TestConstructor_Sets_Has_Default(string param)
-        {
-            var exercise = new Exercise(_round, param);
-
-            Assert.AreEqual(1, exercise.GetSets().Count);
         }
 
         [Test]
