@@ -34,7 +34,7 @@ namespace SoftwareVets.WorkoutBuilder.Domain.Tests
         }
 
         [TestCase("Workout Name")]
-        public void TestConstructor_Add_Round_Exisits(string param)
+        public void TestConstructor_Add_Round_Exists(string param)
         {
             var workout = new Workout(param);
 
