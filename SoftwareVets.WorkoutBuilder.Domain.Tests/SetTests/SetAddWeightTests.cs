@@ -31,7 +31,7 @@ namespace SoftwareVets.WorkoutBuilder.Domain.Tests.SetTests
 
             void addWeight()
             {
-                var set = new Set(_exercise, _expectedReps);
+                var set = new Set(_expectedReps);
                 set.AddWeight(param);
             }
         }
@@ -39,7 +39,7 @@ namespace SoftwareVets.WorkoutBuilder.Domain.Tests.SetTests
         [Test]
         public void Test_Add_Weight_IsSet()
         {
-            var set = new Set(_exercise, _expectedReps);
+            var set = new Set(_expectedReps);
             set.AddWeight(_expectedWeight);
 
             Assert.AreEqual(_expectedWeight, set.Weight);

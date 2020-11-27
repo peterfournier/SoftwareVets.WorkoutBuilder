@@ -9,24 +9,25 @@ namespace SoftwareVets.WorkoutBuilder.Domain
         public decimal Weight { get; private set; }
         public Exercise Exercise { get; private set; }
 
-        public Set(Exercise exercise,
-                   TimeSpan setLength) : this(exercise)
+        public Set(TimeSpan setLength)
         {
             Length = setLength.TotalMilliseconds <= 0 ? throw new ArgumentOutOfRangeException(nameof(setLength)) : setLength;
-
-            //Exercise.Round.Workout.Length = Exercise.Round.Workout.Length.Add(Length);
-            //Exercise.Round.Length = Exercise.Round.Length.Add(Length);
         }
 
-        public Set(Exercise exercise, 
-                   int reps) : this(exercise)
+        public Set(int reps)
         {
             Reps = reps < 1 ? throw new ArgumentOutOfRangeException(nameof(reps)) : reps;
         }
 
-        private Set(Exercise exercise)
+        public void SetExercise(Exercise exercise)
         {
-            Exercise = exercise == null ? throw new ArgumentNullException(nameof(exercise)) : exercise;
+            if (exercise == null)
+                throw new ArgumentNullException(nameof(exercise));
+
+            if (Exercise != null)
+                throw new Exception("Exercise cannot be set twice");
+
+            Exercise = exercise;
         }
 
         public void AddWeight(decimal weight)

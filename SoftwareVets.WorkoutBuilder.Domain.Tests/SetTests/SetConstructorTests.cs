@@ -30,7 +30,7 @@ namespace SoftwareVets.WorkoutBuilder.Domain.Tests.SetTests
 
             void contructWorkoutObject()
             {
-                _ = new Set(_exercise, param);
+                _ = new Set(param);
             }
         }
 
@@ -43,14 +43,14 @@ namespace SoftwareVets.WorkoutBuilder.Domain.Tests.SetTests
 
             void contructWorkoutObject()
             {
-                _ = new Set(_exercise, timeSpan);
+                _ = new Set(timeSpan);
             }
         }
 
         [Test]
         public void TestConstructor_Length_Is_Set()
         {            
-            var set = new Set(_exercise, _length);
+            var set = new Set(_length);
 
             Assert.AreEqual(_expectedSeconds, set.Length.TotalSeconds);
         }
@@ -101,24 +101,24 @@ namespace SoftwareVets.WorkoutBuilder.Domain.Tests.SetTests
         //    Assert.AreEqual(_length.TotalSeconds * 2, round2.Length.TotalSeconds);
         //}
 
-        [Test]
-        public void TestConstructor_Exercise_CannotBeNull_Exception()
-        {
-            Assert.Throws(typeof(ArgumentNullException), new TestDelegate(contructWorkoutObject), "Set constructor: Exercise parameter does not allow nulls");
+        //[Test]
+        //public void TestConstructor_Exercise_CannotBeNull_Exception()
+        //{
+        //    Assert.Throws(typeof(ArgumentNullException), new TestDelegate(contructWorkoutObject), "Set constructor: Exercise parameter does not allow nulls");
 
-            void contructWorkoutObject()
-            {
-                _ = new Set(null, _length);
-            }
-        }
+        //    void contructWorkoutObject()
+        //    {
+        //        _ = new Set(_length);
+        //    }
+        //}
 
-        [Test]
-        public void TestConstructor_Exercise_IsNotNull()
-        {
-            var set = new Set(_exercise, _length);
+        //[Test]
+        //public void TestConstructor_Exercise_IsNotNull()
+        //{
+        //    var set = new Set(_length);
 
-            Assert.IsNotNull(set.Exercise);
-        }
+        //    Assert.IsNotNull(set.Exercise);
+        //}
 
         [TestCase(0)]
         [TestCase(-123)]
@@ -128,36 +128,36 @@ namespace SoftwareVets.WorkoutBuilder.Domain.Tests.SetTests
 
             void contructWorkoutObject()
             {
-                _ = new Set(_exercise, parm);
+                _ = new Set(parm);
             }
         }
 
         [Test]
         public void TestConstructor_Reps_Is_Set()
         {
-            var set = new Set(_exercise, _expectedReps);
+            var set = new Set(_expectedReps);
 
             Assert.AreEqual(_expectedReps, set.Reps);
         }
 
-        [Test]
-        public void Test_Reps_Constructor_Exercise_IsNotNull()
-        {
-            var set = new Set(_exercise, _expectedReps);
+        //[Test]
+        //public void Test_Reps_Constructor_Exercise_IsNotNull()
+        //{
+        //    var set = new Set(_expectedReps);
 
-            Assert.IsNotNull(set.Exercise);
-        }
+        //    Assert.IsNotNull(set.Exercise);
+        //}
 
-        [Test]
-        public void Test_Reps_Constructor_Exercise_CannotBeNull_Exception()
-        {
-            Assert.Throws(typeof(ArgumentNullException), new TestDelegate(contructWorkoutObject), "Set constructor: Exercise parameter does not allow nulls");
+        //[Test]
+        //public void Test_Reps_Constructor_Exercise_CannotBeNull_Exception()
+        //{
+        //    Assert.Throws(typeof(ArgumentNullException), new TestDelegate(contructWorkoutObject), "Set constructor: Exercise parameter does not allow nulls");
 
-            void contructWorkoutObject()
-            {
-                _ = new Set(null, _expectedReps);
-            }
-        }
+        //    void contructWorkoutObject()
+        //    {
+        //        _ = new Set(_expectedReps);
+        //    }
+        //}
 
     }
 }

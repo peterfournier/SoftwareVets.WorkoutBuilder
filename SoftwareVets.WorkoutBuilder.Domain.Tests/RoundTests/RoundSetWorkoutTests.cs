@@ -20,7 +20,7 @@ namespace SoftwareVets.WorkoutBuilder.Domain.Tests.RoundTests
         [Test]
         public void Test_Sets_Workout_CannotBeSetTwice_Exception()
         {
-            Assert.Throws(typeof(Exception), new TestDelegate(setWorkout), "SetWorkout: Workout parameter does not allow nulls");
+            Assert.Throws(typeof(Exception), new TestDelegate(setWorkout), "SetWorkout: Workout cannot be set twice");
 
             void setWorkout()
             {

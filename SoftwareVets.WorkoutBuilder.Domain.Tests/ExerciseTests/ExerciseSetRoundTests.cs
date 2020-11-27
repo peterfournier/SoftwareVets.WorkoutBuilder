@@ -3,10 +3,10 @@ using System;
 
 namespace SoftwareVets.WorkoutBuilder.Domain.Tests.ExerciseTests
 {
-    public class ExerciseSetWorkoutTests
+    public class ExerciseSetRoundTests
     {
         [Test]
-        public void Test_Sets_Workout_CannotBeNull_Exception()
+        public void Test_SetRound_Round_CannotBeNull_Exception()
         {
             Assert.Throws(typeof(ArgumentNullException), new TestDelegate(setRound), "SetRound: round parameter does not allow nulls");
 
@@ -20,7 +20,7 @@ namespace SoftwareVets.WorkoutBuilder.Domain.Tests.ExerciseTests
         [Test]
         public void Test_SetRound__CannotBeSetTwice_Exception()
         {
-            Assert.Throws(typeof(Exception), new TestDelegate(setRound), "SetRound: round parameter does not allow nulls");
+            Assert.Throws(typeof(Exception), new TestDelegate(setRound), "SetRound: round cannot be set twice");
 
             void setRound()
             {

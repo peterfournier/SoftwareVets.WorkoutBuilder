@@ -24,8 +24,10 @@ namespace SoftwareVets.WorkoutBuilder.Domain
             return _sets;
         }
 
-        internal void AddSet(Set set)
+        public void AddSet(Set set)
         {
+            set.SetExercise(this);
+
             _sets.Add(set);
         }
 
