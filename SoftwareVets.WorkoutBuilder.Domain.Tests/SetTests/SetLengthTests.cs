@@ -279,6 +279,24 @@ namespace SoftwareVets.WorkoutBuilder.Domain.Tests.SetTests
         }
 
         [Test]
+        public void Test_SetLengthChanged_WorkoutLength_Matches()
+        {
+            var workout = new Workout("Workout ");
+            var round = new Round("Round 1");
+            var exercise = new Exercise("Exercise 1");
+            var set = new Set(_length);
+
+            workout.AddRound(round);
+            round.AddExercise(exercise);
+            exercise.AddSet(set);
+
+            var newTimeLength = new TimeSpan(0, 7, 30);
+            set.ChangedLength(newTimeLength);
+
+            Assert.AreEqual(newTimeLength.TotalSeconds, workout.Length.TotalSeconds);
+        }
+
+        [Test]
         public void Test_SetLengthChanged_Exception()
         {
             Assert.Throws(typeof(ArgumentOutOfRangeException), new TestDelegate(changeSetLength));
