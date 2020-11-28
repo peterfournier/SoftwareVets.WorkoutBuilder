@@ -15,9 +15,9 @@ namespace SoftwareVets.WorkoutBuilder.Domain.Tests.ExerciseTests
         }
 
         [Test]
-        public void TestConstructor_Add_Set_Exists()
+        public void Test_Add_Set_Exists()
         {
-            var exercise = new Exercise("Round 1");
+            var exercise = new Exercise("Exercise 1");
 
             var set = new Set(1);
 

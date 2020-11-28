@@ -7,7 +7,7 @@ namespace SoftwareVets.WorkoutBuilder.Domain
     internal class Workout : VersionedDomainModelBase
     {
         private List<Round> _rounds = new List<Round>();
-        
+
         public Plan Plan { get; private set; }
         public string Description { get; set; }
         public string Name { get; private set; }
@@ -26,6 +26,25 @@ namespace SoftwareVets.WorkoutBuilder.Domain
             round.SetWorkout(this);
 
             _rounds.Add(round);
+
+            round.OnLengthChanged += Round_OnLengthChanged;
+
+            calulateWorkoutLength();
+        }
+
+        private void Round_OnLengthChanged(TimeSpan length)
+        {
+            calulateWorkoutLength();
+        }
+
+        private void calulateWorkoutLength()
+        {
+            Length = new TimeSpan();
+
+            foreach (var round in _rounds)
+            {
+                Length = Length.Add(round.Length);
+            }
         }
 
         public List<Round> GetRounds()

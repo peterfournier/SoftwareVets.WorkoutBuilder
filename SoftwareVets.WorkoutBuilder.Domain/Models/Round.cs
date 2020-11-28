@@ -8,11 +8,24 @@ namespace SoftwareVets.WorkoutBuilder.Domain
         private List<Exercise> _exercises = new List<Exercise>();
         private Workout _workout;
 
+        public delegate void LengthChanged(TimeSpan length);
+        public event LengthChanged OnLengthChanged;
+
         public string Name { get; private set; }
-        public TimeSpan Length { get; internal set; }
+        private TimeSpan _length;
+        public TimeSpan Length
+        {
+            get => _length;
+            set
+            {
+                _length = value;
+                OnLengthChanged?.Invoke(_length);
+            }
+        }
         public int Iterations { get; set; }
         public string Description { get; set; }
         public Workout Workout => _workout;
+
 
         public Round(string roundName)
         {
@@ -26,7 +39,28 @@ namespace SoftwareVets.WorkoutBuilder.Domain
 
             exercise.SetRound(this);
 
+            exercise.OnSetAdded += Exercise_OnSetAdded;
+
             _exercises.Add(exercise);
+
+            calulateRoundLength();
+        }
+
+        private void Exercise_OnSetAdded(Set set)
+        {
+            calulateRoundLength();
+        }
+
+        private void calulateRoundLength()
+        {
+            Length = new TimeSpan();
+            foreach (var exercise in _exercises)
+            {
+                foreach (var set in exercise.GetSets())
+                {
+                    Length = Length.Add(set.Length);
+                }
+            }
         }
 
         public List<Exercise> GetExercises()
