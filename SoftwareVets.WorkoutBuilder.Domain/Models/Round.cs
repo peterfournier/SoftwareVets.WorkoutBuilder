@@ -40,9 +40,15 @@ namespace SoftwareVets.WorkoutBuilder.Domain
             exercise.SetRound(this);
 
             exercise.OnSetAdded += Exercise_OnSetAdded;
+            exercise.OnSetLengthChanged += Exercise_OnSetLengthChanged;
 
             _exercises.Add(exercise);
 
+            calulateRoundLength();
+        }
+
+        private void Exercise_OnSetLengthChanged(TimeSpan length)
+        {
             calulateRoundLength();
         }
 

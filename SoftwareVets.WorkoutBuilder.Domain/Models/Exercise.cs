@@ -8,7 +8,11 @@ namespace SoftwareVets.WorkoutBuilder.Domain
         private List<Set> _sets = new List<Set>();
 
         public delegate void SetAddedHandler(Set set);
+        public delegate void SetLengthChangedHandler(TimeSpan length);
+
         public event SetAddedHandler OnSetAdded;
+        public event SetLengthChangedHandler OnSetLengthChanged;
+
         public string Name { get; private set; }
         public string Description { get; set; }
         public Round Round { get; private set; }
@@ -27,9 +31,16 @@ namespace SoftwareVets.WorkoutBuilder.Domain
         {
             set.SetExercise(this);
 
+            set.OnLengthChanged += Set_OnLengthChanged;
+
             _sets.Add(set);
 
             OnSetAdded?.Invoke(set);
+        }
+
+        private void Set_OnLengthChanged(TimeSpan length)
+        {
+            OnSetLengthChanged?.Invoke(length);
         }
 
         public void SetRound(Round round)

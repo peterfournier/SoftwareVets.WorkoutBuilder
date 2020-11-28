@@ -78,7 +78,7 @@ namespace SoftwareVets.WorkoutBuilder.Domain.Tests.SetTests
             var exercise = new Exercise("Exercise 1");
             var set = new Set(_length);
 
-            workout.AddRound(round); 
+            workout.AddRound(round);
             round.AddExercise(exercise);
             exercise.AddSet(set);
 
@@ -260,6 +260,40 @@ namespace SoftwareVets.WorkoutBuilder.Domain.Tests.SetTests
             round.AddExercise(exercise);
 
             Assert.AreEqual(_length.TotalSeconds * 2, workout.Length.TotalSeconds);
+        }
+
+        [Test]
+        public void Test_SetLengthChanged_RoundLength_Matches()
+        {
+            var round = new Round("Round 1");
+            var exercise = new Exercise("Exercise 1");
+            var set = new Set(_length);
+
+            exercise.AddSet(set);
+            round.AddExercise(exercise);
+
+            var newTimeLength = new TimeSpan(0, 7, 30);
+            set.ChangedLength(newTimeLength);
+
+            Assert.AreEqual(newTimeLength.TotalSeconds, round.Length.TotalSeconds);
+        }
+
+        [Test]
+        public void Test_SetLengthChanged_Exception()
+        {
+            Assert.Throws(typeof(ArgumentOutOfRangeException), new TestDelegate(changeSetLength));
+
+            void changeSetLength()
+            {
+                var round = new Round("Round 1");
+                var exercise = new Exercise("Exercise 1");
+                var set = new Set(_length);
+
+                exercise.AddSet(set);
+                round.AddExercise(exercise);
+
+                set.ChangedLength(new TimeSpan());
+            }
         }
     }
 }

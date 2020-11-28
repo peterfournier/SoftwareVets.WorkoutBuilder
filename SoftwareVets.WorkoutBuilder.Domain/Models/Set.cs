@@ -4,7 +4,19 @@ namespace SoftwareVets.WorkoutBuilder.Domain
 {
     internal class Set : VersionedDomainModelBase
     {
-        public TimeSpan Length { get; private set; }
+        public delegate void LengthChanged(TimeSpan length);
+        public event LengthChanged OnLengthChanged;
+
+        private TimeSpan _length;
+        public TimeSpan Length
+        {
+            get => _length;
+            set
+            {
+                _length = value;
+                OnLengthChanged?.Invoke(_length);
+            }
+        }
         public int Reps { get; private set; }
         public decimal Weight { get; private set; }
         public Exercise Exercise { get; private set; }
@@ -41,6 +53,14 @@ namespace SoftwareVets.WorkoutBuilder.Domain
                 throw new ArgumentOutOfRangeException(nameof(weight), "Adding weight must be greater than zero.");
             }
 
+        }
+
+        public void ChangedLength(TimeSpan newTimeLength)
+        {
+            if (newTimeLength.TotalSeconds <= 0)
+                throw new ArgumentOutOfRangeException(nameof(newTimeLength));
+
+            Length = newTimeLength;
         }
     }
 }
