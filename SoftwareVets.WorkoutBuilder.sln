@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SoftwareVets.WorkoutBuilder
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SoftwareVets.WorkoutBuilder.Mobile", "SoftwareVets.WorkoutBuilder.Mobile\SoftwareVets.WorkoutBuilder.Mobile\SoftwareVets.WorkoutBuilder.Mobile.csproj", "{56AF0F49-9BE8-4439-822F-93173BC91A7A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SoftwareVets.WorkoutBuilder.Mobile.Pages", "SoftwareVets.WorkoutBuilder.Mobile.Pages\SoftwareVets.WorkoutBuilder.Mobile.Pages.csproj", "{4CB44803-41E8-433D-9AFE-33C4C06894EC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -91,6 +93,18 @@ Global
 		{56AF0F49-9BE8-4439-822F-93173BC91A7A}.Release|iPhone.Build.0 = Release|Any CPU
 		{56AF0F49-9BE8-4439-822F-93173BC91A7A}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
 		{56AF0F49-9BE8-4439-822F-93173BC91A7A}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
+		{4CB44803-41E8-433D-9AFE-33C4C06894EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4CB44803-41E8-433D-9AFE-33C4C06894EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4CB44803-41E8-433D-9AFE-33C4C06894EC}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{4CB44803-41E8-433D-9AFE-33C4C06894EC}.Debug|iPhone.Build.0 = Debug|Any CPU
+		{4CB44803-41E8-433D-9AFE-33C4C06894EC}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{4CB44803-41E8-433D-9AFE-33C4C06894EC}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{4CB44803-41E8-433D-9AFE-33C4C06894EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4CB44803-41E8-433D-9AFE-33C4C06894EC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4CB44803-41E8-433D-9AFE-33C4C06894EC}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{4CB44803-41E8-433D-9AFE-33C4C06894EC}.Release|iPhone.Build.0 = Release|Any CPU
+		{4CB44803-41E8-433D-9AFE-33C4C06894EC}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{4CB44803-41E8-433D-9AFE-33C4C06894EC}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -101,6 +115,7 @@ Global
 		{B2D0FB4D-79B1-4E1F-86CA-9DEC0237D963} = {D2E8B2BC-85E8-463A-8ACE-581C2F8600CB}
 		{ADCFEADE-E8F0-452D-8F82-C5CC76A512DC} = {D2E8B2BC-85E8-463A-8ACE-581C2F8600CB}
 		{56AF0F49-9BE8-4439-822F-93173BC91A7A} = {D2E8B2BC-85E8-463A-8ACE-581C2F8600CB}
+		{4CB44803-41E8-433D-9AFE-33C4C06894EC} = {D2E8B2BC-85E8-463A-8ACE-581C2F8600CB}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A3D52703-4667-40F0-BCA6-A65D53D59ADE}
