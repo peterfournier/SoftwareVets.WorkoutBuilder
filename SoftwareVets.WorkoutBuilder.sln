@@ -15,9 +15,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SoftwareVets.WorkoutBuilder
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SoftwareVets.WorkoutBuilder.Mobile.iOS", "SoftwareVets.WorkoutBuilder.Mobile\SoftwareVets.WorkoutBuilder.Mobile.iOS\SoftwareVets.WorkoutBuilder.Mobile.iOS.csproj", "{ADCFEADE-E8F0-452D-8F82-C5CC76A512DC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SoftwareVets.WorkoutBuilder.Mobile", "SoftwareVets.WorkoutBuilder.Mobile\SoftwareVets.WorkoutBuilder.Mobile\SoftwareVets.WorkoutBuilder.Mobile.csproj", "{56AF0F49-9BE8-4439-822F-93173BC91A7A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SoftwareVets.WorkoutBuilder.Mobile", "SoftwareVets.WorkoutBuilder.Mobile\SoftwareVets.WorkoutBuilder.Mobile\SoftwareVets.WorkoutBuilder.Mobile.csproj", "{56AF0F49-9BE8-4439-822F-93173BC91A7A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SoftwareVets.WorkoutBuilder.Mobile.Pages", "SoftwareVets.WorkoutBuilder.Mobile.Pages\SoftwareVets.WorkoutBuilder.Mobile.Pages.csproj", "{4CB44803-41E8-433D-9AFE-33C4C06894EC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SoftwareVets.WorkoutBuilder.Mobile.Views", "SoftwareVets.WorkoutBuilder.Mobile.Pages\SoftwareVets.WorkoutBuilder.Mobile.Views.csproj", "{4CB44803-41E8-433D-9AFE-33C4C06894EC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
