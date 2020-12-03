@@ -5,8 +5,8 @@ using System.Text;
 
 namespace SoftwareVets.WorkoutBuilder.Mobile.Views.Buttons
 {
-    public class EllipsisHIconButton : FASolidIconButton
+    public class TimesIconButton : FASolidIconButton
     {
-        protected override string Unicode => FA5SolidEnum.EllipsisH;
+        protected override string Unicode => FA5SolidEnum.Times;
     }
 }

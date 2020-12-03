@@ -2,7 +2,7 @@
 <TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
             x:Class="SoftwareVets.WorkoutBuilder.Mobile.Views.Pages.HomeTabbedPage"
-            xmlns:BuildPages="clr-namespace:SoftwareVets.WorkoutBuilder.Mobile.Views.Pages.Build"
+            xmlns:pages="clr-namespace:SoftwareVets.WorkoutBuilder.Mobile.Views.Pages"
             xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
             android:TabbedPage.ToolbarPlacement="Bottom"
             >
@@ -10,7 +10,7 @@
     <ContentPage Title="Social" />
   
     <ContentPage Title="Workout" />
-  
-    <BuildPages:GettingStarted Title="Getting Started" />
+
+    <pages:GettingStarted Title="Getting Started" />
     
 </TabbedPage>

@@ -10,16 +10,14 @@ using Xamarin.Forms.Xaml;
 namespace SoftwareVets.WorkoutBuilder.Mobile.Views.Pages
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class GettingStarted : ContentPage
+    public partial class CreateWorkoutPage : CreateWorkoutPageXaml
     {
-        public GettingStarted()
+        public CreateWorkoutPage()
         {
             InitializeComponent();
-        }
-
-        private async void buildWorkout_Clicked(object sender, EventArgs e)
-        {
-            await Shell.Current.Navigation.PushModalAsync(new CreateWorkoutPage());
+            
         }
     }
+
+    public class CreateWorkoutPageXaml : ContentPageBase { }
 }

@@ -1,4 +1,4 @@
-﻿namespace SoftwareVets.WorkoutBuilder.Mobile.Views.Buttons.IconButtons
+﻿namespace SoftwareVets.WorkoutBuilder.Mobile.Views.Buttons
 {
     public abstract class FASolidIconButton : CustomIconButton
     {

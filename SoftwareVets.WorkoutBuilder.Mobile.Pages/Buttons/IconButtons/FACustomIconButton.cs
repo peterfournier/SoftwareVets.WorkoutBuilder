@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Xamarin.Forms;
 
-namespace SoftwareVets.WorkoutBuilder.Mobile.Views.Buttons.IconButtons
+namespace SoftwareVets.WorkoutBuilder.Mobile.Views.Buttons
 {
     public abstract class CustomIconButton : ImageButton
     {
@@ -20,7 +20,8 @@ namespace SoftwareVets.WorkoutBuilder.Mobile.Views.Buttons.IconButtons
             this.Source = new FontImageSource()
             {
                 FontFamily = FontFamily,
-                Glyph = Unicode.Replace("\\u", "$#x")
+                Glyph = Unicode.Replace("\\u", "$#x"),
+                Color = Color.Gray
             };
         }
 
