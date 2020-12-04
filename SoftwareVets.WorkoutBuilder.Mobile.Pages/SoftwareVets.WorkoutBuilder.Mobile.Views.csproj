@@ -38,4 +38,8 @@
     <Folder Include="Pages\Social\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\SoftwareVets.WorkoutBuilder.Mobile.ViewModels\SoftwareVets.WorkoutBuilder.Mobile.ViewModels.csproj" />
+  </ItemGroup>
+
 </Project>

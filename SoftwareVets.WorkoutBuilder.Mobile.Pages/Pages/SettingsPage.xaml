@@ -1,9 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <local:SettingsPageXaml xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="SoftwareVets.WorkoutBuilder.Mobile.Views.Pages.SettingsPage"
-             xmlns:local="clr-namespace:SoftwareVets.WorkoutBuilder.Mobile.Views.Pages"
-             >
+                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                        x:Class="SoftwareVets.WorkoutBuilder.Mobile.Views.Pages.SettingsPage"
+                        xmlns:local="clr-namespace:SoftwareVets.WorkoutBuilder.Mobile.Views.Pages"
+                        xmlns:viewModels="clr-namespace:SoftwareVets.WorkoutBuilder.Mobile.ViewModels.Pages;assembly=SoftwareVets.WorkoutBuilder.Mobile.ViewModels"
+                        x:DataType="viewModels:SettingsPageViewModel"
+                        >
+    
     <StackLayout BackgroundColor="{DynamicResource BackgroundColorKey}">
         <Label Text="Settings page" 
                VerticalOptions="CenterAndExpand" 
@@ -11,11 +14,13 @@
                TextColor="{DynamicResource TextColorKey}"
                />
 
-        <Label Text="Test" 
-               FontSize="Large"
-               TextColor="{DynamicResource Test}"
-               VerticalOptions="CenterAndExpand" 
-               HorizontalOptions="CenterAndExpand" 
-               />
+        <Button Text="Light Mode"
+                Command="{Binding OnLightModeCommand}"
+                ></Button>
+        
+        <Button Text="Dark Mode"
+                Command="{Binding OnDarkModeCommand}"
+                ></Button>
     </StackLayout>
+    
 </local:SettingsPageXaml>

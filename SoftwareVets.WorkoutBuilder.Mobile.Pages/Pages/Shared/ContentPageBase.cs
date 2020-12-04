@@ -1,8 +1,4 @@
-﻿using SoftwareVets.WorkoutBuilder.Mobile.Views.Themes;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using SoftwareVets.WorkoutBuilder.Mobile.ViewModels.Pages;
 
 using Xamarin.Forms;
 using Xamarin.Forms.PlatformConfiguration;
@@ -15,6 +11,17 @@ namespace SoftwareVets.WorkoutBuilder.Mobile.Views.Pages
         public ContentPageBase()
         {
             On<iOS>().SetUseSafeArea(true);
+        }
+    }
+
+    public abstract class ContentPageBase<TViewModel> : ContentPage
+        where TViewModel : BaseViewModel, new()
+    {
+        public ContentPageBase()
+        {
+            On<iOS>().SetUseSafeArea(true);
+
+            BindingContext = new TViewModel();
         }
     }
 }

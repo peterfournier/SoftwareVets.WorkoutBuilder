@@ -1,6 +1,6 @@
 ﻿using Xamarin.Forms;
 
-namespace SoftwareVets.WorkoutBuilder.Mobile.Views.Themes
+namespace SoftwareVets.WorkoutBuilder.Mobile.Common.Themes
 {
     public static class ThemeResourceDictionaryKeys
     {

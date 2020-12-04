@@ -23,6 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\SoftwareVets.WorkoutBuilder.Mobile.Common\SoftwareVets.WorkoutBuilder.Mobile.Common.csproj" />
     <ProjectReference Include="..\..\SoftwareVets.WorkoutBuilder.Mobile.Pages\SoftwareVets.WorkoutBuilder.Mobile.Views.csproj" />
   </ItemGroup>
 </Project>

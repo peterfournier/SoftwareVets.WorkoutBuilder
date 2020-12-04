@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SoftwareVets.WorkoutBuilder.Mobile.ViewModels.Pages;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,5 +18,5 @@ namespace SoftwareVets.WorkoutBuilder.Mobile.Views.Pages
             InitializeComponent();
         }
     }
-    public class SettingsPageXaml : ContentPageBase { }
+    public class SettingsPageXaml : ContentPageBase<SettingsPageViewModel> { }
 }

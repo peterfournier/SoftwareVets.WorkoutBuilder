@@ -1,31 +1,42 @@
-﻿using SoftwareVets.WorkoutBuilder.Mobile.Services;
-using SoftwareVets.WorkoutBuilder.Mobile.Views;
-using SoftwareVets.WorkoutBuilder.Mobile.Views.Themes;
+﻿using SoftwareVets.WorkoutBuilder.Mobile.Common.MessageCenter;
+using SoftwareVets.WorkoutBuilder.Mobile.Common.Themes;
+using SoftwareVets.WorkoutBuilder.Mobile.Services;
+using SoftwareVets.WorkoutBuilder.Mobile.ViewModels.Pages;
 using System;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 namespace SoftwareVets.WorkoutBuilder.Mobile
 {
     public partial class App : Application
     {
         public AppTheme AppTheme { get; private set; }
-
+        public App Instance { get; }
         public App()
         {
+            Instance = this;
+
             InitializeComponent();
 
             DependencyService.Register<MockDataStore>();
 
-            setDefaultApplicationTheme();
-
             MainPage = new AppShell();
 
+            setDefaultApplicationTheme();
         }
 
         private void setDefaultApplicationTheme()
         {
-            ApplyTheme(new DarkTheme());
+            applyTheme(new DarkTheme());
+
+            addMessageCenterListener();
+        }
+
+        private void addMessageCenterListener()
+        {
+            MessagingCenter.Subscribe<SettingsPageViewModel, AppTheme>(this, Messages.SwitchApplicationTheme, (sender, appTheme) =>
+            {
+                applyTheme(appTheme);
+            });
         }
 
         protected override void OnStart()
@@ -40,7 +51,7 @@ namespace SoftwareVets.WorkoutBuilder.Mobile
         {
         }
 
-        private void ApplyTheme(AppTheme apptheme)
+        private void applyTheme(AppTheme apptheme)
         {
             if (apptheme == null)
                 throw new ArgumentNullException(nameof(apptheme));
