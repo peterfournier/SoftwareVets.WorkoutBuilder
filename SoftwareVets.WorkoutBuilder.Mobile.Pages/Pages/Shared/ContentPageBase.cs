@@ -12,17 +12,9 @@ namespace SoftwareVets.WorkoutBuilder.Mobile.Views.Pages
 {
     public abstract class ContentPageBase : ContentPage
     {
-        public AppTheme Theme { get; set; }
-
         public ContentPageBase()
         {
             On<iOS>().SetUseSafeArea(true);
-
-            Theme = new DarkTheme();
-            var themeResourceDictionary = new ThemeResourceDictionary();
-            themeResourceDictionary.ApplyTheme(Theme);
-
-            Resources.Add(themeResourceDictionary);
         }
     }
 }

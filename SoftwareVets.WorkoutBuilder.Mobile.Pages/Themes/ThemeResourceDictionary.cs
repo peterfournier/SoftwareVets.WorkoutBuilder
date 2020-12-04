@@ -1,26 +1,29 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Xamarin.Forms;
+﻿using Xamarin.Forms;
 
 namespace SoftwareVets.WorkoutBuilder.Mobile.Views.Themes
 {
+    public static class ThemeResourceDictionaryKeys
+    {
+        public static string TextColorKey = nameof(TextColorKey);
+        public static string BackgroundColorKey = nameof(BackgroundColorKey);
+    }
+
     public class ThemeResourceDictionary : ResourceDictionary
     {
-        private string TextColorKey = nameof(TextColorKey);
-        private string BackgroundColorKey = nameof(BackgroundColorKey);
 
         public ThemeResourceDictionary()
         {
-            Add(TextColorKey, new Color());
-            Add(BackgroundColorKey, new Color());
+            Add(ThemeResourceDictionaryKeys.TextColorKey, new Color());
+            Add(ThemeResourceDictionaryKeys.BackgroundColorKey, new Color());
         }
+    }
 
-        internal void ApplyTheme(AppTheme theme)
+    public static class ResourceDictionaryExtensions
+    {
+        public static void ApplyTheme(this ResourceDictionary resourceDictionary, AppTheme theme)
         {
-            this[TextColorKey] = theme.TextColor;
-            this[BackgroundColorKey] = theme.BackgroundColor;
-            this["Test"] = Color.Red;
+            resourceDictionary[ThemeResourceDictionaryKeys.TextColorKey] = theme.TextColor;
+            resourceDictionary[ThemeResourceDictionaryKeys.BackgroundColorKey] = theme.BackgroundColor;
         }
     }
 }
