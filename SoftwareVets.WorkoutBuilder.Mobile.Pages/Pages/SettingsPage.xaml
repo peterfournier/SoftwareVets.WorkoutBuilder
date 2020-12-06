@@ -7,11 +7,10 @@
                         x:DataType="viewModels:SettingsPageViewModel"
                         >
     
-    <StackLayout BackgroundColor="{DynamicResource BackgroundColorKey}">
+    <StackLayout>
         <Label Text="Settings page" 
                VerticalOptions="CenterAndExpand" 
                HorizontalOptions="CenterAndExpand" 
-               TextColor="{DynamicResource TextColorKey}"
                />
 
         <Button Text="Light Mode"

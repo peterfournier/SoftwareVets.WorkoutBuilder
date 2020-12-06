@@ -3,14 +3,12 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="SoftwareVets.WorkoutBuilder.Mobile.Views.Pages.GettingStarted"
              xmlns:iconLabel="clr-namespace:SoftwareVets.WorkoutBuilder.Mobile.Views.Labels.IconLabels"
-             BackgroundColor="WhiteSmoke"
              >
     <ContentPage.Content>
         <ScrollView>
             
             <StackLayout Margin="15">
-                <Frame BackgroundColor="White"
-                       BorderColor="LightGray"
+                <Frame BorderColor="LightGray"
                        VerticalOptions="FillAndExpand"
                        >
                     <StackLayout>
