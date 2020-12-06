@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Grid xmlns="http://xamarin.com/schemas/2014/forms" 
+      xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+      x:Class="SV.Builder.Mobile.Views.Partial.FormTitleBar"
+      xmlns:buttons="clr-namespace:SV.Builder.Mobile.Views.Buttons"
+      >
+
+    <Grid.RowDefinitions>
+        <RowDefinition Height="45" />
+        <RowDefinition Height="1" />
+
+    </Grid.RowDefinitions>
+
+    <buttons:TimesIconButton  VerticalOptions="Center"
+                              HorizontalOptions="Start"
+                              WidthRequest="40"
+                              
+                              Margin="5"
+                              BackgroundColor="Transparent"
+                              />
+
+    <Label Text="Title Here"
+           FontSize="Title"
+           FontAttributes="Bold"
+           HorizontalTextAlignment="Center"
+           VerticalTextAlignment="Center"
+           />
+
+    <buttons:SaveIconButton VerticalOptions="Center"
+                            HorizontalOptions="End"
+                            
+                            Margin="5"
+                            BackgroundColor="Transparent"
+                            />
+
+    <BoxView Grid.Row="1"
+             HeightRequest="1"
+             BackgroundColor="Black"
+             
+             />
+</Grid>

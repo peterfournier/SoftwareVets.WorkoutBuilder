@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<local:CreateWorkoutPageXaml xmlns="http://xamarin.com/schemas/2014/forms"
+                             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                             x:Class="SV.Builder.Mobile.Views.Pages.CreateWorkoutPage"
+                             xmlns:local="clr-namespace:SV.Builder.Mobile.Views.Pages"
+                             xmlns:partials="clr-namespace:SV.Builder.Mobile.Views.Partial"
+                             >
+    <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="46"></RowDefinition>
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        
+        <partials:FormTitleBar Title="Build Workout"
+            ></partials:FormTitleBar>
+
+        <Label Text="Hello form" 
+               Grid.Row="1"
+               VerticalTextAlignment="Center"
+               HorizontalTextAlignment="Center"
+               />
+
+    </Grid>
+</local:CreateWorkoutPageXaml>

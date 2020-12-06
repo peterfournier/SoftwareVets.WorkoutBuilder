@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Xamarin.Forms" Version="4.8.0.1687" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SV.Builder.Mobile.Common\SV.Builder.Mobile.Common.csproj" />
+  </ItemGroup>
+
+</Project>
