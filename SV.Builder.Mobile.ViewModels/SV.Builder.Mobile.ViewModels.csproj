@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFramework>netstandard2.1</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
@@ -9,6 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\SV.Builder.Domain\SV.Builder.Domain.csproj" />
     <ProjectReference Include="..\SV.Builder.Mobile.Common\SV.Builder.Mobile.Common.csproj" />
   </ItemGroup>
 

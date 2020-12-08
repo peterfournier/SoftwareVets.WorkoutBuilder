@@ -5,21 +5,62 @@
                              xmlns:local="clr-namespace:SV.Builder.Mobile.Views.Pages"
                              xmlns:partials="clr-namespace:SV.Builder.Mobile.Views.Partial"
                              >
-    <Grid>
+    <Grid RowSpacing="0">
 
         <Grid.RowDefinitions>
-            <RowDefinition Height="46"></RowDefinition>
+            <RowDefinition Height="52"></RowDefinition>
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         
         <partials:FormTitleBar Title="Build Workout"
             ></partials:FormTitleBar>
 
-        <Label Text="Hello form" 
-               Grid.Row="1"
-               VerticalTextAlignment="Center"
-               HorizontalTextAlignment="Center"
-               />
+        <StackLayout BackgroundColor="LightGray"
+                     Grid.Row="1"
+                     >
+
+            
+            <StackLayout x:Name="mainContentStack">
+                <StackLayout Padding="15">
+                    <Label Text="{Binding Name}"
+                           FontSize="Title"
+                           >
+                    </Label>
+
+                    <Label Text="{Binding Description}"
+                           FontSize="Default"
+                           ></Label>
+                    </StackLayout>
+
+                <BoxView HeightRequest="1"
+                         BackgroundColor="Gray"
+                         Margin="15,0,0,0"
+                         >
+                    
+                </BoxView>
+
+                <StackLayout Padding="15">
+
+                    <StackLayout Orientation="Horizontal">
+                        <StackLayout>
+                            <Label Text="25:00"
+                                   HorizontalTextAlignment="Center"
+                                   ></Label>
+                            <Label Text="Est. Duration"
+                                   HorizontalTextAlignment="Center"
+                                   ></Label>
+                        </StackLayout>
+                    </StackLayout>
+                    
+                </StackLayout>
+                
+            </StackLayout>
+
+            <Button Text="Add Round"
+                    VerticalOptions="EndAndExpand"
+                    ></Button>
+            
+        </StackLayout>
 
     </Grid>
 </local:CreateWorkoutPageXaml>

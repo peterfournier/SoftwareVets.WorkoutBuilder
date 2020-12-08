@@ -21,7 +21,8 @@ namespace SV.Builder.Mobile.Views.Buttons
             {
                 FontFamily = FontFamily,
                 Glyph = Unicode.Replace("\\u", "$#x"),
-                Color = Color.Gray
+                Color = Color.Gray,
+                Size = 20
             };
         }
 

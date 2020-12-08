@@ -10,8 +10,6 @@
     <Application.Resources>
         <ResourceDictionary>
 
-            <!--<theme:ThemeResourceDictionary x:Key="themeResourceDictionary"></theme:ThemeResourceDictionary>-->
-
             <Color x:Key="Primary">#2196F3</Color>
 
             <Style TargetType="Button">

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SV.Builder.Mobile.ViewModels.Pages;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,5 +20,5 @@ namespace SV.Builder.Mobile.Views.Pages
         }
     }
 
-    public class CreateWorkoutPageXaml : ContentPageBase { }
+    public class CreateWorkoutPageXaml : ContentPageBase<CreateWorkoutPageViewModel> { }
 }

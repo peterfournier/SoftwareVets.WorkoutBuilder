@@ -4,7 +4,7 @@ using System.Diagnostics.CodeAnalysis;
 
 namespace SV.Builder.Domain
 {
-    internal class Workout : VersionedDomainModelBase
+    internal class Workout : VersionedDomainModelBase, IWorkout
     {
         private List<Round> _rounds = new List<Round>();
 
