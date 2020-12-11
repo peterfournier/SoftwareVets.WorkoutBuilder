@@ -28,7 +28,7 @@ namespace SV.Builder.Mobile
 
         private void setDefaultApplicationTheme()
         {
-            applyTheme(new DarkTheme());
+            applyTheme(new LightTheme());
 
             addMessageCenterListener();
         }

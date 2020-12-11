@@ -18,6 +18,15 @@ namespace SV.Builder.Mobile.Views.Pages
             InitializeComponent();
             
         }
+
+        private void addRoundButton_Clicked(object sender, EventArgs e)
+        {
+        }
+
+        private async void WorkoutNameTapGestureRecognizer_Tapped(object sender, EventArgs e)
+        {
+            await Shell.Current.Navigation.PushModalAsync(new EditWorkoutNamePage());
+        }
     }
 
     public class CreateWorkoutPageXaml : ContentPageBase<CreateWorkoutPageViewModel> { }

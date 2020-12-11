@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<local:EditWorkoutNamePageXaml xmlns="http://xamarin.com/schemas/2014/forms"
+                               xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                               x:Class="SV.Builder.Mobile.Views.Pages.EditWorkoutNamePage"
+                               xmlns:local="clr-namespace:SV.Builder.Mobile.Views.Pages"
+                               xmlns:partials="clr-namespace:SV.Builder.Mobile.Views.Partial"
+                               xmlns:viewModels="clr-namespace:SV.Builder.Mobile.ViewModels.Pages;assembly=SV.Builder.Mobile.ViewModels"
+                               x:DataType="viewModels:EditWorkoutNamePageViewModel"
+                               Title="Edit Workout Name"
+                               >
+    <Grid RowSpacing="0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="52" />
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <partials:FormTitleBar></partials:FormTitleBar>
+
+        <StackLayout Grid.Row="1"
+                     Padding="15"
+                     >
+            <Label Text="Workout Name" FontSize="Medium" />
+            <Entry Text="{Binding Name, Mode=TwoWay}" FontSize="Medium" />
+            
+            <Label Text="Description" FontSize="Medium" />
+            <Editor Text="{Binding Description, Mode=TwoWay}" AutoSize="TextChanges" FontSize="Medium" Margin="0" />
+        </StackLayout>
+        
+    </Grid>
+</local:EditWorkoutNamePageXaml>

@@ -11,26 +11,22 @@
 
     </Grid.RowDefinitions>
 
-    <buttons:TimesIconButton  VerticalOptions="Center"
+    <buttons:TimesIconButton  VerticalOptions="CenterAndExpand"
                               HorizontalOptions="Start"
-                              WidthRequest="40"
-                              
-                              Margin="5"
-                              BackgroundColor="Transparent"
+                              Command="{Binding CancelCommand}"
                               />
 
-    <Label Text="Title Here"
+    <Label Text="{Binding Title}"
            FontSize="Title"
            FontAttributes="Bold"
+           HorizontalOptions="CenterAndExpand"
            HorizontalTextAlignment="Center"
            VerticalTextAlignment="Center"
            />
 
-    <buttons:SaveIconButton VerticalOptions="Center"
+    <buttons:SaveIconButton VerticalOptions="CenterAndExpand"
                             HorizontalOptions="End"
-                            
-                            Margin="5"
-                            BackgroundColor="Transparent"
+                            Command="{Binding SaveCommand}"
                             />
 
     <BoxView Grid.Row="1"

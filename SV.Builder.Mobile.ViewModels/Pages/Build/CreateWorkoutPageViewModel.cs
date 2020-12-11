@@ -1,14 +1,16 @@
 ﻿using SV.Builder.Domain;
 using SV.Builder.Domain.Factories;
+using SV.Builder.Mobile.Common.MessageCenter;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Xamarin.Forms;
 
 namespace SV.Builder.Mobile.ViewModels.Pages
 {
     public class CreateWorkoutPageViewModel : BaseViewModel
     {
-        private readonly WorkoutFactory workoutFactory;
+        private IWorkout _workout;
 
         private string _name;
         public string Name
@@ -26,8 +28,18 @@ namespace SV.Builder.Mobile.ViewModels.Pages
 
         public CreateWorkoutPageViewModel()
         {
-            Name = "Workout a";
-            Description = "description";
+            Name = "Enter a name";
+            Description = "Description";
+
+            MessagingCenter.Subscribe<EditWorkoutNamePageViewModel, IWorkout>(this, Messages.CreateWorkout, workoutCreatedHandler);
+        }
+
+        private void workoutCreatedHandler(EditWorkoutNamePageViewModel viewModel, IWorkout workout)
+        {
+            Name = workout.Name;
+            Description = workout.Description;
+
+            _workout = workout;
         }
     }
 }

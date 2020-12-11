@@ -12,9 +12,10 @@ namespace SV.Builder.Mobile
         public AppShell()
         {
             InitializeComponent();
+            Routing.RegisterRoute(nameof(CreateWorkoutPage), typeof(CreateWorkoutPage));
+            Routing.RegisterRoute(nameof(EditWorkoutNamePage), typeof(EditWorkoutNamePage));
             Routing.RegisterRoute(nameof(ItemDetailPage), typeof(ItemDetailPage));
             Routing.RegisterRoute(nameof(NewItemPage), typeof(NewItemPage));
-            Routing.RegisterRoute(nameof(CreateWorkoutPage), typeof(CreateWorkoutPage));            
         }
 
         private async void OnMenuItemClicked(object sender, EventArgs e)

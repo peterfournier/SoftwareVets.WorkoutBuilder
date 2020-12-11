@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Windows.Input;
+using Xamarin.Forms;
 
 namespace SV.Builder.Mobile.ViewModels.Pages
 {
@@ -21,6 +23,37 @@ namespace SV.Builder.Mobile.ViewModels.Pages
         {
             get { return title; }
             set { SetProperty(ref title, value); }
+        }
+
+        private ICommand _cancelCommand;
+        public ICommand CancelCommand
+        {
+            get { return _cancelCommand; }
+            set { SetProperty(ref _cancelCommand, value); }
+        }
+
+        private ICommand _saveCommand;
+        public ICommand SaveCommand
+        {
+            get { return _saveCommand; }
+            set { SetProperty(ref _saveCommand, value); }
+        }
+
+        public BaseViewModel()
+        {
+            CancelCommand = new Command(OnCancelCommand);
+            SaveCommand = new Command(OnSaveCommand);
+        }
+
+
+        public async virtual void OnCancelCommand()
+        {
+            await Shell.Current.Navigation.PopModalAsync();
+        }
+
+        public async virtual void OnSaveCommand()
+        {
+            await Shell.Current.Navigation.PopModalAsync();
         }
 
         protected bool SetProperty<T>(ref T backingStore, T value,

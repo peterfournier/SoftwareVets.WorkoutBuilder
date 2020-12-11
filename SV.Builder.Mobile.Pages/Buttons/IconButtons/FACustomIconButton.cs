@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Xamarin.Forms;
+﻿using Xamarin.Forms;
 
 namespace SV.Builder.Mobile.Views.Buttons
 {
@@ -13,6 +10,10 @@ namespace SV.Builder.Mobile.Views.Buttons
         public CustomIconButton()
         {
             SetGlyph();
+            HeightRequest = 40;
+            WidthRequest = 40;
+            BackgroundColor = Color.Transparent;
+            Margin = 5;
         }
 
         protected void SetGlyph()
@@ -22,7 +23,7 @@ namespace SV.Builder.Mobile.Views.Buttons
                 FontFamily = FontFamily,
                 Glyph = Unicode.Replace("\\u", "$#x"),
                 Color = Color.Gray,
-                Size = 20
+                Size = 16,
             };
         }
 
