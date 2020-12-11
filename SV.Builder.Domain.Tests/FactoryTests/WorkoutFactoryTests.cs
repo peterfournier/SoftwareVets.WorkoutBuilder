@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace SV.Builder.Domain.Tests.WorkoutFactoryTests
+namespace SV.Builder.Domain.Tests.FactoryTests
 {
     public class WorkoutFactoryTests
     {
@@ -31,12 +31,10 @@ namespace SV.Builder.Domain.Tests.WorkoutFactoryTests
         [Test]
         public void Test_CreateNewWorkout_Name_IsEqual()
         {
-            var workoutFactory = new Factories.WorkoutFactory();
-
             var workoutName = "Workout A";
             var workoutDescription = "Test";
 
-            var workout = workoutFactory.CreateWorkout(workoutName, workoutDescription);
+            var workout = _workoutFactory.CreateWorkout(workoutName, workoutDescription);
 
             Assert.AreEqual(workoutName, workout.Name);
         }
@@ -44,12 +42,10 @@ namespace SV.Builder.Domain.Tests.WorkoutFactoryTests
         [Test]
         public void Test_CreateNewWorkout_Description_IsEqual()
         {
-            var workoutFactory = new Factories.WorkoutFactory();
-
             var workoutName = "Workout A";
             var workoutDescription = "Test";
 
-            var workout = workoutFactory.CreateWorkout(workoutName, workoutDescription);
+            var workout = _workoutFactory.CreateWorkout(workoutName, workoutDescription);
 
             Assert.AreEqual(workoutDescription, workout.Description);
         }
