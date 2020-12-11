@@ -62,7 +62,7 @@
             <Button Text="Add Round"
                     x:Name="addRoundButton"
                     VerticalOptions="EndAndExpand"
-                    Clicked="addRoundButton_Clicked"
+                    Command="{Binding AddRoundCommand}"
                     ></Button>
             
         </StackLayout>
