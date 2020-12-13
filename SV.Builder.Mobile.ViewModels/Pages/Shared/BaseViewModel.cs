@@ -43,8 +43,13 @@ namespace SV.Builder.Mobile.ViewModels.Pages
         {
             CancelCommand = new Command(OnCancelCommand);
             SaveCommand = new Command(OnSaveCommand);
+            WireUpSubscriptions();
         }
 
+        protected virtual void WireUpSubscriptions()
+        {
+
+        }
 
         public async virtual void OnCancelCommand()
         {

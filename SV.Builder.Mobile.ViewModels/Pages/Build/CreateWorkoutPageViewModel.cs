@@ -40,13 +40,22 @@ namespace SV.Builder.Mobile.ViewModels.Pages
 
         public CreateWorkoutPageViewModel()
         {
+            setNewWorkout();
+        }
+
+        protected override void WireUpSubscriptions()
+        {
+            MessagingCenter.Subscribe<EditWorkoutNamePageViewModel, IWorkout>(this, Messages.CreateWorkout, workoutCreatedHandler);
+            MessagingCenter.Subscribe<CreateRoundPageViewModel, IRound>(this, Messages.CreateRound, roundCreatedHandler);
+        }
+
+        private void setNewWorkout()
+        {
             Name = "Enter a name";
             Description = "Description";
 
-            //AddRoundCommand = new Command(onAddRoundCommand);
-
-            MessagingCenter.Subscribe<EditWorkoutNamePageViewModel, IWorkout>(this, Messages.CreateWorkout, workoutCreatedHandler);
-            MessagingCenter.Subscribe<CreateRoundPageViewModel, IRound>(this, Messages.CreateRound, roundCreatedHandler);
+            var factory = new WorkoutFactory();
+            _workout = factory.CreateWorkout(Name, Description);
         }
 
         private void roundCreatedHandler(CreateRoundPageViewModel createRoundPage, IRound round)
@@ -60,7 +69,8 @@ namespace SV.Builder.Mobile.ViewModels.Pages
             Name = workout.Name;
             Description = workout.Description;
 
-            _workout = workout;
+            _workout.ChangeName(Name);
+            _workout.Description = Description;
         }
     }
 }

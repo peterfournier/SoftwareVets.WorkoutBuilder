@@ -4,9 +4,10 @@ namespace SV.Builder.Domain
 {
     public interface IWorkout
     {
-        string Description { get; }
+        List<IRound> GetRounds();
+        string Description { get; set; }
         string Name { get; }
         void AddRound(IRound round);
-        List<IRound> GetRounds();
+        void ChangeName(string newName);
     }
 }

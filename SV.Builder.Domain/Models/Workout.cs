@@ -48,15 +48,23 @@ namespace SV.Builder.Domain
             calulateWorkoutLength();
         }
 
+        public void AddRound(IRound round)
+        {
+            AddRound(round as Round);
+        }
+
+        public void ChangeName(string newName)
+        {
+            if (string.IsNullOrEmpty(newName))
+                throw new ArgumentNullException(nameof(newName));
+
+            Name = newName;
+        }
+
         public List<IRound> GetRounds()
         {
             return _rounds.Select(x => (IRound)x)
                           .ToList();
-        }
-
-        public void AddRound(IRound round)
-        {
-            AddRound(round as Round);
         }
     }
 }
