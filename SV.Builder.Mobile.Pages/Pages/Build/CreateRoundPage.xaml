@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<local:CreateRoundPageXaml xmlns="http://xamarin.com/schemas/2014/forms"
+                           xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                           x:Class="SV.Builder.Mobile.Views.Pages.CreateRoundPage"
+                           xmlns:local="clr-namespace:SV.Builder.Mobile.Views.Pages"
+                           xmlns:partials="clr-namespace:SV.Builder.Mobile.Views.Partial"
+                           xmlns:viewModels="clr-namespace:SV.Builder.Mobile.ViewModels.Pages;assembly=SV.Builder.Mobile.ViewModels"
+                           x:DataType="viewModels:CreateRoundPageViewModel"
+                           >
+    <Grid RowSpacing="0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="52" />
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <partials:FormTitleBar></partials:FormTitleBar>
+
+        <StackLayout Grid.Row="1"
+                     Padding="15"
+                     >
+            <Label Text="Round Name" 
+                   FontSize="Medium" 
+                   />
+            <Entry Text="{Binding Name}" 
+                   FontSize="Medium" 
+                   />
+
+            <Label Text="Description" 
+                   FontSize="Medium" 
+                   />
+            <Editor Text="{Binding Description}" 
+                    AutoSize="TextChanges" 
+                    FontSize="Medium" 
+                    Margin="0" />
+
+            <Label Text="Iterations" 
+                   FontSize="Medium" 
+                   />
+            <Entry Text="{Binding Iterations}" 
+                   FontSize="Medium" 
+                   Keyboard="Numeric"
+                   />
+        </StackLayout>
+
+    </Grid>
+</local:CreateRoundPageXaml>

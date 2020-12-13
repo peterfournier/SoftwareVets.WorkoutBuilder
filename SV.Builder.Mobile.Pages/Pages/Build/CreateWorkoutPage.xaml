@@ -56,13 +56,23 @@
                     </StackLayout>
                     
                 </StackLayout>
+
+                <CollectionView ItemsSource="{Binding Rounds}">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout>
+                                <Label Text="{Binding .}"></Label>
+                            </StackLayout>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
                 
             </StackLayout>
 
             <Button Text="Add Round"
                     x:Name="addRoundButton"
                     VerticalOptions="EndAndExpand"
-                    Command="{Binding AddRoundCommand}"
+                    Clicked="addRoundButton_Clicked"
                     ></Button>
             
         </StackLayout>

@@ -23,6 +23,11 @@ namespace SV.Builder.Mobile.Views.Pages
         {
             await Shell.Current.Navigation.PushModalAsync(new EditWorkoutNamePage());
         }
+
+        private async void addRoundButton_Clicked(object sender, EventArgs e)
+        {
+            await Shell.Current.Navigation.PushModalAsync(new CreateRoundPage());
+        }
     }
 
     public class CreateWorkoutPageXaml : ContentPageBase<CreateWorkoutPageViewModel> { }

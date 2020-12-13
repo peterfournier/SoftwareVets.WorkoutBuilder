@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 
 namespace SV.Builder.Domain
 {
@@ -8,7 +9,6 @@ namespace SV.Builder.Domain
     {
         private List<Round> _rounds = new List<Round>();
 
-        public Plan Plan { get; private set; }
         public string Description { get; set; }
         public string Name { get; private set; }
         public TimeSpan Length { get; internal set; }
@@ -17,21 +17,8 @@ namespace SV.Builder.Domain
         {
             Name = string.IsNullOrWhiteSpace(workoutName) ? throw new ArgumentNullException(nameof(workoutName)) : workoutName;
         }
+
         
-        public void AddRound(Round round)
-        {
-            if (round == null)
-                throw new ArgumentNullException(nameof(round));
-
-            round.SetWorkout(this);
-
-            _rounds.Add(round);
-
-            round.OnLengthChanged += Round_OnLengthChanged;
-
-            calulateWorkoutLength();
-        }
-
         private void Round_OnLengthChanged(TimeSpan length)
         {
             calulateWorkoutLength();
@@ -47,9 +34,29 @@ namespace SV.Builder.Domain
             }
         }
 
-        public List<Round> GetRounds()
+        internal void AddRound(Round round)
         {
-            return _rounds;
+            if (round == null)
+                throw new ArgumentNullException(nameof(round));
+
+            round.SetWorkout(this);
+
+            _rounds.Add(round);
+
+            round.OnLengthChanged += Round_OnLengthChanged;
+
+            calulateWorkoutLength();
+        }
+
+        public List<IRound> GetRounds()
+        {
+            return _rounds.Select(x => (IRound)x)
+                          .ToList();
+        }
+
+        public void AddRound(IRound round)
+        {
+            AddRound(round as Round);
         }
     }
 }

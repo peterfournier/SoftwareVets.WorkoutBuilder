@@ -7,15 +7,13 @@ namespace SV.Builder.Domain.Factories
         public IRound CreateRound(
             string name, 
             string description,
-            int iterations,
-            TimeSpan length
+            int iterations
             )
         {
 
             var round = new Round(name);
             round.Description = description;
             round.Iterations = iterations;
-            round.Length = length;
 
             return round;
         }

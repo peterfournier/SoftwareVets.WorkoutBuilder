@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace SV.Builder.Domain
 {
@@ -8,5 +6,7 @@ namespace SV.Builder.Domain
     {
         string Description { get; }
         string Name { get; }
+        void AddRound(IRound round);
+        List<IRound> GetRounds();
     }
 }

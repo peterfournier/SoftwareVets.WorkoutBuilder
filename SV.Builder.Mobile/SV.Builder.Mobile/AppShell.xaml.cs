@@ -12,6 +12,7 @@ namespace SV.Builder.Mobile
         public AppShell()
         {
             InitializeComponent();
+            Routing.RegisterRoute(nameof(CreateRoundPage), typeof(CreateRoundPage));
             Routing.RegisterRoute(nameof(CreateWorkoutPage), typeof(CreateWorkoutPage));
             Routing.RegisterRoute(nameof(EditWorkoutNamePage), typeof(EditWorkoutNamePage));
             Routing.RegisterRoute(nameof(ItemDetailPage), typeof(ItemDetailPage));

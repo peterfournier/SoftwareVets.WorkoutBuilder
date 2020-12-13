@@ -12,7 +12,7 @@ namespace SV.Builder.Domain.Tests.WorkoutTests
         }
 
         [TestCase("Workout Name")]
-        public void Test_Add_Round_Exists(string param)
+        public void AddRound_NewRound_AddsToRoundCollection(string param)
         {
             var workout = new Workout(param);
 
@@ -22,7 +22,7 @@ namespace SV.Builder.Domain.Tests.WorkoutTests
         }
 
         [TestCase("Workout Name")]
-        public void Test_Add_Round_Sets_Workout_Property(string param)
+        public void AddRound_NewRound_SetsWorkoutProperty(string param)
         {
             var workout = new Workout(param);
             var round = new Round("Round 1");
@@ -32,7 +32,7 @@ namespace SV.Builder.Domain.Tests.WorkoutTests
         }
 
         [Test]
-        public void Test_AddRound_CannotBeNull_Exception()
+        public void AddRound_Null_ThrowsException()
         {
             Assert.Throws(typeof(ArgumentNullException), new TestDelegate(addRoundTest), "AddRound: Round parameter does not allow nulls");
 

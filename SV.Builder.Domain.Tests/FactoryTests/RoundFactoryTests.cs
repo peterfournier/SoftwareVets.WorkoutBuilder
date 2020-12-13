@@ -23,7 +23,7 @@ namespace SV.Builder.Domain.Tests.FactoryTests
             var roundName = "Round 1";
             var roundDescription = "Testing description";
 
-            var round = _roundFactory.CreateRound(roundName, roundDescription, 0, new TimeSpan());
+            var round = _roundFactory.CreateRound(roundName, roundDescription, 0);
 
             Assert.IsNotNull(round);
         }
@@ -34,7 +34,7 @@ namespace SV.Builder.Domain.Tests.FactoryTests
             var roundName = "Round 1";
             var roundDescription = "Testing description";
 
-            var round = _roundFactory.CreateRound(roundName, roundDescription, 0, new TimeSpan());
+            var round = _roundFactory.CreateRound(roundName, roundDescription, 0);
 
             Assert.AreEqual(roundName, round.Name);
         }
@@ -45,7 +45,7 @@ namespace SV.Builder.Domain.Tests.FactoryTests
             var roundName = "Round 1";
             var roundDescription = "Testing description";
 
-            var round = _roundFactory.CreateRound(roundName, roundDescription, 0, new TimeSpan());
+            var round = _roundFactory.CreateRound(roundName, roundDescription, 0);
 
             Assert.AreEqual(roundDescription, round.Description);
         }
@@ -57,22 +57,9 @@ namespace SV.Builder.Domain.Tests.FactoryTests
             var roundDescription = "Testing description";
             var roundIterations = 2;
 
-            var round = _roundFactory.CreateRound(roundName, roundDescription, roundIterations, new TimeSpan());
+            var round = _roundFactory.CreateRound(roundName, roundDescription, roundIterations);
 
             Assert.AreEqual(roundIterations, round.Iterations);
-        }
-
-        [Test]
-        public void Test_CreateNewRound_Length_IsEqual()
-        {
-            var roundName = "Round 1";
-            var roundDescription = "Testing description";
-            var roundIterations = 2;
-            var roundLength = new TimeSpan(0, 0, 30);
-
-            var round = _roundFactory.CreateRound(roundName, roundDescription, roundIterations, roundLength);
-
-            Assert.AreEqual(roundLength.TotalSeconds, round.Length.TotalSeconds);
         }
     }
 }

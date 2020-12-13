@@ -3,6 +3,7 @@ using SV.Builder.Domain.Factories;
 using SV.Builder.Mobile.Common.MessageCenter;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Text;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -14,12 +15,12 @@ namespace SV.Builder.Mobile.ViewModels.Pages
         private IWorkout _workout;
 
 
-        private ICommand _addRoundCommand;
-        public ICommand AddRoundCommand
-        {
-            get => _addRoundCommand;
-            set => SetProperty(ref _addRoundCommand, value);
-        }
+        //private ICommand _addRoundCommand;
+        //public ICommand AddRoundCommand
+        //{
+        //    get => _addRoundCommand;
+        //    set => SetProperty(ref _addRoundCommand, value);
+        //}
 
         private string _name;
         public string Name
@@ -35,22 +36,23 @@ namespace SV.Builder.Mobile.ViewModels.Pages
             set => SetProperty(ref _description, value);
         }
 
-
+        public ObservableCollection<string> Rounds { get; set; } = new ObservableCollection<string>();
 
         public CreateWorkoutPageViewModel()
         {
             Name = "Enter a name";
             Description = "Description";
 
-            AddRoundCommand = new Command(onAddRoundCommand);
+            //AddRoundCommand = new Command(onAddRoundCommand);
 
             MessagingCenter.Subscribe<EditWorkoutNamePageViewModel, IWorkout>(this, Messages.CreateWorkout, workoutCreatedHandler);
+            MessagingCenter.Subscribe<CreateRoundPageViewModel, IRound>(this, Messages.CreateRound, roundCreatedHandler);
         }
 
-        private void onAddRoundCommand(object obj)
+        private void roundCreatedHandler(CreateRoundPageViewModel createRoundPage, IRound round)
         {
-            //await Shell.Current.Navigation.PushModalAsync(new CreateWorkoutPage());
-            var test = "";
+            _workout.AddRound(round);
+            Rounds.Add(round.Name);
         }
 
         private void workoutCreatedHandler(EditWorkoutNamePageViewModel viewModel, IWorkout workout)
