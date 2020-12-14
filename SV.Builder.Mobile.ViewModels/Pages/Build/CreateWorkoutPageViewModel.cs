@@ -13,7 +13,8 @@ namespace SV.Builder.Mobile.ViewModels.Pages
     public class CreateWorkoutPageViewModel : BaseViewModel
     {
         private IWorkout _workout;
-
+        public string DefaultWorkoutName = "Enter a name";
+        public string DefaultDescription = "Description";
 
         //private ICommand _addRoundCommand;
         //public ICommand AddRoundCommand
@@ -51,8 +52,8 @@ namespace SV.Builder.Mobile.ViewModels.Pages
 
         private void setNewWorkout()
         {
-            Name = "Enter a name";
-            Description = "Description";
+            Name = DefaultWorkoutName;
+            Description = DefaultDescription;
 
             var factory = new WorkoutFactory();
             _workout = factory.CreateWorkout(Name, Description);

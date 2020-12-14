@@ -21,7 +21,13 @@ namespace SV.Builder.Mobile.Views.Pages
 
         private async void WorkoutNameTapGestureRecognizer_Tapped(object sender, EventArgs e)
         {
-            await Shell.Current.Navigation.PushModalAsync(new EditWorkoutNamePage());
+            if (BindingContext is CreateWorkoutPageViewModel createWorkoutPageViewModel)
+            {
+                var workoutName = createWorkoutPageViewModel.Name.Equals(createWorkoutPageViewModel.DefaultWorkoutName) ? string.Empty : createWorkoutPageViewModel.Name;
+                var workoutDescription = createWorkoutPageViewModel.Description.Equals(createWorkoutPageViewModel.DefaultDescription) ? string.Empty : createWorkoutPageViewModel.Description;
+
+                await Shell.Current.Navigation.PushModalAsync(new EditWorkoutNamePage(workoutName, workoutDescription));
+            }
         }
 
         private async void addRoundButton_Clicked(object sender, EventArgs e)

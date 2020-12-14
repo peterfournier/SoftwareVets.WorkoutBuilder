@@ -13,11 +13,15 @@ namespace SV.Builder.Mobile.Views.Pages
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class EditWorkoutNamePage : EditWorkoutNamePageXaml
     {
-        public EditWorkoutNamePage()
+        public EditWorkoutNamePage(string workoutName, string workoutDescription)
         {
             InitializeComponent();
+            var viewModel = new EditWorkoutNamePageViewModel();
+            viewModel.Name = workoutName;
+            viewModel.Description = workoutDescription;
+            BindingContext = viewModel;
         }
     }
 
-    public partial class EditWorkoutNamePageXaml : ContentPageBase<EditWorkoutNamePageViewModel> { }
+    public partial class EditWorkoutNamePageXaml : ContentPageBase { }
 }
