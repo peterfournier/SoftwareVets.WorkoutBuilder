@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace SV.Builder.Domain
 {
-    internal class Exercise : VersionedDomainModelBase
+    internal class Exercise : VersionedDomainModelBase, IExercise
     {
         private List<Set> _sets = new List<Set>();
 
