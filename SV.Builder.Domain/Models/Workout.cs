@@ -48,9 +48,13 @@ namespace SV.Builder.Domain
             calulateWorkoutLength();
         }
 
-        public void AddRound(IRound round)
+        public bool AddRound(IRound round)
         {
+            int roundsBeforeAdd = _rounds.Count;
+
             AddRound(round as Round);
+
+            return _rounds.Count == (roundsBeforeAdd + 1);
         }
 
         public void ChangeName(string newName)

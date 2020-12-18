@@ -7,7 +7,7 @@ namespace SV.Builder.Domain
         List<IRound> GetRounds();
         string Description { get; set; }
         string Name { get; }
-        void AddRound(IRound round);
+        bool AddRound(IRound round);
         void ChangeName(string newName);
     }
 }

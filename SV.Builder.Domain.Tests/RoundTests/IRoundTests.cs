@@ -27,13 +27,13 @@ namespace SV.Builder.Domain.Tests.RoundTests
             string exerciseName = "Sit ups";
             string roundDescription = null;
             int roundIterations = 0;
-            bool successFullyAddesRound = true;
+            bool successFullyAddedExercise = true;
             var round = _roundFactory.CreateRound(roundName, roundDescription, roundIterations);
             var exercise = _exerciseFactory.CreateExercise(exerciseName);
 
             var addsRoundSuccess = round.AddExercise(exercise);
 
-            Assert.AreEqual(successFullyAddesRound, addsRoundSuccess);
+            Assert.AreEqual(successFullyAddedExercise, addsRoundSuccess);
         }
 
         [Test]
