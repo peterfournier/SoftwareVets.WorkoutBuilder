@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace SV.Builder.Domain
 {
@@ -8,5 +9,7 @@ namespace SV.Builder.Domain
         public TimeSpan Length { get; }
         int Iterations { get; }
         string Description { get; }
+        bool AddExercise(IExercise exercise);
+        IList<IExercise> GetExercises();
     }
 }

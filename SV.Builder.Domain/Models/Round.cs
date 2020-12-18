@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace SV.Builder.Domain
 {
@@ -83,6 +84,21 @@ namespace SV.Builder.Domain
                 throw new Exception("Workout can only be set once");
 
             _workout = workout;
+        }
+
+        public bool AddExercise(IExercise exercise)
+        {
+            int initialRoundCount = _exercises.Count;
+
+            AddExercise(exercise as Exercise);
+            
+            return _exercises.Count == (initialRoundCount + 1);
+        }
+
+        IList<IExercise> IRound.GetExercises()
+        {
+            return _exercises.Select(x => x as IExercise)
+                             .ToList();
         }
     }
 }
