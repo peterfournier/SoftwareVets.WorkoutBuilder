@@ -7,7 +7,7 @@ namespace SV.Builder.Mobile.ViewModels.Pages
 {
     public class CreateRoundPageViewModel : BaseViewModel
     {
-        private int _iterations;
+        private int _iterations = 1;
         public int Iterations
         {
             get => _iterations;
