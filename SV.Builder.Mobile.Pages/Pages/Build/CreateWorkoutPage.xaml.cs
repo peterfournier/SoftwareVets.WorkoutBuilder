@@ -1,4 +1,7 @@
-﻿using SV.Builder.Mobile.ViewModels.Pages;
+﻿using SV.Builder.Domain;
+using SV.Builder.Mobile.Common.MessageCenter;
+using SV.Builder.Mobile.ViewModels;
+using SV.Builder.Mobile.ViewModels.Pages;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,7 +19,8 @@ namespace SV.Builder.Mobile.Views.Pages
         public CreateWorkoutPage()
         {
             InitializeComponent();
-            
+
+            MessagingCenter.Subscribe<RoundViewModel, RoundViewModel>(this, Messages.GoToNewExercise, addExerciseButton_Clicked);
         }
 
         private async void WorkoutNameTapGestureRecognizer_Tapped(object sender, EventArgs e)
@@ -33,6 +37,11 @@ namespace SV.Builder.Mobile.Views.Pages
         private async void addRoundButton_Clicked(object sender, EventArgs e)
         {
             await Shell.Current.Navigation.PushModalAsync(new CreateRoundPage());
+        }
+
+        private async void addExerciseButton_Clicked(object sender, RoundViewModel roundViewModel)
+        {
+            await Shell.Current.Navigation.PushModalAsync(new CreateExercisePage());
         }
     }
 

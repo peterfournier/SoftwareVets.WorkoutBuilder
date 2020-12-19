@@ -4,6 +4,7 @@
                              x:Class="SV.Builder.Mobile.Views.Pages.CreateWorkoutPage"
                              xmlns:local="clr-namespace:SV.Builder.Mobile.Views.Pages"
                              xmlns:partials="clr-namespace:SV.Builder.Mobile.Views.Partial"
+                             x:Name="createWorkoutPage"
                              >
     <Grid RowSpacing="0">
 
@@ -86,7 +87,7 @@
                                     <StackLayout x:Name="roundHeader"
                                                  Orientation="Horizontal"
                                                  >
-                                        <Label Text="{Binding .}"
+                                        <Label Text="{Binding Name}"
                                                FontSize="Medium"
                                                FontAttributes="Bold"
                                                ></Label>
@@ -158,6 +159,8 @@
 
                                     <Button Text="Add Exercise"
                                             HorizontalOptions="Start"
+                                            Command="{Binding AddExerciseToRoundCommand}"
+                                            CommandParameter="{Binding .}"
                                             ></Button>
 
 

@@ -16,13 +16,6 @@ namespace SV.Builder.Mobile.ViewModels.Pages
         public string DefaultWorkoutName = "Enter a name";
         public string DefaultDescription = "Description";
 
-        //private ICommand _addRoundCommand;
-        //public ICommand AddRoundCommand
-        //{
-        //    get => _addRoundCommand;
-        //    set => SetProperty(ref _addRoundCommand, value);
-        //}
-
         private string _name;
         public string Name
         {
@@ -37,7 +30,7 @@ namespace SV.Builder.Mobile.ViewModels.Pages
             set => SetProperty(ref _description, value);
         }
 
-        public ObservableCollection<string> Rounds { get; set; } = new ObservableCollection<string>();
+        public ObservableCollection<RoundViewModel> Rounds { get; set; } = new ObservableCollection<RoundViewModel>();
 
         public CreateWorkoutPageViewModel()
         {
@@ -62,7 +55,11 @@ namespace SV.Builder.Mobile.ViewModels.Pages
         private void roundCreatedHandler(CreateRoundPageViewModel createRoundPage, IRound round)
         {
             _workout.AddRound(round);
-            Rounds.Add(round.Name);
+            var roundViewModel = new RoundViewModel(round)
+            {
+                Name = round.Name
+            };
+            Rounds.Add(roundViewModel);
         }
 
         private void workoutCreatedHandler(EditWorkoutNamePageViewModel viewModel, IWorkout workout)
