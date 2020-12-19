@@ -15,7 +15,7 @@ namespace SV.Builder.Mobile.Views.Pages
     }
 
     public abstract class ContentPageBase<TViewModel> : ContentPage
-        where TViewModel : BaseViewModel, new()
+        where TViewModel : BaseContentPageViewModel, new()
     {
         public ContentPageBase()
         {

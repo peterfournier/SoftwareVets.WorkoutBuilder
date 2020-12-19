@@ -1,11 +1,10 @@
 ﻿using SV.Builder.Domain.Factories;
 using SV.Builder.Mobile.Common.MessageCenter;
-using System;
 using Xamarin.Forms;
 
 namespace SV.Builder.Mobile.ViewModels.Pages
 {
-    public class CreateRoundPageViewModel : BaseViewModel
+    public class CreateRoundPageViewModel : BaseContentPageViewModel
     {
         private int _iterations = 1;
         public int Iterations

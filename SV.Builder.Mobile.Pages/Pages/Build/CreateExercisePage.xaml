@@ -5,9 +5,17 @@
                               xmlns:local="clr-namespace:SV.Builder.Mobile.Views.Pages"
                               Title="Add Exercise"
                               xmlns:partials="clr-namespace:SV.Builder.Mobile.Views.Partial"
-                              xmlns:viewModels="clr-namespace:SV.Builder.Mobile.ViewModels.Pages;assembly=SV.Builder.Mobile.ViewModels"
-                              x:DataType="viewModels:CreateExercisePageViewModel"
+                              xmlns:pageVMs="clr-namespace:SV.Builder.Mobile.ViewModels.Pages;assembly=SV.Builder.Mobile.ViewModels"
+                              xmlns:modelVMs="clr-namespace:SV.Builder.Mobile.ViewModels;assembly=SV.Builder.Mobile.ViewModels"
+                              x:DataType="pageVMs:CreateExercisePageViewModel"
+                              xmlns:converters="clr-namespace:SV.Builder.Mobile.ViewModels.Converters;assembly=SV.Builder.Mobile.ViewModels"
                               >
+
+    <local:CreateExercisePageXaml.Resources>
+        <ResourceDictionary>
+            <converters:InverseBoolConverter x:Key="inverseBoolConverter"/>
+        </ResourceDictionary>
+    </local:CreateExercisePageXaml.Resources>
     <Grid RowSpacing="0">
         <Grid.RowDefinitions>
             <RowDefinition Height="52" />
@@ -27,6 +35,7 @@
                    />
             <Entry Text="{Binding Name, Mode=TwoWay}" FontSize="Medium" />
 
+            <!--sets-->
             <StackLayout Margin="0,20,0,0">
                 
                 <Label Text="Sets"
@@ -34,93 +43,129 @@
                        FontAttributes="Bold"
                        ></Label>
 
-                <!--collectionView-->
 
-                <Frame Visual="Material">
-                    <StackLayout Spacing="25">
+                <CollectionView ItemsSource="{Binding Sets}">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="modelVMs:SetViewModel"
+                                      >
+                            <Grid Padding="0"
+                                  Margin="0"
+                                  >
+                                <Frame Visual="Material"
+                                       Margin="3"
+                                       >
+                                    <StackLayout Spacing="25">
 
-                        <StackLayout Orientation="Horizontal">
-                            
-                            <Label Text="Set 1"
-                                   VerticalOptions="Center"
-                                   FontSize="Medium"
-                                   FontAttributes="Bold"
-                                   ></Label>
+                                        <!--header-->
+                                        <StackLayout Orientation="Horizontal">
 
-                            <StackLayout HorizontalOptions="EndAndExpand">
-                                <Switch x:Name="timedSwitch"></Switch>
-                                <Label Text="Timed Set"
-                                       HorizontalOptions="Center"
-                                       />
-                            </StackLayout>
-                        </StackLayout>
-                        
-                        <!--reps-->
-                        <StackLayout Orientation="Horizontal">
-                            <Label VerticalOptions="Center">
-                                <Label.FormattedText>
-                                    <FormattedString>
-                                        <Span BindingContext="{x:Reference repStepper}" 
-                                              Text="{Binding Value}"></Span>
+                                            <Label Text="{Binding Name}"
+                                                   VerticalOptions="Center"
+                                                   FontSize="Medium"
+                                                   FontAttributes="Bold"
+                                                   ></Label>
 
-                                        <Span Text=" Rep(s)"></Span>
-                                    </FormattedString>
-                                </Label.FormattedText>
-                            </Label>
-                            <Stepper x:Name="repStepper" 
-                                     Maximum="100"
-                                     Minimum="1"
-                                     HorizontalOptions="EndAndExpand"
-                                     ></Stepper>
-                        </StackLayout>
-                        <!--/reps-->
-                        
-                        <!--time-->
-                        <StackLayout Orientation="Horizontal"
-                                     BindingContext="{x:Reference timedSwitch}"
-                                     IsVisible="{Binding IsToggled}"
-                                     >
-                            <Label Text="Set Duration"
-                                   VerticalOptions="Center"
-                                   ></Label>
+                                            <StackLayout HorizontalOptions="EndAndExpand">
+                                                <Switch x:Name="timedSwitch"
+                                                        IsToggled="{Binding TimedSet}"
+                                                        ></Switch>
+                                                <Label Text="Timed Set"
+                                                       HorizontalOptions="Center"
+                                                       />
+                                            </StackLayout>
+                                        </StackLayout>
+                                        <!--/header-->
 
-                            <Picker Title="Select Time"
-                                    HorizontalOptions="EndAndExpand"
-                                    >
-                                <Picker.Items>
-                                    <x:String>0 secs</x:String>
-                                    <x:String>5secs</x:String>
-                                    <x:String>10 secs</x:String>
-                                    <x:String>15 secs</x:String>
-                                </Picker.Items>
-                            </Picker>
-                        </StackLayout>
-                        <!--/time-->
+                                        <!--reps-->
+                                        <StackLayout Orientation="Horizontal">
+                                            <Label VerticalOptions="Center">
+                                                <Label.FormattedText>
+                                                    <FormattedString>
+                                                        <Span Text="{Binding Repetitions}"></Span>
+                                                        <Span Text=" Rep(s)"></Span>
+                                                    </FormattedString>
+                                                </Label.FormattedText>
+                                            </Label>
+                                            <Stepper x:Name="repStepper" 
+                                                     Maximum="100"
+                                                     Minimum="1"
+                                                     HorizontalOptions="EndAndExpand"
+                                                     Value="{Binding Repetitions}"
+                                                     ></Stepper>
+                                        </StackLayout>
+                                        <!--/reps-->
 
-                        <!--weight-->
-                        <StackLayout Orientation="Horizontal">
-                            <Label Text="Weight"
-                                   VerticalOptions="Center"
-                                   ></Label>
+                                        <!--time-->
+                                        <StackLayout Orientation="Horizontal"
+                                                     IsVisible="{Binding TimedSet, Converter={x:StaticResource inverseBoolConverter}}"
+                                                     >
+                                            <Label Text="Set Duration"
+                                                   VerticalOptions="Center"
+                                                   ></Label>
 
-                            <Entry Placeholder="Enter Weight"
-                                   Keyboard="Numeric"
-                                   HorizontalOptions="EndAndExpand"
-                                   >
-                            </Entry>
-                        </StackLayout>
-                        <!--/weight-->
-                    </StackLayout>
-                </Frame>
+                                            <Picker Title="Hours"
+                                                    HorizontalOptions="EndAndExpand"
+                                                    ItemsSource="{Binding HoursList}"
+                                                    SelectedItem="{Binding SelectedSeconds}"
+                                                    WidthRequest="70"
+                                                    FontSize="Small"
+                                                    >
+                                            </Picker>
+
+                                            <Picker Title="Mins"
+                                                    ItemsSource="{Binding MinutesList}"
+                                                    SelectedItem="{Binding SelectedMinutes}"
+                                                    WidthRequest="60"
+                                                    FontSize="Small"
+                                                    >
+                                            </Picker>
+
+                                            <Picker Title="Secs"
+                                                    WidthRequest="60"
+                                                    ItemsSource="{Binding SecondsList}"
+                                                    SelectedItem="{Binding SelectedHours}"
+                                                    FontSize="Small"
+                                                    >
+                                            </Picker>
+                                        </StackLayout>
+                                        <!--/time-->
+
+                                        <!--weight-->
+                                        <StackLayout Orientation="Horizontal">
+                                            <Label Text="Weight"
+                                                   VerticalOptions="Center"
+                                                   ></Label>
+
+                                            <Entry Placeholder="Enter Weight"
+                                                   Keyboard="Numeric"
+                                                   HorizontalOptions="EndAndExpand"
+                                                   Text="{Binding Weight}"
+                                                   >
+                                            </Entry>
+                                        </StackLayout>
+                                        <!--/weight-->
+
+                                        <Button Text="Copy Set"
+                                                HorizontalOptions="End"
+                                                BackgroundColor="Transparent"
+                                                TextColor="{StaticResource Primary}"
+                                                ></Button>
+                                    </StackLayout>
+                                </Frame>
+                            </Grid>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
 
                 <Button Text="Add Set"
                         HorizontalOptions="Start"
                         BackgroundColor="Transparent"
                         TextColor="{StaticResource Primary}"
+                        Command="{Binding AddSetCommand}"
                         ></Button>
                 
             </StackLayout>
-            
+            <!--/sets-->
         </StackLayout>
         
     </Grid>

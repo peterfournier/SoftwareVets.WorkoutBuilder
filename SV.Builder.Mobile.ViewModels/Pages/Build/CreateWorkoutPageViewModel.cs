@@ -1,16 +1,12 @@
 ﻿using SV.Builder.Domain;
 using SV.Builder.Domain.Factories;
 using SV.Builder.Mobile.Common.MessageCenter;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Text;
-using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace SV.Builder.Mobile.ViewModels.Pages
 {
-    public class CreateWorkoutPageViewModel : BaseViewModel
+    public class CreateWorkoutPageViewModel : BaseContentPageViewModel
     {
         private IWorkout _workout;
         public string DefaultWorkoutName = "Enter a name";

@@ -1,17 +1,13 @@
 ﻿using SV.Builder.Domain;
 using SV.Builder.Mobile.Common.MessageCenter;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace SV.Builder.Mobile.ViewModels
 {
-    public class RoundViewModel : Pages.BaseViewModel
+    public class RoundViewModel : BaseViewModel
     {
         private IRound _round;
-
 
         private string _name;
         public string Name

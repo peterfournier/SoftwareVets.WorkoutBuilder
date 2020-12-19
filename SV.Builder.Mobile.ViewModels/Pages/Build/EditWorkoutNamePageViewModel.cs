@@ -4,7 +4,7 @@ using Xamarin.Forms;
 
 namespace SV.Builder.Mobile.ViewModels.Pages
 {
-    public class EditWorkoutNamePageViewModel : BaseViewModel
+    public class EditWorkoutNamePageViewModel : BaseContentPageViewModel
     {
         private string _name;
         public string Name
@@ -28,7 +28,7 @@ namespace SV.Builder.Mobile.ViewModels.Pages
         public override void OnSaveCommand()
         {
             var workoutFactory = new WorkoutFactory();
-            
+
             var workout = workoutFactory.CreateWorkout(Name, Description);
 
             MessagingCenter.Send(this, Messages.CreateWorkout, workout);
