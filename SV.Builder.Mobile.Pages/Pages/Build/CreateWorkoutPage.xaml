@@ -161,6 +161,8 @@
                                             HorizontalOptions="Start"
                                             Command="{Binding AddExerciseToRoundCommand}"
                                             CommandParameter="{Binding .}"
+                                            BackgroundColor="Transparent"
+                                            TextColor="{StaticResource Primary}"
                                             ></Button>
 
 

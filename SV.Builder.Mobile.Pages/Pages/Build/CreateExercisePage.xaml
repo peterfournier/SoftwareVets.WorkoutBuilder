@@ -4,10 +4,124 @@
                               x:Class="SV.Builder.Mobile.Views.Pages.CreateExercisePage"
                               xmlns:local="clr-namespace:SV.Builder.Mobile.Views.Pages"
                               Title="Add Exercise"
+                              xmlns:partials="clr-namespace:SV.Builder.Mobile.Views.Partial"
+                              xmlns:viewModels="clr-namespace:SV.Builder.Mobile.ViewModels.Pages;assembly=SV.Builder.Mobile.ViewModels"
+                              x:DataType="viewModels:CreateExercisePageViewModel"
                               >
-    <StackLayout>
-        <Label Text="Add exercises to begin"
-            VerticalOptions="CenterAndExpand" 
-            HorizontalOptions="CenterAndExpand" />
-    </StackLayout>
+    <Grid RowSpacing="0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="52" />
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <partials:FormTitleBar></partials:FormTitleBar>
+
+        <StackLayout Spacing="0"
+                     Grid.Row="1"
+                     Padding="15"
+                     >
+            
+            <Label Text="Exercise Name" 
+                   FontSize="Medium" 
+                   FontAttributes="Bold"
+                   />
+            <Entry Text="{Binding Name, Mode=TwoWay}" FontSize="Medium" />
+
+            <StackLayout Margin="0,20,0,0">
+                
+                <Label Text="Sets"
+                       FontSize="Medium"
+                       FontAttributes="Bold"
+                       ></Label>
+
+                <!--collectionView-->
+
+                <Frame Visual="Material">
+                    <StackLayout Spacing="25">
+
+                        <StackLayout Orientation="Horizontal">
+                            
+                            <Label Text="Set 1"
+                                   VerticalOptions="Center"
+                                   FontSize="Medium"
+                                   FontAttributes="Bold"
+                                   ></Label>
+
+                            <StackLayout HorizontalOptions="EndAndExpand">
+                                <Switch x:Name="timedSwitch"></Switch>
+                                <Label Text="Timed Set"
+                                       HorizontalOptions="Center"
+                                       />
+                            </StackLayout>
+                        </StackLayout>
+                        
+                        <!--reps-->
+                        <StackLayout Orientation="Horizontal">
+                            <Label VerticalOptions="Center">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span BindingContext="{x:Reference repStepper}" 
+                                              Text="{Binding Value}"></Span>
+
+                                        <Span Text=" Rep(s)"></Span>
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                            <Stepper x:Name="repStepper" 
+                                     Maximum="100"
+                                     Minimum="1"
+                                     HorizontalOptions="EndAndExpand"
+                                     ></Stepper>
+                        </StackLayout>
+                        <!--/reps-->
+                        
+                        <!--time-->
+                        <StackLayout Orientation="Horizontal"
+                                     BindingContext="{x:Reference timedSwitch}"
+                                     IsVisible="{Binding IsToggled}"
+                                     >
+                            <Label Text="Set Duration"
+                                   VerticalOptions="Center"
+                                   ></Label>
+
+                            <Picker Title="Select Time"
+                                    HorizontalOptions="EndAndExpand"
+                                    >
+                                <Picker.Items>
+                                    <x:String>0 secs</x:String>
+                                    <x:String>5secs</x:String>
+                                    <x:String>10 secs</x:String>
+                                    <x:String>15 secs</x:String>
+                                </Picker.Items>
+                            </Picker>
+                        </StackLayout>
+                        <!--/time-->
+
+                        <!--weight-->
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="Weight"
+                                   VerticalOptions="Center"
+                                   ></Label>
+
+                            <Entry Placeholder="Enter Weight"
+                                   Keyboard="Numeric"
+                                   HorizontalOptions="EndAndExpand"
+                                   >
+                            </Entry>
+                        </StackLayout>
+                        <!--/weight-->
+                    </StackLayout>
+                </Frame>
+
+                <Button Text="Add Set"
+                        HorizontalOptions="Start"
+                        BackgroundColor="Transparent"
+                        TextColor="{StaticResource Primary}"
+                        ></Button>
+                
+            </StackLayout>
+            
+        </StackLayout>
+        
+    </Grid>
 </local:CreateExercisePageXaml>
