@@ -1,2 +1,2 @@
-# SoftwareVets.WorkoutBuilder
+# SV.Builder
 Workout builder solution
