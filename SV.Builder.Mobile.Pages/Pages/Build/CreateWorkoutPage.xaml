@@ -4,6 +4,7 @@
                              x:Class="SV.Builder.Mobile.Views.Pages.CreateWorkoutPage"
                              xmlns:local="clr-namespace:SV.Builder.Mobile.Views.Pages"
                              xmlns:partials="clr-namespace:SV.Builder.Mobile.Views.Partial"
+                             xmlns:modelVMs="clr-namespace:SV.Builder.Mobile.ViewModels;assembly=SV.Builder.Mobile.ViewModels"
                              x:Name="createWorkoutPage"
                              >
     <Grid RowSpacing="0">
@@ -18,162 +19,185 @@
         <StackLayout Grid.Row="1"
                      Spacing="0"
                      >
-            <ScrollView>
-                <StackLayout x:Name="mainContentStack"
-                             BackgroundColor="LightGray"
-                             Spacing="0"
-                             >
-                    <StackLayout Padding="15">
-                        <Label Text="{Binding Name}"
-                               FontSize="Large"
-                               FontAttributes="Bold"
-                               >
-                        </Label>
+            <StackLayout x:Name="mainContentStack"
+                            BackgroundColor="LightGray"
+                            Spacing="0"
+                            >
+                <!--workout header-->
+                <StackLayout Padding="15">
+                    <Label Text="{Binding Name}"
+                            FontSize="Large"
+                            FontAttributes="Bold"
+                            >
+                    </Label>
 
-                        <Label Text="{Binding Description}"
-                               FontSize="Default"
-                               ></Label>
+                    <Label Text="{Binding Description}"
+                            FontSize="Default"
+                            ></Label>
 
-                        <StackLayout.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="WorkoutNameTapGestureRecognizer_Tapped"></TapGestureRecognizer>
-                        </StackLayout.GestureRecognizers>
-                    </StackLayout>
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="WorkoutNameTapGestureRecognizer_Tapped"></TapGestureRecognizer>
+                    </StackLayout.GestureRecognizers>
+                </StackLayout>
+                <!--/workout header-->
 
-                    <BoxView HeightRequest="1"
-                             Color="LightGray"
-                             Margin="15,0,0,0"
-                             >
+                <BoxView HeightRequest="1"
+                            Color="LightGray"
+                            Margin="15,0,0,0"
+                            >
 
-                    </BoxView>
+                </BoxView>
 
-                    <StackLayout x:Name="workoutDetailsStack"
-                                 Padding="15">
+                <StackLayout x:Name="workoutDetailsStack"
+                                Padding="15">
 
-                        <StackLayout Orientation="Horizontal"
-                                     Spacing="50"
-                                     >
-                            <StackLayout>
-                                <Label Text="25:00"
-                                       HorizontalTextAlignment="Center"
-                                       ></Label>
-                                <Label Text="Est. Duration"
-                                       HorizontalTextAlignment="Center"
-                                       ></Label>
-                            </StackLayout>
-
-                            <StackLayout>
-                                <Label Text="1"
-                                       HorizontalTextAlignment="Center"
-                                       ></Label>
-                                <Label Text="Round(s)"
-                                       HorizontalTextAlignment="Center"
-                                       ></Label>
-
-                            </StackLayout>
+                    <!--workout details-->
+                    <StackLayout Orientation="Horizontal"
+                                    Spacing="50"
+                                    >
+                        <StackLayout>
+                            <Label Text="25:00"
+                                    HorizontalTextAlignment="Center"
+                                    ></Label>
+                            <Label Text="Est. Duration"
+                                    HorizontalTextAlignment="Center"
+                                    ></Label>
                         </StackLayout>
 
+                        <StackLayout>
+                            <Label Text="1"
+                                    HorizontalTextAlignment="Center"
+                                    ></Label>
+                            <Label Text="Round(s)"
+                                    HorizontalTextAlignment="Center"
+                                    ></Label>
+
+                        </StackLayout>
                     </StackLayout>
-
-                    <BoxView HeightRequest="1"
-                             Color="LightGray"
-                             Margin="15,0,0,0"
-                             ></BoxView>
-
-                    <CollectionView ItemsSource="{Binding Rounds}">
-                        <CollectionView.ItemTemplate>
-                            <DataTemplate>
-                                <StackLayout Padding="15">
-
-                                    <StackLayout x:Name="roundHeader"
-                                                 Orientation="Horizontal"
-                                                 >
-                                        <Label Text="{Binding Name}"
-                                               FontSize="Medium"
-                                               FontAttributes="Bold"
-                                               ></Label>
-
-                                        <Label Text="x1"
-                                               HorizontalOptions="CenterAndExpand"
-                                               VerticalTextAlignment="End"
-                                               ></Label>
-
-
-                                        <Label Text="25:00mins"
-                                               VerticalTextAlignment="End"
-                                               ></Label>
-                                    </StackLayout>
-                                    <!--/round header-->
-                                    <StackLayout x:Name="exercisesStackPanel"
-                                                 Padding="15"
-                                                 Spacing="10"
-                                                 >
-
-                                        <StackLayout x:Name="exercise">
-
-                                            <StackLayout x:Name="exerciseHeader"
-                                                         Orientation="Horizontal"
-                                                         >
-                                                <Label Text="Exercise 1"
-                                                       FontSize="Default"
-                                                       FontAttributes="Bold"
-                                                   ></Label>
-
-                                                <Label Text="x1"
-                                                   HorizontalOptions="CenterAndExpand"
-                                                   VerticalTextAlignment="End"
-                                                   ></Label>
-
-
-                                                <Label Text="05:00mins"
-                                                   VerticalTextAlignment="End"
-                                                   ></Label>
-                                            </StackLayout>
-                                        </StackLayout>
-
-                                        <StackLayout x:Name="exercise2">
-
-                                            <StackLayout x:Name="exerciseHeader2"
-                                                         Orientation="Horizontal"
-                                                         >
-                                                <Label Text="Exercise 2"
-                                                       FontSize="Default"
-                                                       FontAttributes="Bold"
-                                                   ></Label>
-
-                                                <Label Text="x3"
-                                                   HorizontalOptions="CenterAndExpand"
-                                                   VerticalTextAlignment="End"
-                                                   ></Label>
-
-
-                                                <Label Text="15:00mins"
-                                                   VerticalTextAlignment="End"
-                                                   ></Label>
-                                            </StackLayout>
-                                        </StackLayout>
-
-                                    </StackLayout>
-                                    <BoxView HeightRequest="1"
-                                            Color="Gray"
-                                            ></BoxView>
-
-                                    <Button Text="Add Exercise"
-                                            HorizontalOptions="Start"
-                                            Command="{Binding AddExerciseToRoundCommand}"
-                                            CommandParameter="{Binding .}"
-                                            BackgroundColor="Transparent"
-                                            TextColor="{StaticResource Primary}"
-                                            ></Button>
-
-
-                                </StackLayout>
-                            </DataTemplate>
-                        </CollectionView.ItemTemplate>
-                    </CollectionView>
+                    <!--/workout details-->
 
                 </StackLayout>
 
-            </ScrollView>
+                <BoxView HeightRequest="1"
+                            Color="LightGray"
+                            Margin="15,0,0,0"
+                            ></BoxView>
+
+                <!--rounds-->
+                <CollectionView ItemsSource="{Binding Rounds}">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="modelVMs:RoundViewModel">
+                            <Grid>
+                                <Frame Visual="Material"
+                                        Margin="5"
+                                        Padding="0"
+                                        >
+                                    <StackLayout Padding="15">
+
+                                        <!--round header-->
+                                        <StackLayout x:Name="roundHeader"
+                                                        Orientation="Horizontal"
+                                                        >
+                                            <Label Text="{Binding Name}"
+                                                    FontSize="Medium"
+                                                    FontAttributes="Bold"
+                                                    ></Label>
+
+                                            <Label HorizontalOptions="CenterAndExpand"
+                                                    VerticalTextAlignment="End"
+                                                    >
+                                                <Label.FormattedText>
+                                                    <FormattedString>
+                                                        <Span Text="x"></Span>
+                                                        <Span Text="{Binding Iternations}"></Span>
+                                                    </FormattedString>
+                                                </Label.FormattedText>
+                                            </Label>
+
+
+                                            <Label Text="{Binding Length}"
+                                                    VerticalTextAlignment="End"
+                                                    ></Label>
+                                        </StackLayout>
+                                        <!--/round header-->
+
+                                        <Label Text="{Binding Description}"></Label>
+
+                                        <!--exercises-->
+                                        <StackLayout x:Name="exercisesStackPanel"
+                                                        Padding="15"
+                                                        Spacing="10"
+                                                        >
+
+                                            <!--<StackLayout x:Name="exercise">
+
+                                                <StackLayout x:Name="exerciseHeader"
+                                                                Orientation="Horizontal"
+                                                                >
+                                                    <Label Text="Exercise 1"
+                                                            FontSize="Default"
+                                                            FontAttributes="Bold"
+                                                        ></Label>
+
+                                                    <Label Text="x1"
+                                                        HorizontalOptions="CenterAndExpand"
+                                                        VerticalTextAlignment="End"
+                                                        ></Label>
+
+
+                                                    <Label Text="05:00mins"
+                                                        VerticalTextAlignment="End"
+                                                        ></Label>
+                                                </StackLayout>
+                                            </StackLayout>
+
+                                            <StackLayout x:Name="exercise2">
+
+                                                <StackLayout x:Name="exerciseHeader2"
+                                                                Orientation="Horizontal"
+                                                                >
+                                                    <Label Text="Exercise 2"
+                                                            FontSize="Default"
+                                                            FontAttributes="Bold"
+                                                        ></Label>
+
+                                                    <Label Text="x3"
+                                                        HorizontalOptions="CenterAndExpand"
+                                                        VerticalTextAlignment="End"
+                                                        ></Label>
+
+
+                                                    <Label Text="15:00mins"
+                                                        VerticalTextAlignment="End"
+                                                        ></Label>
+                                                </StackLayout>
+                                            </StackLayout>-->
+
+                                        </StackLayout>
+                                        <!--/exercises-->
+
+                                        <BoxView HeightRequest="1"
+                                                Color="Gray"
+                                                ></BoxView>
+
+                                        <Button Text="Add Exercise"
+                                                HorizontalOptions="Start"
+                                                Command="{Binding AddExerciseToRoundCommand}"
+                                                CommandParameter="{Binding .}"
+                                                BackgroundColor="Transparent"
+                                                TextColor="{StaticResource Primary}"
+                                                ></Button>
+
+
+                                    </StackLayout>
+                                </Frame>
+                            </Grid>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+
+            </StackLayout>
+
 
             <Button Text="Add Round"
                     x:Name="addRoundButton"

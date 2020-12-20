@@ -53,7 +53,10 @@ namespace SV.Builder.Mobile.ViewModels.Pages
             _workout.AddRound(round);
             var roundViewModel = new RoundViewModel(round)
             {
-                Name = round.Name
+                Name = round.Name,
+                Length = round.Length,
+                Iternations = round.Iterations,
+                Description = round.Description
             };
             Rounds.Add(roundViewModel);
         }

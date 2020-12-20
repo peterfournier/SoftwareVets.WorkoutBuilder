@@ -26,35 +26,40 @@
 
         <StackLayout Spacing="0"
                      Grid.Row="1"
-                     Padding="15"
+                     Padding="0"
+                     Margin="0"
                      >
-            
-            <Label Text="Exercise Name" 
-                   FontSize="Medium" 
-                   FontAttributes="Bold"
-                   />
-            <Entry Text="{Binding Name, Mode=TwoWay}" FontSize="Medium" />
 
-            <!--sets-->
-            <StackLayout Margin="0,20,0,0">
+                <StackLayout Padding="15">
                 
-                <Label Text="Sets"
-                       FontSize="Medium"
+                <Label Text="Exercise Name" 
+                       FontSize="Medium" 
                        FontAttributes="Bold"
-                       ></Label>
+                       />
+                <Entry Text="{Binding Name, Mode=TwoWay}" FontSize="Medium" />
 
-
-                <CollectionView ItemsSource="{Binding Sets}">
+                <Label Text="Sets"
+                        FontSize="Medium"
+                        FontAttributes="Bold"
+                        ></Label>
+            </StackLayout>
+            <!--sets-->
+            <StackLayout Margin="0,0,0,0"
+                         Padding="0"
+                         Spacing="0"
+                         >
+                <CollectionView ItemsSource="{Binding Sets}"
+                                BackgroundColor="LightGray">
                     <CollectionView.ItemTemplate>
-                        <DataTemplate x:DataType="modelVMs:SetViewModel"
-                                      >
-                            <Grid Padding="0"
-                                  Margin="0"
-                                  >
+                        <DataTemplate x:DataType="modelVMs:SetViewModel">
+                            <Grid>
                                 <Frame Visual="Material"
-                                       Margin="3"
+                                       Padding="0"
+                                       Margin="5"
                                        >
-                                    <StackLayout Spacing="25">
+                                    <StackLayout Spacing="25"
+                                                 Padding="15"
+                                                 >
 
                                         <!--header-->
                                         <StackLayout Orientation="Horizontal">
