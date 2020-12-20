@@ -67,9 +67,9 @@
 
                                             <StackLayout HorizontalOptions="EndAndExpand">
                                                 <Switch x:Name="timedSwitch"
-                                                        IsToggled="{Binding TimedSet}"
+                                                        IsToggled="{Binding StopwatchSet}"
                                                         ></Switch>
-                                                <Label Text="Timed Set"
+                                                <Label Text="Use Stopwatch"
                                                        HorizontalOptions="Center"
                                                        />
                                             </StackLayout>
@@ -97,9 +97,9 @@
 
                                         <!--time-->
                                         <StackLayout Orientation="Horizontal"
-                                                     IsVisible="{Binding TimedSet, Converter={x:StaticResource inverseBoolConverter}}"
+                                                     IsVisible="{Binding StopwatchSet, Converter={x:StaticResource inverseBoolConverter}}"
                                                      >
-                                            <Label Text="Set Duration"
+                                            <Label Text="Timed Duration"
                                                    VerticalOptions="Center"
                                                    ></Label>
 

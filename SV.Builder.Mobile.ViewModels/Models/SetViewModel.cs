@@ -5,11 +5,11 @@ namespace SV.Builder.Mobile.ViewModels
 {
     public class SetViewModel : BaseViewModel
     {
-        private bool _timedSet;
-        public bool TimedSet
+        private bool _stopwatchSet;
+        public bool StopwatchSet
         {
-            get { return _timedSet; }
-            set { SetProperty(ref _timedSet, value); }
+            get { return _stopwatchSet; }
+            set { SetProperty(ref _stopwatchSet, value); }
         }
 
         private int _repetitions = 1;
