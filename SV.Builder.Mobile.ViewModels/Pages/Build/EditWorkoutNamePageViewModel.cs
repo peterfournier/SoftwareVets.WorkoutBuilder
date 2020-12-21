@@ -4,7 +4,7 @@ using Xamarin.Forms;
 
 namespace SV.Builder.Mobile.ViewModels.Pages
 {
-    public class EditWorkoutNamePageViewModel : BaseContentPageViewModel
+    public class EditWorkoutNamePageViewModel : BaseFormContentPageViewModel
     {
         private string _name;
         public string Name

@@ -13,7 +13,7 @@ namespace SV.Builder.Domain
         public event SetAddedHandler OnSetAdded;
         public event SetLengthChangedHandler OnSetLengthChanged;
 
-        public string Name { get; private set; }
+        public string Name { get; set; }
         public string Description { get; set; }
         public Round Round { get; private set; }
 

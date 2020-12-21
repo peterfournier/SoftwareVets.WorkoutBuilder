@@ -4,7 +4,7 @@ using Xamarin.Forms;
 
 namespace SV.Builder.Mobile.ViewModels.Pages
 {
-    public class CreateRoundPageViewModel : BaseContentPageViewModel
+    public class CreateRoundPageViewModel : BaseFormContentPageViewModel
     {
         private int _iterations = 1;
         public int Iterations

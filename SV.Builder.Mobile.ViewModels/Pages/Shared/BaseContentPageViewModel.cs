@@ -3,16 +3,8 @@ using Xamarin.Forms;
 
 namespace SV.Builder.Mobile.ViewModels.Pages
 {
-    public class BaseContentPageViewModel : BaseViewModel
+    public abstract class BaseFormContentPageViewModel: BaseContentPageViewModel
     {
-        //public IDataStore<Item> DataStore => DependencyService.Get<IDataStore<Item>>();       
-        string title = string.Empty;
-        public string Title
-        {
-            get { return title; }
-            set { SetProperty(ref title, value); }
-        }
-
         private ICommand _cancelCommand;
         public ICommand CancelCommand
         {
@@ -27,16 +19,10 @@ namespace SV.Builder.Mobile.ViewModels.Pages
             set { SetProperty(ref _saveCommand, value); }
         }
 
-        public BaseContentPageViewModel()
+        public BaseFormContentPageViewModel()
         {
             CancelCommand = new Command(OnCancelCommand);
             SaveCommand = new Command(OnSaveCommand);
-            WireUpSubscriptions();
-        }
-
-        protected virtual void WireUpSubscriptions()
-        {
-
         }
 
         public async virtual void OnCancelCommand()

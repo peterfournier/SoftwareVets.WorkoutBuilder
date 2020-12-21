@@ -1,12 +1,16 @@
-﻿using System;
+﻿using SV.Builder.Domain;
+using SV.Builder.Domain.Factories;
+using System;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace SV.Builder.Mobile.ViewModels.Pages
 {
-    public class CreateExercisePageViewModel : BaseContentPageViewModel
+    public class CreateExercisePageViewModel : BaseFormContentPageViewModel
     {
+        private readonly IExercise _exercise;
+
         private string _name;
         public string Name
         {
@@ -20,8 +24,22 @@ namespace SV.Builder.Mobile.ViewModels.Pages
 
         public CreateExercisePageViewModel()
         {
+            var exerciseFActory = new ExerciseFactory();
+            _exercise = exerciseFActory.CreateExercise("Exercise 1");
             addSet(null);
             AddSetCommand = new Command(addSet);
+            PropertyChanged += CreateExercisePageViewModel_PropertyChanged;
+        }
+
+        private void CreateExercisePageViewModel_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName.Equals(nameof(Name)))
+                updateExerciseName();
+        }
+
+        private void updateExerciseName()
+        {
+            _exercise.Name = Name;
         }
 
         private void addSet(object sender)
@@ -30,6 +48,11 @@ namespace SV.Builder.Mobile.ViewModels.Pages
             {
                 Name = $"Set {Sets.Count + 1}"
             });
+        }
+
+        public override void OnSaveCommand()
+        {
+            base.OnSaveCommand();
         }
     }
 }
