@@ -24,8 +24,8 @@ namespace SV.Builder.Mobile.ViewModels.Pages
 
         public CreateExercisePageViewModel()
         {
-            var exerciseFActory = new ExerciseFactory();
-            _exercise = exerciseFActory.CreateExercise("Exercise 1");
+            var exerciseFactory = new ExerciseFactory();
+            _exercise = exerciseFactory.CreateExercise("Exercise 1");
             addSet(null);
             AddSetCommand = new Command(addSet);
             PropertyChanged += CreateExercisePageViewModel_PropertyChanged;
@@ -52,6 +52,17 @@ namespace SV.Builder.Mobile.ViewModels.Pages
 
         public override void OnSaveCommand()
         {
+            foreach (var setViewModel in Sets)
+            {
+                var setFactory = new ExerciseSetFactory();
+                //var domainSet = setFactory.CreateSet(setViewModel.Name);
+                //domainSet = setViewModel.Repetitions;
+                //domainSet = setViewModel.Weight;
+                //domainSet = setViewModel.Length;
+
+                //_exercise.AddSet();
+            }
+
             base.OnSaveCommand();
         }
     }

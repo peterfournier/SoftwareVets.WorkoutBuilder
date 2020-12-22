@@ -15,7 +15,7 @@ namespace SV.Builder.Domain.Tests.ExerciseTests
         }
 
         [Test]
-        public void Test_Add_Set_Exists()
+        public void Add_Set_Exists()
         {
             var exercise = new Exercise("Exercise 1");
 
@@ -27,7 +27,7 @@ namespace SV.Builder.Domain.Tests.ExerciseTests
         }
 
         [Test]
-        public void Test_AddSet_Sets_Exercise_Property()
+        public void AddSet_Sets_Exercise_Property()
         {
             var exercise = new Exercise("Exercise 1");
             var set = new Set(10);
