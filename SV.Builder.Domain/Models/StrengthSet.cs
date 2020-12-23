@@ -11,7 +11,6 @@ namespace SV.Builder.Domain
             addWeight(weight);
         }
 
-
         private void addWeight(double weight)
         {
             if (weight > 0)

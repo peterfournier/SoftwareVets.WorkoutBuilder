@@ -7,9 +7,12 @@ namespace SV.Builder.Domain.Factories
     public class ExerciseSetFactory
     {
 
-        public IExerciseSet CreateSet(double weight)
+        public IExerciseSet CreateSet(double weight, TimeSpan setLength)
         {
-            return new StrengthSet(weight);
+            if (weight > 0)
+                return new StrengthSet(weight);
+
+            return new EnduranceSet(setLength);
         }
     }
 }
