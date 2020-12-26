@@ -1,19 +1,19 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace SV.Builder.Domain.Factories
 {
     public class ExerciseSetFactory
     {
-
         public IExerciseSet CreateSet()
         {
             return new PerformanceSet();
         }
 
-        public IExerciseSet CreateSet(double weight)
+        public IExerciseSet CreateSet(double weight, bool timed = false)
         {
+            if (timed)
+                return new IntensePerformanceSet(weight);
+
             return new StrengthSet(weight);
         }
 

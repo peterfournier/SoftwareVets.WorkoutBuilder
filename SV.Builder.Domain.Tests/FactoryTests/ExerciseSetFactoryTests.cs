@@ -104,7 +104,7 @@ namespace SV.Builder.Domain.Tests.FactoryTests
         }
 
         [Test]
-        public void CreateSet_NoTime_CreatesPerformanceSetObject()
+        public void CreatePerformanceSet_NoTime_CreatesSetObject()
         {
             var performanceSet = createDefaultPerformanceSetSet();
 
@@ -136,6 +136,21 @@ namespace SV.Builder.Domain.Tests.FactoryTests
             performanceSet.Reset();
 
             Assert.AreEqual(expectedZeroTime, performanceSet.ElapsedTime.TotalMilliseconds);
+        }
+
+        [Test]
+        public void CreateIntensePerformanceSet_NoTime_CreatesSetObject()
+        {
+            var intensePerformanceSet = createDefaultIntensePerformanceSet();
+
+            Assert.IsNotNull(intensePerformanceSet);
+        }
+
+        private IIntensePerformanceSet createDefaultIntensePerformanceSet()
+        {
+            bool timed = true;
+            var set = _setFactory.CreateSet(_expectedWeight, timed) as IIntensePerformanceSet;
+            return set;
         }
 
         private IPerformanceSet createDefaultPerformanceSetSet()
