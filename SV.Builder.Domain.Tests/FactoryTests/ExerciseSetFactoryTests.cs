@@ -21,6 +21,30 @@ namespace SV.Builder.Domain.Tests.FactoryTests
         }
 
         [Test]
+        public void CreateSet_SetReps_ReturnsNumberOfReps()
+        {
+            var expectedReps = 10;
+            var strengthSet = createDefaultStrengthSet(_expectedWeight);
+
+            var numberOfReps = strengthSet.SetReps(expectedReps);
+
+            Assert.AreEqual(expectedReps, numberOfReps);
+        }
+
+        [TestCase(0)]
+        [TestCase(-1)]
+        public void CreateSet_SetReps_ThrowsArgumentOutOfRangeException(int reps)
+        {
+            Assert.Throws(typeof(ArgumentOutOfRangeException), new TestDelegate(setNumberOfReps));
+
+            void setNumberOfReps()
+            {
+                var strengthSet = createDefaultStrengthSet(_expectedWeight);
+                var numberOfReps = strengthSet.SetReps(reps);
+            }
+        }
+
+        [Test]
         public void CreateStrengthSet_WithWeight_CreatesStrengthSetObject()
         {
             var strengthSet = createDefaultStrengthSet(_expectedWeight);

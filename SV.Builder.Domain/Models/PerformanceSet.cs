@@ -5,7 +5,7 @@ using System.Text;
 
 namespace SV.Builder.Domain
 {
-    internal class PerformanceSet : IPerformanceSet
+    internal class PerformanceSet : ExerciseSet, IPerformanceSet
     {
         private readonly Stopwatch _stopwatch;
 

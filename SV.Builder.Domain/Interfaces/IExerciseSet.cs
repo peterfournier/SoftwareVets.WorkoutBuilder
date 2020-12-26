@@ -6,6 +6,6 @@ namespace SV.Builder.Domain
 {
     public interface IExerciseSet
     {
-
+        int SetReps(int numberOfReps);
     }
 }
