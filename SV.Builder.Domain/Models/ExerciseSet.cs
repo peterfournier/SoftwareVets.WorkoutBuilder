@@ -4,7 +4,7 @@ using System.Text;
 
 namespace SV.Builder.Domain
 {
-    internal abstract class ExerciseSet : IExerciseSet
+    internal class ExerciseSet : IExerciseSet
     {
         public int Reps { get; private set; } = 1;
 

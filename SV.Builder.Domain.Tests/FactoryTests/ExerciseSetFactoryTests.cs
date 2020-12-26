@@ -10,6 +10,7 @@ namespace SV.Builder.Domain.Tests.FactoryTests
 {
     public class ExerciseSetFactoryTests
     {
+        private const int _expectedReps = 10;
         private double _expectedWeight = 135.00;
         private TimeSpan _expectedLength = new TimeSpan(0, 0, 30);
         private ExerciseSetFactory _setFactory;
@@ -21,14 +22,26 @@ namespace SV.Builder.Domain.Tests.FactoryTests
         }
 
         [Test]
+        public void CreateSet_WithReps_ReturnsExerciseSet()
+        {
+            var set = createDefaultSet(_expectedReps);
+
+            Assert.IsNotNull(set);
+        }
+
+        private IExerciseSet createDefaultSet(int expectedReps)
+        {
+            return _setFactory.CreateSet();
+        }
+
+        [Test]
         public void CreateSet_SetReps_ReturnsNumberOfReps()
         {
-            var expectedReps = 10;
             var strengthSet = createDefaultStrengthSet(_expectedWeight);
 
-            var numberOfReps = strengthSet.SetReps(expectedReps);
+            var numberOfReps = strengthSet.SetReps(_expectedReps);
 
-            Assert.AreEqual(expectedReps, numberOfReps);
+            Assert.AreEqual(_expectedReps, numberOfReps);
         }
 
         [TestCase(0)]
@@ -169,7 +182,8 @@ namespace SV.Builder.Domain.Tests.FactoryTests
 
         private IPerformanceSet createDefaultPerformanceSetSet()
         {
-            return _setFactory.CreateSet() as PerformanceSet;
+            bool timed = true;
+            return _setFactory.CreateSet(timed) as PerformanceSet;
         }
 
         private IExerciseSet createDefaultEnduranceSet(TimeSpan expectedLength)

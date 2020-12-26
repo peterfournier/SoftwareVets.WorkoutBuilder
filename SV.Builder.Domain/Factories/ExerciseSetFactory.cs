@@ -4,9 +4,12 @@ namespace SV.Builder.Domain.Factories
 {
     public class ExerciseSetFactory
     {
-        public IExerciseSet CreateSet()
+        public IExerciseSet CreateSet(bool timed = false)
         {
-            return new PerformanceSet();
+            if (timed)
+                return new PerformanceSet();
+
+            return new ExerciseSet();
         }
 
         public IExerciseSet CreateSet(double weight, bool timed = false)
