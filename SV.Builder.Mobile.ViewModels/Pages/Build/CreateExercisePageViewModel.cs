@@ -55,7 +55,7 @@ namespace SV.Builder.Mobile.ViewModels.Pages
             foreach (var setViewModel in Sets)
             {
                 var setFactory = new ExerciseSetFactory();
-                //var domainSet = setFactory.CreateSet();
+                var domainSet = setFactory.CreateSet();
                 //domainSet = setViewModel.Repetitions;
                 //domainSet = setViewModel.Weight;
                 //domainSet = setViewModel.Length;

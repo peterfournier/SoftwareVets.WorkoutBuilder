@@ -19,11 +19,11 @@ namespace SV.Builder.Mobile.ViewModels
             set { SetProperty(ref _repetitions, value); }
         }
 
-        private TimeSpan _length;
-        public TimeSpan Length
+        private TimeSpan _duration;
+        public TimeSpan Duration
         {
-            get { return _length; }
-            set { SetProperty(ref _length, value); }
+            get { return _duration; }
+            set { SetProperty(ref _duration, value); }
         }
 
         private double? _weight;

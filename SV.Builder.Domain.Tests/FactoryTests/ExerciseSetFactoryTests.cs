@@ -22,14 +22,43 @@ namespace SV.Builder.Domain.Tests.FactoryTests
         }
 
         [Test]
+        public void CreateSet_WithSetObject_CreatesDefaultExerciseSet()
+        {
+            var defaultSet = _setFactory.CreateSet(new Set());
+
+            Assert.AreEqual(typeof(ExerciseSet), defaultSet?.GetType());
+        }
+
+        [Test]
+        public void CreateSet_WithWeightSetObject_CreatesStrengthSet()
+        {
+            bool notTimed = false;
+            var set = new Set(_expectedWeight, TimeSpan.MinValue, notTimed);
+            var strengthSet = _setFactory.CreateSet(set);
+
+            Assert.AreEqual(typeof(StrengthSet), strengthSet?.GetType());
+        }
+
+        [Test]
+        public void CreateSet_WithDurationSetObject_CreatesEnduranceSet()
+        {
+            double noWeight = 0;
+            bool notTimed = false;
+            var set = new Set(noWeight, _expectedLength, notTimed);
+            var enduranceSet = _setFactory.CreateSet(set);
+
+            Assert.AreEqual(typeof(EnduranceSet), enduranceSet?.GetType());
+        }
+
+        [Test]
         public void CreateSet_WithReps_ReturnsExerciseSet()
         {
-            var set = createDefaultSet(_expectedReps);
+            var set = createDefaultSet();
 
             Assert.IsNotNull(set);
         }
 
-        private IExerciseSet createDefaultSet(int expectedReps)
+        private IExerciseSet createDefaultSet()
         {
             return _setFactory.CreateSet();
         }
