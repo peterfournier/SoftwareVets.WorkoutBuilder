@@ -6,20 +6,20 @@ namespace SV.Builder.Domain
 {
     internal class EnduranceSet : ExerciseSet, IEnduranceSet
     {
-        private TimeSpan _length;
-        public TimeSpan Length
+        private TimeSpan _duration;
+        public TimeSpan Duration
         {
-            get => _length;
+            get => _duration;
             private set
             {
-                _length = value;
+                _duration = value;
                 //OnLengthChanged?.Invoke(_length);
             }
         }
 
-        public EnduranceSet(TimeSpan setLength)
+        public EnduranceSet(TimeSpan duration)
         {
-            Length = setLength.TotalMilliseconds <= 0 ? throw new ArgumentOutOfRangeException(nameof(setLength)) : setLength;
+            Duration = duration.TotalMilliseconds <= 0 ? throw new ArgumentOutOfRangeException(nameof(duration)) : duration;
         }
     }
 }

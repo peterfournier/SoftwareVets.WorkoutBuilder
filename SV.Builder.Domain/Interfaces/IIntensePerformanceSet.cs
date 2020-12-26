@@ -4,7 +4,7 @@ using System.Text;
 
 namespace SV.Builder.Domain
 {
-    public interface IIntensePerformanceSet : IWeightedSet
+    public interface IIntensePerformanceSet : IPerformanceSet, IWeightedSet
     {
 
     }

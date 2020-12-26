@@ -17,6 +17,11 @@ namespace SV.Builder.Domain.Factories
             return new StrengthSet(weight);
         }
 
+        public IExerciseSet CreateSet(double weight, TimeSpan duration)
+        {
+            return new IntenseEnduranceSet(weight, duration);
+        }
+
         public IExerciseSet CreateSet(TimeSpan setLength)
         {
             return new EnduranceSet(setLength);

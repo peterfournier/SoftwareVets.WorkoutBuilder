@@ -4,8 +4,7 @@ using System.Text;
 
 namespace SV.Builder.Domain
 {
-    public interface IEnduranceSet : IExerciseSet
+    public interface IIntenseEnduranceSet : IEnduranceSet, IWeightedSet
     {
-        TimeSpan Duration { get; }
     }
 }

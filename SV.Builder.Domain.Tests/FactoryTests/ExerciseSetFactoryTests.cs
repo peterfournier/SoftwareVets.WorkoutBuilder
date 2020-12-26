@@ -87,7 +87,7 @@ namespace SV.Builder.Domain.Tests.FactoryTests
         {
             var enduranceSet = createDefaultEnduranceSet(_expectedLength) as IEnduranceSet;
 
-            Assert.AreEqual(_expectedLength, enduranceSet.Length);
+            Assert.AreEqual(_expectedLength, enduranceSet.Duration);
 
         }
 
@@ -144,6 +144,20 @@ namespace SV.Builder.Domain.Tests.FactoryTests
             var intensePerformanceSet = createDefaultIntensePerformanceSet();
 
             Assert.IsNotNull(intensePerformanceSet);
+        }
+
+        [Test]
+        public void CreateIntenseEnduranceSet_WithTime_CreatesSetObject()
+        {
+            var intenseEnduranceSet = createDefaultIntenseEnduranceSet();
+
+            Assert.IsNotNull(intenseEnduranceSet);
+        }
+
+        private object createDefaultIntenseEnduranceSet()
+        {
+            var set = _setFactory.CreateSet(_expectedWeight, _expectedLength) as IIntenseEnduranceSet;
+            return set;
         }
 
         private IIntensePerformanceSet createDefaultIntensePerformanceSet()
