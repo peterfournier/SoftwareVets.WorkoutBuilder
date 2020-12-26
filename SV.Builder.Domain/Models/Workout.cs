@@ -11,7 +11,7 @@ namespace SV.Builder.Domain
 
         public string Description { get; set; }
         public string Name { get; private set; }
-        public TimeSpan Length { get; internal set; }
+        public TimeSpan Duration { get; internal set; }
 
         public Workout([NotNull] string workoutName)
         {
@@ -19,18 +19,18 @@ namespace SV.Builder.Domain
         }
 
         
-        private void Round_OnLengthChanged(TimeSpan length)
+        private void Round_OnDurationChanged(TimeSpan duration)
         {
-            calulateWorkoutLength();
+            calulateWorkoutDuration();
         }
 
-        private void calulateWorkoutLength()
+        private void calulateWorkoutDuration()
         {
-            Length = new TimeSpan();
+            Duration = new TimeSpan();
 
             foreach (var round in _rounds)
             {
-                Length = Length.Add(round.Length);
+                Duration = Duration.Add(round.Duration);
             }
         }
 
@@ -43,9 +43,9 @@ namespace SV.Builder.Domain
 
             _rounds.Add(round);
 
-            round.OnLengthChanged += Round_OnLengthChanged;
+            round.OnDurationChanged += Round_OnDurationChanged;
 
-            calulateWorkoutLength();
+            calulateWorkoutDuration();
         }
 
         public bool AddRound(IRound round)

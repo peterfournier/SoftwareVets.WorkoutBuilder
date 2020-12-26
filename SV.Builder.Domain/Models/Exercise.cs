@@ -5,9 +5,9 @@ namespace SV.Builder.Domain
 {
     internal class Exercise : VersionedDomainModelBase, IExercise
     {
-        private List<Set> _sets = new List<Set>();
+        private List<ExerciseSet> _sets = new List<ExerciseSet>();
 
-        public delegate void SetAddedHandler(Set set);
+        public delegate void SetAddedHandler(ExerciseSet set);
         public delegate void SetLengthChangedHandler(TimeSpan length);
 
         public event SetAddedHandler OnSetAdded;
@@ -22,25 +22,26 @@ namespace SV.Builder.Domain
             Name = string.IsNullOrWhiteSpace(exerciseName) ? throw new ArgumentNullException(nameof(exerciseName)) : exerciseName;
         }
 
-        public List<Set> GetSets()
+        public List<ExerciseSet> GetSets()
         {
             return _sets;
         }
 
-        public void AddSet(Set set)
+        public void AddSet(ExerciseSet set)
         {
             set.SetExercise(this);
 
-            set.OnLengthChanged += Set_OnLengthChanged;
+            if (set is EnduranceSet enduranceSet)
+                enduranceSet.OnDurationChanged += Set_OnDurationChanged;
 
             _sets.Add(set);
 
             OnSetAdded?.Invoke(set);
         }
 
-        private void Set_OnLengthChanged(TimeSpan length)
+        private void Set_OnDurationChanged(TimeSpan duration)
         {
-            OnSetLengthChanged?.Invoke(length);
+            OnSetLengthChanged?.Invoke(duration);
         }
 
         public void SetRound(Round round)

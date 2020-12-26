@@ -9,18 +9,18 @@ namespace SV.Builder.Domain
         private List<Exercise> _exercises = new List<Exercise>();
         private Workout _workout;
 
-        public delegate void LengthChanged(TimeSpan length);
-        public event LengthChanged OnLengthChanged;
+        public delegate void DurationChanged(TimeSpan duration);
+        public event DurationChanged OnDurationChanged;
 
         public string Name { get; private set; }
         private TimeSpan _length;
-        public TimeSpan Length
+        public TimeSpan Duration
         {
             get => _length;
             set
             {
                 _length = value;
-                OnLengthChanged?.Invoke(_length);
+                OnDurationChanged?.Invoke(_length);
             }
         }
         public int Iterations { get; set; }
@@ -53,19 +53,20 @@ namespace SV.Builder.Domain
             calulateRoundLength();
         }
 
-        private void Exercise_OnSetAdded(Set set)
+        private void Exercise_OnSetAdded(ExerciseSet exerciseSet)
         {
             calulateRoundLength();
         }
 
         private void calulateRoundLength()
         {
-            Length = new TimeSpan();
+            Duration = new TimeSpan();
             foreach (var exercise in _exercises)
             {
                 foreach (var set in exercise.GetSets())
                 {
-                    Length = Length.Add(set.Length);
+                    if (set is EnduranceSet enduranceSet)
+                        Duration = Duration.Add(enduranceSet.Duration);
                 }
             }
         }

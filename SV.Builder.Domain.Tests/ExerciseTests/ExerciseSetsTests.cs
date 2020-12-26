@@ -19,7 +19,7 @@ namespace SV.Builder.Domain.Tests.ExerciseTests
         {
             var exercise = new Exercise("Exercise 1");
 
-            var set = new Set(1);
+            var set = new ExerciseSet();
 
             exercise.AddSet(set);
 
@@ -30,7 +30,7 @@ namespace SV.Builder.Domain.Tests.ExerciseTests
         public void AddSet_Sets_Exercise_Property()
         {
             var exercise = new Exercise("Exercise 1");
-            var set = new Set(10);
+            var set = new ExerciseSet();
 
             exercise.AddSet(set);
 

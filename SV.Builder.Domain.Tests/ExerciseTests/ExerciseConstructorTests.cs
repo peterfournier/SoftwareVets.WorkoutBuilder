@@ -36,13 +36,5 @@ namespace SV.Builder.Domain.Tests.ExerciseTests
 
             Assert.AreEqual(param, exercise.Name);
         }
-
-        //[TestCase("Exercise Name")]
-        //public void TestConstructor_Round_IsNotNull(string param)
-        //{
-        //    var exercise = new Exercise(param);
-
-        //    Assert.IsNotNull(exercise.Round);
-        //}
     }
 }

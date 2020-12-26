@@ -54,7 +54,7 @@ namespace SV.Builder.Mobile.ViewModels.Pages
             var roundViewModel = new RoundViewModel(round)
             {
                 Name = round.Name,
-                Length = round.Length,
+                Length = round.Duration,
                 Iternations = round.Iterations,
                 Description = round.Description
             };

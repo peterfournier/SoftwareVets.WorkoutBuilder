@@ -6,7 +6,7 @@ namespace SV.Builder.Domain
     public interface IRound
     {
         public string Name { get; }
-        public TimeSpan Length { get; }
+        public TimeSpan Duration { get; }
         int Iterations { get; }
         string Description { get; }
         bool AddExercise(IExercise exercise);

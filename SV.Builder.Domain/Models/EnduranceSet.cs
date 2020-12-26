@@ -1,11 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace SV.Builder.Domain
 {
     internal class EnduranceSet : ExerciseSet, IEnduranceSet
     {
+        public delegate void DurationChanged(TimeSpan duration);
+        public event DurationChanged OnDurationChanged;
+
         private TimeSpan _duration;
         public TimeSpan Duration
         {
@@ -13,13 +14,21 @@ namespace SV.Builder.Domain
             private set
             {
                 _duration = value;
-                //OnLengthChanged?.Invoke(_length);
+                OnDurationChanged?.Invoke(_duration);
             }
         }
 
         public EnduranceSet(TimeSpan duration)
         {
             Duration = duration.TotalMilliseconds <= 0 ? throw new ArgumentOutOfRangeException(nameof(duration)) : duration;
+        }
+
+        public void ChangedDuration(TimeSpan newDuration)
+        {
+            if (newDuration.TotalSeconds <= 0)
+                throw new ArgumentOutOfRangeException(nameof(newDuration));
+
+            Duration = newDuration;
         }
     }
 }
