@@ -79,16 +79,54 @@ namespace SV.Builder.Domain.Tests.FactoryTests
             }
         }
 
+        [Test]
+        public void CreateSet_NoTime_CreatesPerformanceSetObject()
+        {
+            var performanceSet = createDefaultPerformanceSetSet();
 
+            Assert.IsNotNull(performanceSet);
+        }
+
+        [Test]
+        public async Task PerformanceSetStart_LogsTime()
+        {
+            int threeSeconds = 3000;
+            var performanceSet = createDefaultPerformanceSetSet();
+
+            performanceSet.Start();
+            await Task.Delay(3000);
+            performanceSet.Stop();
+
+            Assert.IsTrue(performanceSet.ElapsedTime.TotalMilliseconds > threeSeconds);
+        }
+
+        [Test]
+        public void PerformanceSetReset_ResetsTheStopwatch()
+        {
+            int expectedZeroTime = 0;
+            var performanceSet = createDefaultPerformanceSetSet();
+
+            performanceSet.Start();
+            performanceSet.Stop();
+
+            performanceSet.Reset();
+
+            Assert.AreEqual(expectedZeroTime, performanceSet.ElapsedTime.TotalMilliseconds);
+        }
+
+        private IPerformanceSet createDefaultPerformanceSetSet()
+        {
+            return _setFactory.CreateSet() as PerformanceSet;
+        }
 
         private IExerciseSet createDefaultEnduranceSet(TimeSpan expectedLength)
         {
-            return _setFactory.CreateSet(0, expectedLength);
+            return _setFactory.CreateSet(expectedLength);
         }
 
         private IExerciseSet createDefaultStrengthSet(double weight)
         {
-            var strengthSet = _setFactory.CreateSet(weight, new TimeSpan());
+            var strengthSet = _setFactory.CreateSet(weight);
             return strengthSet;
         }
     }
