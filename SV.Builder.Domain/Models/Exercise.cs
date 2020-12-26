@@ -39,6 +39,11 @@ namespace SV.Builder.Domain
             OnSetAdded?.Invoke(set);
         }
 
+        public void AddSet(IExerciseSet set)
+        {
+            this.AddSet(set as ExerciseSet);
+        }
+
         private void Set_OnDurationChanged(TimeSpan duration)
         {
             OnSetLengthChanged?.Invoke(duration);

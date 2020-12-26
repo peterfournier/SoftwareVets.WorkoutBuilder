@@ -7,5 +7,7 @@ namespace SV.Builder.Domain
     public interface IExercise
     {
         string Name { get; set; }
+
+        void AddSet(IExerciseSet exerciseSet);
     }
 }
