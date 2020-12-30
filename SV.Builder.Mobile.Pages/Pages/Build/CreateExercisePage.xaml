@@ -127,7 +127,7 @@
                                             <Picker Title="Hours"
                                                     HorizontalOptions="EndAndExpand"
                                                     ItemsSource="{Binding HoursList}"
-                                                    SelectedItem="{Binding SelectedSeconds}"
+                                                    SelectedItem="{Binding SelectedHours}"
                                                     WidthRequest="70"
                                                     FontSize="Small"
                                                     >
@@ -144,7 +144,7 @@
                                             <Picker Title="Secs"
                                                     WidthRequest="60"
                                                     ItemsSource="{Binding SecondsList}"
-                                                    SelectedItem="{Binding SelectedHours}"
+                                                    SelectedItem="{Binding SelectedSeconds}"
                                                     FontSize="Small"
                                                     >
                                             </Picker>

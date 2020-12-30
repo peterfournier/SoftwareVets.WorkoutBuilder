@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SV.Builder.Mobile.Views.Shared.EnduranceSetDataTemplate"
+             xmlns:iconLabels="clr-namespace:SV.Builder.Mobile.Views.Labels.IconLabels"
+             >
+    <StackLayout Orientation="Horizontal">
+
+        <Label Text="{Binding Name}"></Label>
+
+        <iconLabels:ClockLabel></iconLabels:ClockLabel>
+        
+        <Label>
+            <Label.FormattedText>
+                <FormattedString>
+                    <Span Text=": "></Span>
+                    <Span Text="{Binding ExerciseSet.Duration}"></Span>
+                </FormattedString>
+            </Label.FormattedText>
+        </Label>
+    </StackLayout>
+</ContentView>

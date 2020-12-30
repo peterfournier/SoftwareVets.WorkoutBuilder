@@ -7,10 +7,12 @@
              <!--x:DataType="domainModel:IEnduranceSet"-->
     <StackLayout>
         <StackLayout Orientation="Horizontal">
+            <Label Text="{Binding Name}"></Label>
+            
             <Label>
                 <Label.FormattedText>
                     <FormattedString>
-                        <Span Text="{Binding Reps}"></Span>
+                        <Span Text="{Binding ExerciseSet.Reps}"></Span>
                         <Span Text="x"></Span>
                     </FormattedString>
                 </Label.FormattedText>

@@ -1,29 +1,26 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="SV.Builder.Mobile.Views.Shared.StrengthSetDataTemplate"
-             xmlns:domainModel="clr-namespace:SV.Builder.Domain;assembly=SV.Builder.Domain"
+             x:Class="SV.Builder.Mobile.Views.Shared.IntensePerformanceSetDataTemplate"
+             xmlns:iconLabels="clr-namespace:SV.Builder.Mobile.Views.Labels.IconLabels"
              >
-             <!--x:DataType="domainModel:IWeightedSet"-->
     <StackLayout Orientation="Horizontal">
+
         <Label Text="{Binding Name}"></Label>
-        
+
         <Label>
             <Label.FormattedText>
                 <FormattedString>
-                    <Span Text="Weight: "></Span>
+                    <Span Text=" Weight: "></Span>
                     <Span Text="{Binding ExerciseSet.Weight}"></Span>
                 </FormattedString>
             </Label.FormattedText>
         </Label>
 
-        <Label>
-            <Label.FormattedText>
-                <FormattedString>
-                    <Span Text="{Binding ExerciseSet.Reps}"></Span>
-                    <Span Text="x"></Span>
-                </FormattedString>
-            </Label.FormattedText>
+
+        <iconLabels:StopwatchLabel></iconLabels:StopwatchLabel>
+        
+        <Label Text=": Timed">
         </Label>
     </StackLayout>
 </ContentView>
