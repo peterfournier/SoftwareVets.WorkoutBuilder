@@ -4,9 +4,15 @@
                              x:Class="SV.Builder.Mobile.Views.Pages.CreateWorkoutPage"
                              xmlns:local="clr-namespace:SV.Builder.Mobile.Views.Pages"
                              xmlns:partials="clr-namespace:SV.Builder.Mobile.Views.Partial"
+                             xmlns:shared="clr-namespace:SV.Builder.Mobile.Views.Shared"
                              xmlns:modelVMs="clr-namespace:SV.Builder.Mobile.ViewModels;assembly=SV.Builder.Mobile.ViewModels"
                              x:Name="createWorkoutPage"
                              >
+    <local:CreateWorkoutPageXaml.Resources>
+        <ResourceDictionary>
+            <shared:ExerciseSetTemplateSelector x:Key="exerciseSetTemplateSelector"> </shared:ExerciseSetTemplateSelector>
+        </ResourceDictionary>
+    </local:CreateWorkoutPageXaml.Resources>
     <Grid RowSpacing="0">
 
         <Grid.RowDefinitions>
@@ -123,72 +129,80 @@
 
                                         <Label Text="{Binding Description}"></Label>
 
+                                        <Label Text="Exercises"
+                                               FontSize="Medium"
+                                               FontAttributes="Bold"
+                                               HorizontalOptions="CenterAndExpand"
+                                               Margin="0,10,0,0"
+                                               ></Label>
+                                        
+                                        <BoxView HeightRequest="1"
+                                                 Color="Gray"
+                                                 WidthRequest="100"
+                                                 HorizontalOptions="Center"
+                                                ></BoxView>
+                                        
                                         <!--exercises-->
-                                        <StackLayout x:Name="exercisesStackPanel"
-                                                        Padding="15"
-                                                        Spacing="10"
-                                                        >
+                                        <StackLayout x:Name="exercisesCollectionView"
+                                                     BindableLayout.ItemsSource="{Binding Exercises}"
+                                                     >
+                                            <BindableLayout.ItemTemplate>
+                                                <DataTemplate x:DataType="modelVMs:ExerciseViewModel">
+                                                    <Grid x:Name="exercise">
 
-                                            <!--<StackLayout x:Name="exercise">
+                                                        <Expander x:Name="exerciseExpander"
+                                                                  HorizontalOptions="CenterAndExpand"
+                                                                  >
+                                                            <Expander.Header>
+                                                                <Label FontSize="Default"
+                                                                       FontAttributes="Bold"
+                                                                       >
+                                                                    <Label.FormattedText>
+                                                                        <FormattedString>
+                                                                            <Span Text="{Binding Name}"></Span>
+                                                                            <Span Text=" - "></Span>
+                                                                            <Span Text="{Binding Sets.Count}"></Span>
+                                                                            <Span Text=" Set(s)"></Span>
+                                                                        </FormattedString>
+                                                                    </Label.FormattedText>
+                                                                </Label>
+                                                            </Expander.Header>
+                                                            <Expander.ContentTemplate>
+                                                                <DataTemplate>
+                                                                    <Grid HorizontalOptions="CenterAndExpand">
+                                                                        <StackLayout BindableLayout.ItemsSource="{Binding Sets}">
+                                                                            <BindableLayout.ItemTemplate>
+                                                                                <DataTemplate x:DataType="modelVMs:SetViewModel">
+                                                                                    <Grid>
+                                                                                        <Grid.ColumnDefinitions>
+                                                                                            <ColumnDefinition Width="50"></ColumnDefinition>
+                                                                                            <ColumnDefinition Width="50"></ColumnDefinition>
+                                                                                        </Grid.ColumnDefinitions>
 
-                                                <StackLayout x:Name="exerciseHeader"
-                                                                Orientation="Horizontal"
-                                                                >
-                                                    <Label Text="Exercise 1"
-                                                            FontSize="Default"
-                                                            FontAttributes="Bold"
-                                                        ></Label>
-
-                                                    <Label Text="x1"
-                                                        HorizontalOptions="CenterAndExpand"
-                                                        VerticalTextAlignment="End"
-                                                        ></Label>
-
-
-                                                    <Label Text="05:00mins"
-                                                        VerticalTextAlignment="End"
-                                                        ></Label>
-                                                </StackLayout>
-                                            </StackLayout>
-
-                                            <StackLayout x:Name="exercise2">
-
-                                                <StackLayout x:Name="exerciseHeader2"
-                                                                Orientation="Horizontal"
-                                                                >
-                                                    <Label Text="Exercise 2"
-                                                            FontSize="Default"
-                                                            FontAttributes="Bold"
-                                                        ></Label>
-
-                                                    <Label Text="x3"
-                                                        HorizontalOptions="CenterAndExpand"
-                                                        VerticalTextAlignment="End"
-                                                        ></Label>
-
-
-                                                    <Label Text="15:00mins"
-                                                        VerticalTextAlignment="End"
-                                                        ></Label>
-                                                </StackLayout>
-                                            </StackLayout>-->
-
+                                                                                        <Label Text="{Binding Name}" />
+                                                                                        <Label Grid.Column="1" 
+                                                                                               Text="{Binding Repetitions}" />
+                                                                                    </Grid>
+                                                                                </DataTemplate>
+                                                                            </BindableLayout.ItemTemplate>
+                                                                        </StackLayout>
+                                                                    </Grid>
+                                                                </DataTemplate>
+                                                            </Expander.ContentTemplate>
+                                                        </Expander>
+                                                    </Grid>
+                                                </DataTemplate>
+                                            </BindableLayout.ItemTemplate>
                                         </StackLayout>
                                         <!--/exercises-->
 
-                                        <BoxView HeightRequest="1"
-                                                Color="Gray"
-                                                ></BoxView>
-
                                         <Button Text="Add Exercise"
-                                                HorizontalOptions="Start"
+                                                HorizontalOptions="End"
                                                 Command="{Binding AddExerciseToRoundCommand}"
                                                 CommandParameter="{Binding .}"
                                                 BackgroundColor="Transparent"
                                                 TextColor="{StaticResource Primary}"
                                                 ></Button>
-
-
                                     </StackLayout>
                                 </Frame>
                             </Grid>

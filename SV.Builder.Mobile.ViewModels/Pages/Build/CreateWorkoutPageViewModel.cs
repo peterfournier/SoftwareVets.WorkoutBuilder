@@ -37,6 +37,7 @@ namespace SV.Builder.Mobile.ViewModels.Pages
         {
             MessagingCenter.Subscribe<EditWorkoutNamePageViewModel, IWorkout>(this, Messages.CreateWorkout, workoutCreatedHandler);
             MessagingCenter.Subscribe<CreateRoundPageViewModel, IRound>(this, Messages.CreateRound, roundCreatedHandler);
+            MessagingCenter.Subscribe<CreateExercisePageViewModel, IExercise>(this, Messages.CreateExercise, exerciseCreatedHandler);
         }
 
         private void setNewWorkout()
@@ -59,6 +60,15 @@ namespace SV.Builder.Mobile.ViewModels.Pages
                 Description = round.Description
             };
             Rounds.Add(roundViewModel);
+        }
+
+        private void exerciseCreatedHandler(CreateExercisePageViewModel createExerciseViewModel, IExercise exercise)
+        {
+            // Which Round are we adding this exercise too?
+
+            // Need a collection to bind too
+
+            // Need Xaml
         }
 
         private void workoutCreatedHandler(EditWorkoutNamePageViewModel viewModel, IWorkout workout)

@@ -20,7 +20,7 @@ namespace SV.Builder.Mobile.Views.Pages
         {
             InitializeComponent();
 
-            MessagingCenter.Subscribe<RoundViewModel, RoundViewModel>(this, Messages.GoToNewExercise, addExerciseButton_Clicked);
+            MessagingCenter.Subscribe<RoundViewModel, RoundViewModel>(this, Messages.GoToNewExercise, addExerciseHandler);
         }
 
         private async void WorkoutNameTapGestureRecognizer_Tapped(object sender, EventArgs e)
@@ -39,9 +39,9 @@ namespace SV.Builder.Mobile.Views.Pages
             await Shell.Current.Navigation.PushModalAsync(new CreateRoundPage());
         }
 
-        private async void addExerciseButton_Clicked(object sender, RoundViewModel roundViewModel)
+        private async void addExerciseHandler(object sender, RoundViewModel roundViewModel)
         {
-            await Shell.Current.Navigation.PushModalAsync(new CreateExercisePage());
+            await Shell.Current.Navigation.PushModalAsync(new CreateExercisePage(roundViewModel));
         }
     }
 

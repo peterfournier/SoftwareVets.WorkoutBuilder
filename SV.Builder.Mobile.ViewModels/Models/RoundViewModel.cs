@@ -1,6 +1,7 @@
 ﻿using SV.Builder.Domain;
 using SV.Builder.Mobile.Common.MessageCenter;
 using System;
+using System.Collections.ObjectModel;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -40,16 +41,25 @@ namespace SV.Builder.Mobile.ViewModels
 
         public ICommand AddExerciseToRoundCommand { get; set; }
 
+        public ObservableCollection<ExerciseViewModel> Exercises { get; private set; } = new ObservableCollection<ExerciseViewModel>();
+
         public RoundViewModel(IRound round)
         {
-            AddExerciseToRoundCommand = new Command(addExerciseToRound);
+            AddExerciseToRoundCommand = new Command(addNewExerciseToRound);
             _round = round;
         }
 
-        private void addExerciseToRound(object arg)
+        private void addNewExerciseToRound(object arg)
         {
             if (arg is RoundViewModel round)
                 MessagingCenter.Send(this, Messages.GoToNewExercise, round);
+        }
+
+        internal void AddExercise(ExerciseViewModel exerciseViewModel)
+        {
+            _round.AddExercise(exerciseViewModel.Exercise);
+
+            Exercises.Add(exerciseViewModel);
         }
     }
 }

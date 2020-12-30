@@ -36,7 +36,9 @@
                        FontSize="Medium" 
                        FontAttributes="Bold"
                        />
-                <Entry Text="{Binding Name, Mode=TwoWay}" FontSize="Medium" />
+                <Entry Text="{Binding Name}" 
+                       FontSize="Medium" 
+                       />
 
                 <Label Text="Sets"
                         FontSize="Medium"
@@ -91,12 +93,26 @@
                                                     </FormattedString>
                                                 </Label.FormattedText>
                                             </Label>
-                                            <Stepper x:Name="repStepper" 
+                                            <!--<Stepper x:Name="repStepper" 
                                                      Maximum="100"
                                                      Minimum="1"
                                                      HorizontalOptions="EndAndExpand"
                                                      Value="{Binding Repetitions}"
-                                                     ></Stepper>
+                                                     ></Stepper>-->
+
+                                            <Entry Text="{Binding Repetitions}"
+                                                   Keyboard="Numeric"
+                                                   HorizontalOptions="EndAndExpand"
+                                                   WidthRequest="80"
+                                                   >
+                                            </Entry>
+                                            
+                                            <!--<Slider Minimum="1"
+                                                    Maximum="500"
+                                                    HorizontalOptions="EndAndExpand"
+                                                    WidthRequest="300"
+                                                    Value="{Binding Repetitions}"
+                                                    ></Slider>-->
                                         </StackLayout>
                                         <!--/reps-->
 
@@ -163,7 +179,7 @@
                 </CollectionView>
 
                 <Button Text="Add Set"
-                        HorizontalOptions="Start"
+                        HorizontalOptions="End"
                         BackgroundColor="Transparent"
                         TextColor="{StaticResource Primary}"
                         Command="{Binding AddSetCommand}"

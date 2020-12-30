@@ -2,6 +2,7 @@
 {
     public static class Messages
     {
+        public static string CreateExercise = nameof(CreateExercise);
         public static string CreateRound = nameof(CreateRound);
         public static string CreateWorkout = nameof(CreateWorkout);
         public static string GoToNewExercise = nameof(GoToNewExercise); 

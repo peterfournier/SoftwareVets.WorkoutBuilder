@@ -1,4 +1,5 @@
-﻿using SV.Builder.Mobile.ViewModels.Pages;
+﻿using SV.Builder.Mobile.ViewModels;
+using SV.Builder.Mobile.ViewModels.Pages;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,11 +14,16 @@ namespace SV.Builder.Mobile.Views.Pages
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class CreateExercisePage : CreateExercisePageXaml
     {
-        public CreateExercisePage()
+        public CreateExercisePage(RoundViewModel roundViewModel)
         {
+            if (roundViewModel == null)
+                throw new ArgumentNullException(nameof(roundViewModel));
+
             InitializeComponent();
+
+            BindingContext = new CreateExercisePageViewModel(roundViewModel);
         }
     }
 
-    public partial class CreateExercisePageXaml : ContentPageBase<CreateExercisePageViewModel> { }
+    public partial class CreateExercisePageXaml : ContentPageBase { }
 }

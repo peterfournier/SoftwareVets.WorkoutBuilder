@@ -24,6 +24,13 @@ namespace SV.Builder.Mobile
             setDefaultApplicationTheme();
 
             Resources.Add(new ThemeResourceDictionary());
+
+            setExperimentalFlags();
+        }
+
+        private void setExperimentalFlags()
+        {
+            Device.SetFlags(new string[] { "Expander_Experimental" });
         }
 
         private void setDefaultApplicationTheme()

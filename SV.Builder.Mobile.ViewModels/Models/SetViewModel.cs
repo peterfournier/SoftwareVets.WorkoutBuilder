@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SV.Builder.Domain;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -44,6 +45,8 @@ namespace SV.Builder.Mobile.ViewModels
             get { return _name; }
             set { SetProperty(ref _name, value); }
         }
+
+        public IExerciseSet ExerciseSet { get; private set; }
 
         public List<string> SecondsList { get; set; } = new List<string>();
         public List<string> MinutesList { get; set; } = new List<string>();
@@ -95,6 +98,14 @@ namespace SV.Builder.Mobile.ViewModels
             populateHoursList();
         }
 
+        internal void SetExerciseSet(IExerciseSet exerciseSet)
+        {
+            if (ExerciseSet == null)
+            {
+                ExerciseSet = exerciseSet;
+            }
+        }
+
         private void populateHoursList()
         {
             for (int i = 0; i < 61; i++)
@@ -143,7 +154,7 @@ namespace SV.Builder.Mobile.ViewModels
             return getTimeInteral(SecondsList, SelectedSeconds, secondsSuffix);
         }
 
-        private int getTimeInteral(List<string> timeUnitList, 
+        private int getTimeInteral(List<string> timeUnitList,
             string selectedValue,
             string suffixToRemove)
         {
