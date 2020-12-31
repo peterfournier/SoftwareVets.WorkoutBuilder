@@ -5,18 +5,16 @@
              xmlns:domainModel="clr-namespace:SV.Builder.Domain;assembly=SV.Builder.Domain"
              >
              <!--x:DataType="domainModel:IEnduranceSet"-->
-    <StackLayout>
-        <StackLayout Orientation="Horizontal">
-            <Label Text="{Binding Name}"></Label>
+    <Grid ColumnDefinitions="50,100">
+        <Label Text="{Binding Name}"></Label>
             
-            <Label>
-                <Label.FormattedText>
-                    <FormattedString>
-                        <Span Text="{Binding ExerciseSet.Reps}"></Span>
-                        <Span Text="x"></Span>
-                    </FormattedString>
-                </Label.FormattedText>
-            </Label>
-        </StackLayout>
-    </StackLayout>
+        <Label Grid.Column="1">
+            <Label.FormattedText>
+                <FormattedString>
+                    <Span Text="{Binding ExerciseSet.Reps}"></Span>
+                    <Span Text="x"></Span>
+                </FormattedString>
+            </Label.FormattedText>
+        </Label>
+    </Grid>
 </ContentView>

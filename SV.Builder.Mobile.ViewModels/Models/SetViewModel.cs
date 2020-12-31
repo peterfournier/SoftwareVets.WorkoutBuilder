@@ -32,8 +32,8 @@ namespace SV.Builder.Mobile.ViewModels
             private set { SetProperty(ref _duration, value); }
         }
 
-        private double? _weight;
-        public double? Weight
+        private string _weight;
+        public string Weight
         {
             get { return _weight; }
             set { SetProperty(ref _weight, value); }

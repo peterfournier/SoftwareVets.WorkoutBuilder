@@ -151,7 +151,6 @@
                                                     <Grid x:Name="exercise">
 
                                                         <Expander x:Name="exerciseExpander"
-                                                                  HorizontalOptions="CenterAndExpand"
                                                                   >
                                                             <Expander.Header>
                                                                 <Label FontSize="Default"
@@ -169,25 +168,10 @@
                                                             </Expander.Header>
                                                             <Expander.ContentTemplate>
                                                                 <DataTemplate>
-                                                                    <Grid HorizontalOptions="CenterAndExpand">
+                                                                    <Grid>
                                                                         <StackLayout BindableLayout.ItemsSource="{Binding Sets}"
                                                                                      BindableLayout.ItemTemplateSelector="{StaticResource exerciseSetTemplateSelector}"
-                                                                                     >
-                                                                            <!--<BindableLayout.ItemTemplate>
-                                                                                <DataTemplate x:DataType="modelVMs:SetViewModel">
-                                                                                    <Grid>
-                                                                                        <Grid.ColumnDefinitions>
-                                                                                            <ColumnDefinition Width="50"></ColumnDefinition>
-                                                                                            <ColumnDefinition Width="50"></ColumnDefinition>
-                                                                                        </Grid.ColumnDefinitions>
-
-                                                                                        <Label Text="{Binding Name}" />
-                                                                                        <Label Grid.Column="1" 
-                                                                                               Text="{Binding Repetitions}" />
-                                                                                    </Grid>
-                                                                                </DataTemplate>
-                                                                            </BindableLayout.ItemTemplate>-->
-                                                                        </StackLayout>
+                                                                                     ></StackLayout>
                                                                     </Grid>
                                                                 </DataTemplate>
                                                             </Expander.ContentTemplate>

@@ -5,19 +5,10 @@
              xmlns:domainModel="clr-namespace:SV.Builder.Domain;assembly=SV.Builder.Domain"
              >
              <!--x:DataType="domainModel:IWeightedSet"-->
-    <StackLayout Orientation="Horizontal">
+    <Grid ColumnDefinitions="50,100,100">
         <Label Text="{Binding Name}"></Label>
         
-        <Label>
-            <Label.FormattedText>
-                <FormattedString>
-                    <Span Text="Weight: "></Span>
-                    <Span Text="{Binding ExerciseSet.Weight}"></Span>
-                </FormattedString>
-            </Label.FormattedText>
-        </Label>
-
-        <Label>
+        <Label Grid.Column="1">
             <Label.FormattedText>
                 <FormattedString>
                     <Span Text="{Binding ExerciseSet.Reps}"></Span>
@@ -25,5 +16,14 @@
                 </FormattedString>
             </Label.FormattedText>
         </Label>
-    </StackLayout>
+        
+        <Label Grid.Column="2">
+            <Label.FormattedText>
+                <FormattedString>
+                    <Span Text="Weight: "></Span>
+                    <Span Text="{Binding ExerciseSet.Weight}"></Span>
+                </FormattedString>
+            </Label.FormattedText>
+        </Label>
+    </Grid>
 </ContentView>

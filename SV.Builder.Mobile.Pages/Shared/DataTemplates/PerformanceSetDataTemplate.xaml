@@ -4,13 +4,14 @@
              x:Class="SV.Builder.Mobile.Views.Shared.PerformanceSetDataTemplate"
              xmlns:iconLabels="clr-namespace:SV.Builder.Mobile.Views.Labels.IconLabels"
              >
-    <StackLayout Orientation="Horizontal">
-
+    <Grid ColumnDefinitions="50,100">
         <Label Text="{Binding Name}"></Label>
-
-        <iconLabels:StopwatchLabel></iconLabels:StopwatchLabel>
-
-        <Label Text=": Timed">
-        </Label>
-    </StackLayout>
+        
+        <StackLayout Grid.Column="1"
+                     Orientation="Horizontal"
+                     >
+            <iconLabels:StopwatchLabel FontSize="Medium"></iconLabels:StopwatchLabel>
+            <Label Text="Timed"></Label>
+        </StackLayout>
+    </Grid>
 </ContentView>

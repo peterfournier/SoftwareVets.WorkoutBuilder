@@ -4,27 +4,23 @@
              x:Class="SV.Builder.Mobile.Views.Shared.IntenseEnduranceSetDataTemplate"
              xmlns:iconLabels="clr-namespace:SV.Builder.Mobile.Views.Labels.IconLabels"
              >
-    <StackLayout Orientation="Horizontal">
+    <Grid ColumnDefinitions="50,100,100">
         
         <Label Text="{Binding Name}"></Label>
-
-        <Label>
+        
+        <StackLayout Grid.Column="1" Orientation="Horizontal">
+            <iconLabels:ClockLabel FontSize="Medium"></iconLabels:ClockLabel>
+            <Label Text="{Binding ExerciseSet.Duration}"></Label>
+        </StackLayout>
+        
+        <Label Grid.Column="2">
             <Label.FormattedText>
                 <FormattedString>
                     <Span Text=" Weight: "></Span>
                     <Span Text="{Binding ExerciseSet.Weight}"></Span>
+                    <Span Text="lbs"></Span>
                 </FormattedString>
             </Label.FormattedText>
         </Label>
-
-        <iconLabels:ClockLabel></iconLabels:ClockLabel>
-        <Label>
-            <Label.FormattedText>
-                <FormattedString>
-                    <Span Text=": "></Span>
-                    <Span Text="{Binding ExerciseSet.Duration}"></Span>
-                </FormattedString>
-            </Label.FormattedText>
-        </Label>
-    </StackLayout>
+    </Grid>
 </ContentView>

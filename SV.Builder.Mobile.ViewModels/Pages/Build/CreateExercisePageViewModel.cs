@@ -76,7 +76,9 @@ namespace SV.Builder.Mobile.ViewModels.Pages
 
         private IExerciseSet createDomainExerciseSet(ExerciseSetFactory setFactory, SetViewModel setViewModel)
         {
-            var set = new Set(weight: setViewModel.Weight ?? 0
+            double.TryParse(setViewModel.Weight, out double weight);
+
+            var set = new Set(weight: weight
                                 , duration: setViewModel.Duration
                                 , timed: setViewModel.StopwatchSet);
 

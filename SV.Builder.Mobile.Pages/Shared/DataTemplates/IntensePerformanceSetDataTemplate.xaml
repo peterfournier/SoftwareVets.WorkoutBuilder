@@ -4,23 +4,24 @@
              x:Class="SV.Builder.Mobile.Views.Shared.IntensePerformanceSetDataTemplate"
              xmlns:iconLabels="clr-namespace:SV.Builder.Mobile.Views.Labels.IconLabels"
              >
-    <StackLayout Orientation="Horizontal">
-
+    <Grid ColumnDefinitions="50,100,100">
         <Label Text="{Binding Name}"></Label>
-
-        <Label>
+        
+        <StackLayout Grid.Column="1"
+                     Orientation="Horizontal"
+                     >
+            <iconLabels:StopwatchLabel FontSize="Medium"></iconLabels:StopwatchLabel>
+            <Label Text="Timed"></Label>
+        </StackLayout>
+        
+        <Label Grid.Column="2">
             <Label.FormattedText>
                 <FormattedString>
                     <Span Text=" Weight: "></Span>
                     <Span Text="{Binding ExerciseSet.Weight}"></Span>
+                    <Span Text="lbs"></Span>
                 </FormattedString>
             </Label.FormattedText>
         </Label>
-
-
-        <iconLabels:StopwatchLabel></iconLabels:StopwatchLabel>
-        
-        <Label Text=": Timed">
-        </Label>
-    </StackLayout>
+    </Grid>
 </ContentView>
