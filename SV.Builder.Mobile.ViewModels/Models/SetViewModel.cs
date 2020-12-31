@@ -1,7 +1,10 @@
 ﻿using SV.Builder.Domain;
+using SV.Builder.Mobile.Common.MessageCenter;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Windows.Input;
+using Xamarin.Forms;
 
 namespace SV.Builder.Mobile.ViewModels
 {
@@ -44,6 +47,13 @@ namespace SV.Builder.Mobile.ViewModels
         {
             get { return _name; }
             set { SetProperty(ref _name, value); }
+        }
+
+        private ICommand _removeSetCommand;
+        public ICommand RemoveSetCommand
+        {
+            get { return _removeSetCommand; }
+            set { SetProperty(ref _removeSetCommand, value); }
         }
 
         public IExerciseSet ExerciseSet { get; private set; }
@@ -96,6 +106,12 @@ namespace SV.Builder.Mobile.ViewModels
             populateSecondsList();
             populateMinutesList();
             populateHoursList();
+            RemoveSetCommand = new Command(new Action(removeSetHandler));
+        }
+
+        private void removeSetHandler()
+        {
+            MessagingCenter.Send(this, Messages.RemoveSetViewModel, this);
         }
 
         internal void SetExerciseSet(IExerciseSet exerciseSet)

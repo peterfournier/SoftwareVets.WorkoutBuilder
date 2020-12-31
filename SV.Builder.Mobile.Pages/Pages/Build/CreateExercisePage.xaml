@@ -106,7 +106,7 @@
                                                    WidthRequest="80"
                                                    >
                                             </Entry>
-                                            
+
                                             <!--<Slider Minimum="1"
                                                     Maximum="500"
                                                     HorizontalOptions="EndAndExpand"
@@ -166,11 +166,20 @@
                                         </StackLayout>
                                         <!--/weight-->
 
-                                        <Button Text="Copy Set"
-                                                HorizontalOptions="End"
-                                                BackgroundColor="Transparent"
-                                                TextColor="{StaticResource Primary}"
-                                                ></Button>
+                                        <StackLayout Orientation="Horizontal"
+                                                     >
+                                            <Button Text="Remove Set"
+                                                    BackgroundColor="Transparent"
+                                                    TextColor="{StaticResource Primary}"
+                                                    Command="{Binding RemoveSetCommand}"
+                                                    ></Button>
+                                        
+                                            <Button Text="Copy Set"
+                                                    HorizontalOptions="EndAndExpand"
+                                                    BackgroundColor="Transparent"
+                                                    TextColor="{StaticResource Primary}"
+                                                    ></Button>
+                                        </StackLayout>
                                     </StackLayout>
                                 </Frame>
                             </Grid>

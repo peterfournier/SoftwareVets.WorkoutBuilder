@@ -3,6 +3,7 @@ using SV.Builder.Domain.Factories;
 using SV.Builder.Mobile.Common.MessageCenter;
 using System;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -41,6 +42,15 @@ namespace SV.Builder.Mobile.ViewModels.Pages
             {
                 Name = $"Set {Sets.Count + 1}"
             });
+        }
+
+        public void RemoveSet(SetViewModel setViewModelArg)
+        {
+            var setToRemove = Sets.FirstOrDefault(x => x == setViewModelArg);
+            if (setToRemove != null)
+            {
+                Sets.Remove(setToRemove);
+            }
         }
 
         public override void OnSaveCommand()

@@ -1,4 +1,5 @@
-﻿using SV.Builder.Mobile.ViewModels;
+﻿using SV.Builder.Mobile.Common.MessageCenter;
+using SV.Builder.Mobile.ViewModels;
 using SV.Builder.Mobile.ViewModels.Pages;
 using System;
 using System.Collections.Generic;
@@ -22,6 +23,29 @@ namespace SV.Builder.Mobile.Views.Pages
             InitializeComponent();
 
             BindingContext = new CreateExercisePageViewModel(roundViewModel);
+            MessagingCenter.Subscribe<SetViewModel, SetViewModel>(this, Messages.RemoveSetViewModel, removeSetHandler);
+        }
+
+        private async void removeSetHandler(SetViewModel sender, SetViewModel setViewModelArg)
+        {
+            if (BindingContext is CreateExercisePageViewModel viewModel)
+            {
+                if (viewModel.Sets.Count > 1)
+                {
+                    if (await DisplayAlert("Comfirm", "Are you sure you want to remove this set?", "Yes Remove", "Cancel"))
+                    {
+                        viewModel.RemoveSet(setViewModelArg);
+                    }
+                }
+                else
+                {
+                    await DisplayAlert("Nope", "Exercises must have at least 1 set", "Got it");
+                }
+            }
+        }
+        ~CreateExercisePage()
+        {
+            MessagingCenter.Unsubscribe<SetViewModel, SetViewModel>(this, Messages.RemoveSetViewModel);
         }
     }
 
