@@ -6,7 +6,7 @@ namespace SV.Builder.Domain
 {
     internal class ExerciseSet : IExerciseSet
     {
-        public int Reps { get; private set; } = 1;
+        public int Reps { get; private set; }
         public Exercise Exercise { get; private set; }
 
         public ExerciseSet()
@@ -16,7 +16,7 @@ namespace SV.Builder.Domain
 
         public int SetReps(int numberOfReps)
         {
-            if (numberOfReps < 1)
+            if (numberOfReps < 0)
                 throw new ArgumentOutOfRangeException(nameof(numberOfReps));
 
             Reps = numberOfReps;

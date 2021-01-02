@@ -90,7 +90,9 @@
                             ></BoxView>
 
                 <!--rounds-->
-                <CollectionView ItemsSource="{Binding Rounds}">
+                <CollectionView ItemsSource="{Binding Rounds}"
+                                ItemsUpdatingScrollMode="KeepLastItemInView"
+                                >
                     <CollectionView.ItemTemplate>
                         <DataTemplate x:DataType="modelVMs:RoundViewModel">
                             <Grid>

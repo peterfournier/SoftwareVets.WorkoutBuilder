@@ -38,10 +38,11 @@ namespace SV.Builder.Mobile.ViewModels.Pages
 
         private void addSet(object sender)
         {
-            Sets.Add(new SetViewModel()
+            var set = new SetViewModel()
             {
                 Name = $"Set {Sets.Count + 1}"
-            });
+            };
+            Sets.Add(set);
         }
 
         public void RemoveSet(SetViewModel setViewModelArg)

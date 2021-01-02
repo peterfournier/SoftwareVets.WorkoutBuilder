@@ -118,7 +118,6 @@ namespace SV.Builder.Domain.Tests.FactoryTests
             Assert.AreEqual(_expectedReps, numberOfReps);
         }
 
-        [TestCase(0)]
         [TestCase(-1)]
         public void CreateSet_SetReps_ThrowsArgumentOutOfRangeException(int reps)
         {
