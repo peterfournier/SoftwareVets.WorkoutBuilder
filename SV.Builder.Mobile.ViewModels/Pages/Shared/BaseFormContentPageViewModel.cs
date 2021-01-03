@@ -5,7 +5,7 @@ namespace SV.Builder.Mobile.ViewModels.Pages
 {
     public abstract class BaseContentPageViewModel : BaseViewModel
     {
-        //public IDataStore<Item> DataStore => DependencyService.Get<IDataStore<Item>>();       
+        //public IDataStore<Item> DataStore => DependencyService.Get<IDataStore<Item>>();
         string title = string.Empty;
         public string Title
         {

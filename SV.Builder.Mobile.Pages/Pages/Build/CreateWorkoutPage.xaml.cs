@@ -2,6 +2,7 @@
 using SV.Builder.Mobile.Common.MessageCenter;
 using SV.Builder.Mobile.ViewModels;
 using SV.Builder.Mobile.ViewModels.Pages;
+using SV.Builder.Mobile.ViewModels.Shared;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,12 +21,14 @@ namespace SV.Builder.Mobile.Views.Pages
         {
             InitializeComponent();
 
-            MessagingCenter.Subscribe<RoundViewModel, RoundViewModel>(this, Messages.GoToNewExercise, addExerciseHandler);
+            MessagingCenter.Subscribe<RoundViewModel, RoundViewModel>(this, Messages.GoToNewExercisePage, addExerciseHandler);
+            MessagingCenter.Subscribe<CreateWorkoutPageViewModel>(this, Messages.GoToNewRoundPage, goToNewRoundPageHandler);
+            MessagingCenter.Subscribe<CreateWorkoutPageViewModel>(this, Messages.GoToEditWorkoutNamePage, goToEditWorkoutNamePageHandler);
         }
 
-        private async void WorkoutNameTapGestureRecognizer_Tapped(object sender, EventArgs e)
+        private async void goToEditWorkoutNamePageHandler(CreateWorkoutPageViewModel createWorkoutPageViewModel)
         {
-            if (BindingContext is CreateWorkoutPageViewModel createWorkoutPageViewModel)
+            using (new BusyStatus(createWorkoutPageViewModel))
             {
                 var workoutName = createWorkoutPageViewModel.Name.Equals(createWorkoutPageViewModel.DefaultWorkoutName) ? string.Empty : createWorkoutPageViewModel.Name;
                 var workoutDescription = createWorkoutPageViewModel.Description.Equals(createWorkoutPageViewModel.DefaultDescription) ? string.Empty : createWorkoutPageViewModel.Description;
@@ -34,14 +37,20 @@ namespace SV.Builder.Mobile.Views.Pages
             }
         }
 
-        private async void addRoundButton_Clicked(object sender, EventArgs e)
+        private async void goToNewRoundPageHandler(CreateWorkoutPageViewModel createWorkoutPageViewModel)
         {
-            await Shell.Current.Navigation.PushModalAsync(new CreateRoundPage());
+            using (new BusyStatus(createWorkoutPageViewModel))
+            {
+                await Shell.Current.Navigation.PushModalAsync(new CreateRoundPage());
+            }
         }
 
         private async void addExerciseHandler(object sender, RoundViewModel roundViewModel)
         {
-            await Shell.Current.Navigation.PushModalAsync(new CreateExercisePage(roundViewModel));
+            using (new BusyStatus(roundViewModel))
+            {
+                await Shell.Current.Navigation.PushModalAsync(new CreateExercisePage(roundViewModel));
+            }
         }
     }
 

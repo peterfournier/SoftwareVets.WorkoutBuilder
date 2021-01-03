@@ -1,11 +1,12 @@
-﻿using System;
+﻿using SV.Builder.Mobile.ViewModels.Shared;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
 namespace SV.Builder.Mobile.ViewModels
 {
-    public abstract class BaseViewModel : INotifyPropertyChanged
+    public abstract class BaseViewModel : INotifyPropertyChanged, IBusyStatus
     {
         bool isBusy = false;
         public bool IsBusy
@@ -25,6 +26,11 @@ namespace SV.Builder.Mobile.ViewModels
             onChanged?.Invoke();
             OnPropertyChanged(propertyName);
             return true;
+        }
+
+        public virtual void ToggleBusyStatus()
+        {
+            IsBusy = !IsBusy;
         }
 
         #region INotifyPropertyChanged

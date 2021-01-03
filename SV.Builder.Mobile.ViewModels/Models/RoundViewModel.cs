@@ -52,7 +52,7 @@ namespace SV.Builder.Mobile.ViewModels
         private void addNewExerciseToRound(object arg)
         {
             if (arg is RoundViewModel round)
-                MessagingCenter.Send(this, Messages.GoToNewExercise, round);
+                MessagingCenter.Send(this, Messages.GoToNewExercisePage, round);
         }
 
         internal void AddExercise(ExerciseViewModel exerciseViewModel)

@@ -42,7 +42,7 @@
                             ></Label>
 
                     <StackLayout.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="WorkoutNameTapGestureRecognizer_Tapped"></TapGestureRecognizer>
+                        <TapGestureRecognizer Command="{Binding GoToEditWorkoutNameCommand}"></TapGestureRecognizer>
                     </StackLayout.GestureRecognizers>
                 </StackLayout>
                 <!--/workout header-->
@@ -204,7 +204,7 @@
             <Button Text="Add Round"
                     x:Name="addRoundButton"
                     VerticalOptions="EndAndExpand"
-                    Clicked="addRoundButton_Clicked"
+                    Command="{Binding GoToNewRoundPageCommand}"
                     ></Button>
             
         </StackLayout>

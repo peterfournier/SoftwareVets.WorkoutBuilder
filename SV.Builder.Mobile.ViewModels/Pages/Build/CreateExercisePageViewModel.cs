@@ -75,7 +75,7 @@ namespace SV.Builder.Mobile.ViewModels.Pages
 
             _roundViewModel.AddExercise(exerciseViewModel);
 
-            MessagingCenter.Send(this, Messages.CreateExercise, _roundViewModel);
+            //MessagingCenter.Send(this, Messages.CreateExercise, _roundViewModel);
 
             base.OnSaveCommand();
         }
