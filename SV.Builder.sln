@@ -27,7 +27,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Repository", "Repository", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SV.Builder.Repository", "SV.Builder.Repository\SV.Builder.Repository.csproj", "{A2F709A2-6369-471A-B1B6-21A507C36360}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SV.Builder.Reposity.Tests", "SV.Builder.Reposity.Tests\SV.Builder.Reposity.Tests.csproj", "{5CE157BD-D4AF-464E-8EED-BE9B03F92C89}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SV.Builder.Repository.IntegrationTests", "SV.Builder.Reposity.Tests\SV.Builder.Repository.IntegrationTests.csproj", "{5CE157BD-D4AF-464E-8EED-BE9B03F92C89}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
