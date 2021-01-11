@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<local:WorkoutListPageXaml xmlns="http://xamarin.com/schemas/2014/forms"
+                           xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                           x:Class="SV.Builder.Mobile.Views.Pages.WorkoutListPage"
+                           xmlns:local="clr-namespace:SV.Builder.Mobile.Views.Pages"
+                           >
+    <ContentPage.Content>
+        <StackLayout>
+            <CollectionView ItemsSource="{Binding Workouts}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <StackLayout>
+
+                                <Label Text="{Binding Name}"
+                                       FontSize="Large"
+                                       FontAttributes="Bold"
+                                       ></Label>
+
+                                <Label Text="{Binding Description}"
+                                       FontSize="Default"
+                                       >
+                                </Label>
+                            </StackLayout>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </StackLayout>
+    </ContentPage.Content>
+</local:WorkoutListPageXaml>

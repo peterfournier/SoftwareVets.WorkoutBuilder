@@ -1,13 +1,17 @@
 ﻿using SV.Builder.Mobile.ViewModels.Shared;
+using SV.Builder.Repository;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using Xamarin.Forms;
 
 namespace SV.Builder.Mobile.ViewModels
 {
     public abstract class BaseViewModel : INotifyPropertyChanged, IBusyStatus
     {
+        public IRepository<int> Repository => DependencyService.Get<IRepository<int>>();
+
         bool isBusy = false;
         public bool IsBusy
         {

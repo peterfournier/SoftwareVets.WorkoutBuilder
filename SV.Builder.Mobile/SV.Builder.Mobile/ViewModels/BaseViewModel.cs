@@ -1,5 +1,6 @@
 ﻿using SV.Builder.Mobile.Models;
 using SV.Builder.Mobile.Services;
+using SV.Builder.Repository;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -10,6 +11,7 @@ namespace SV.Builder.Mobile.ViewModels
 {
     public class BaseViewModel : INotifyPropertyChanged
     {
+        public IRepository<int> Repository => DependencyService.Get<IRepository<int>>();
         public IDataStore<Item> DataStore => DependencyService.Get<IDataStore<Item>>();
 
         bool isBusy = false;

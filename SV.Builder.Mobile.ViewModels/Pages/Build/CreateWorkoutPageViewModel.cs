@@ -9,7 +9,7 @@ using Xamarin.Forms;
 
 namespace SV.Builder.Mobile.ViewModels.Pages
 {
-    public class CreateWorkoutPageViewModel : BaseContentPageViewModel
+    public class CreateWorkoutPageViewModel : BaseFormContentPageViewModel
     {
         private IWorkout _workout;
         public string DefaultWorkoutName = "Enter a name";
@@ -98,6 +98,13 @@ namespace SV.Builder.Mobile.ViewModels.Pages
 
             _workout.ChangeName(Name);
             _workout.Description = Description;
+        }
+
+        public override void OnSaveCommand()
+        {
+            Repository.Create(_workout);
+
+            base.OnSaveCommand();
         }
     }
 }

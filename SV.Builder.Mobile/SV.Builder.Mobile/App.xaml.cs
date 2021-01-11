@@ -2,6 +2,7 @@
 using SV.Builder.Mobile.Common.Themes;
 using SV.Builder.Mobile.Services;
 using SV.Builder.Mobile.ViewModels.Pages;
+using SV.Builder.Repository;
 using System;
 using Xamarin.Forms;
 
@@ -18,6 +19,7 @@ namespace SV.Builder.Mobile
             InitializeComponent();
 
             DependencyService.Register<MockDataStore>();
+            DependencyService.Register<LocalFileRepository>();
 
             MainPage = new AppShell();
 

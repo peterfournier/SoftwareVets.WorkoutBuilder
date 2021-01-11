@@ -31,6 +31,9 @@
     <EmbeddedResource Update="Pages\SettingsPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="Pages\Workout\WorkoutListPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Partial\Headers\FormTitleBar.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
@@ -61,7 +64,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Pages\Workout\" />
     <Folder Include="Pages\Social\" />
   </ItemGroup>
 
