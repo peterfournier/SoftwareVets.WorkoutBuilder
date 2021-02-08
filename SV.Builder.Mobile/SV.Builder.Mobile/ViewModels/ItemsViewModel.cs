@@ -8,7 +8,7 @@ using Xamarin.Forms;
 
 namespace SV.Builder.Mobile.ViewModels
 {
-    public class ItemsViewModel : BaseViewModel
+    public class ItemsViewModel : BaseViewModelOld
     {
         private Item _selectedItem;
 

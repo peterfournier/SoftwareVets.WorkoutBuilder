@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace SV.Builder.Domain
 {
-    internal class Round : VersionedDomainModelBase, IRound
+    internal class Round : DomainModelBase, IRound
     {
         private List<Exercise> _exercises = new List<Exercise>();
         private Workout _workout;

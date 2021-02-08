@@ -9,9 +9,9 @@ using Xamarin.Forms;
 
 namespace SV.Builder.Mobile.ViewModels
 {
-    public class BaseViewModel : INotifyPropertyChanged
+    public class BaseViewModelOld : INotifyPropertyChanged
     {
-        public IRepository<int> Repository => DependencyService.Get<IRepository<int>>();
+        //public IRepository<int> Repository => DependencyService.Get<IRepository<int>>();
         public IDataStore<Item> DataStore => DependencyService.Get<IDataStore<Item>>();
 
         bool isBusy = false;

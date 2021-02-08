@@ -1,26 +1,26 @@
+using GraniteCore.LocalFileRepository;
 using NUnit.Framework;
 using SV.Builder.Domain;
+using SV.Builder.Domain.EntityModels;
 using SV.Builder.Domain.Factories;
 using SV.Builder.Repository;
-using SV.Builder.Repository.IntegrationTests.Models;
 using System;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace SV.Builder.Reposity.IntegrationTests
 {
     public class LocalRepositoryTests
     {
-        private WorkoutEntityMock workoutEntityMock;
-        private int workoutEntityMockIdentity;
+        private WorkoutEntity workoutEntityMock;
+        private Guid workoutEntityMockIdentity;
 
         [SetUp]
         public void Setup()
         {
-            workoutEntityMockIdentity = Guid.NewGuid().GetHashCode();
-            if (workoutEntityMockIdentity < 0)
-                workoutEntityMockIdentity = workoutEntityMockIdentity * -1;
+            workoutEntityMockIdentity = Guid.NewGuid();
 
-            workoutEntityMock = new WorkoutEntityMock()
+            workoutEntityMock = new WorkoutEntity()
             {
                 Name = "Master Class",
                 Description = "You are you own Gym workout",
@@ -29,13 +29,13 @@ namespace SV.Builder.Reposity.IntegrationTests
         }
 
         [Test]
-        public void Create_WithValidObject_CreatesJsonFile()
+        public async Task Create_WithValidObject_CreatesJsonFile()
         {
             var repository = createDefaultLocalRepo();
 
-            var success = repository.Create(workoutEntityMock);
+            var entity = await repository.Create(workoutEntityMock);
             
-            Assert.IsTrue(success);
+            Assert.IsNotNull(entity);
         }
 
         [Test]
@@ -43,52 +43,53 @@ namespace SV.Builder.Reposity.IntegrationTests
         {
             var repository = createDefaultLocalRepo();
 
-            var result = repository.Get<WorkoutEntityMock>()
-                                   .FirstOrDefault();
+            var result = repository.GetAll().FirstOrDefault();
 
             Assert.IsNotNull(result);
         }
 
         [Test]
-        public void Get_WithValidID_ReturnsObject()
+        public async Task Get_WithValidID_ReturnsObject()
         {
             var repository = createDefaultLocalRepo();
 
-            repository.Create(workoutEntityMock);
+            await repository.Create(workoutEntityMock);
 
-            var result = repository.Get<WorkoutEntityMock>(workoutEntityMockIdentity);
+            var result = await repository.GetByID(workoutEntityMockIdentity);
+
             Assert.AreEqual(workoutEntityMockIdentity, result.ID);
         }
 
         [Test]
-        public void Update_WithValidObject_UpdatesObject()
+        public async Task Update_WithValidObject_UpdatesObject()
         {
             var repository = createDefaultLocalRepo();
-            repository.Create(workoutEntityMock);
+            await repository.Create(workoutEntityMock);
             string newWorkoutName = "Basic Class";
             workoutEntityMock.Name = newWorkoutName;
 
-            var updatedEntity = repository.Update(workoutEntityMock);
+            await repository.Update(workoutEntityMockIdentity, workoutEntityMock);
 
-            var result = repository.Get<WorkoutEntityMock>(workoutEntityMock.ID);
+            var result = await repository.GetByID(workoutEntityMock.ID);
             Assert.AreEqual(newWorkoutName, result.Name);
         }
 
         [Test]
-        public void Remove_WithValidObject_UpdatesObject()
+        public async Task Remove_WithValidObject_UpdatesObject()
         {
             var repository = createDefaultLocalRepo();
-            repository.Create(workoutEntityMock);
+            await repository.Create(workoutEntityMock);
+            var id = workoutEntityMock.ID;
 
-            bool success = repository.Remove(workoutEntityMock);
+            await repository.Delete(id);
 
-            var result = repository.Get<WorkoutEntityMock>(workoutEntityMock.ID);
+            var result = await repository.GetByID(id);
             Assert.IsNull(result);
         }
 
-        private static LocalFileRepository createDefaultLocalRepo()
+        private LocalFileRepository<WorkoutEntity, Guid> createDefaultLocalRepo()
         {
-            return new LocalFileRepository();
+            return new SVLocalRepository<WorkoutEntity, Guid>();
         }
     }
 }

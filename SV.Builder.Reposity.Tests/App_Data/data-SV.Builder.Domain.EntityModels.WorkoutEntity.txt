@@ -1,0 +1,3 @@
+{"Description":"You are you own Gym workout","Name":"Master Class","Duration":"00:00:00","ID":"afe83cdb-4036-4a5e-9392-730f15d2d227"}
+{"Description":"You are you own Gym workout","Name":"Master Class","Duration":"00:00:00","ID":"de1fbc52-5f2f-47a9-bbfb-f84f52be0542"}
+{"Description":"You are you own Gym workout","Name":"Basic Class","Duration":"00:00:00","ID":"62e1e015-b329-4da7-ad74-55e5c8622222"}

@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SV.Builder.Domain\SV.Builder.Domain.csproj" />
+    <ProjectReference Include="..\SV.Builder.Repository\SV.Builder.Repository.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Interfaces\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="GraniteCore" Version="3.0.0-alpha" />
+  </ItemGroup>
+
+</Project>

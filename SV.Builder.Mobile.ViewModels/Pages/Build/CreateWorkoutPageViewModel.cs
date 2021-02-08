@@ -2,6 +2,7 @@
 using SV.Builder.Domain.Factories;
 using SV.Builder.Mobile.Common.MessageCenter;
 using SV.Builder.Mobile.ViewModels.Shared;
+using SV.Builder.Service;
 using System;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
@@ -12,6 +13,7 @@ namespace SV.Builder.Mobile.ViewModels.Pages
     public class CreateWorkoutPageViewModel : BaseFormContentPageViewModel
     {
         private IWorkout _workout;
+        private LocalWorkoutService workoutService =  DependencyService.Resolve<LocalWorkoutService>();
         public string DefaultWorkoutName = "Enter a name";
         public string DefaultDescription = "Description";
 
@@ -102,7 +104,8 @@ namespace SV.Builder.Mobile.ViewModels.Pages
 
         public override void OnSaveCommand()
         {
-            Repository.Create(_workout);
+
+            workoutService.Create(_workout);
 
             base.OnSaveCommand();
         }

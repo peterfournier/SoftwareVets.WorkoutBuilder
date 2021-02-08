@@ -18,7 +18,7 @@ namespace SV.Builder.Mobile.ViewModels.Pages
 
         private void getWorkouts()
         {
-            Workouts = Repository.Get<IWorkout>();
+            //Workouts = Repository.Get<IWorkout>();
         }
     }
 }

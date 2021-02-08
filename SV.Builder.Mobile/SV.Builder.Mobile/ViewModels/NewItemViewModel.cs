@@ -7,7 +7,7 @@ using Xamarin.Forms;
 
 namespace SV.Builder.Mobile.ViewModels
 {
-    public class NewItemViewModel : BaseViewModel
+    public class NewItemViewModel : BaseViewModelOld
     {
         private string text;
         private string description;

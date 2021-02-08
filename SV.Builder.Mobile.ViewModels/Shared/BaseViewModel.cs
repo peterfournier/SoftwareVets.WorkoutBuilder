@@ -10,7 +10,7 @@ namespace SV.Builder.Mobile.ViewModels
 {
     public abstract class BaseViewModel : INotifyPropertyChanged, IBusyStatus
     {
-        public IRepository<int> Repository => DependencyService.Get<IRepository<int>>();
+        //public IRepository<int> Repository => DependencyService.Get<IRepository<int>>();
 
         bool isBusy = false;
         public bool IsBusy

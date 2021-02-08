@@ -1,8 +1,11 @@
-﻿using SV.Builder.Mobile.Common.MessageCenter;
+﻿using GraniteCore;
+using SV.Builder.Domain.EntityModels;
+using SV.Builder.Mobile.Common.MessageCenter;
 using SV.Builder.Mobile.Common.Themes;
 using SV.Builder.Mobile.Services;
 using SV.Builder.Mobile.ViewModels.Pages;
 using SV.Builder.Repository;
+using SV.Builder.Service;
 using System;
 using Xamarin.Forms;
 
@@ -19,7 +22,9 @@ namespace SV.Builder.Mobile
             InitializeComponent();
 
             DependencyService.Register<MockDataStore>();
-            DependencyService.Register<LocalFileRepository>();
+            DependencyService.Register<IBaseRepository<WorkoutEntity, Guid>, SVLocalRepository<WorkoutEntity, Guid>>();
+            DependencyService.Register<IGraniteMapper, SvMapper>();
+            DependencyService.Register<LocalWorkoutService>();
 
             MainPage = new AppShell();
 

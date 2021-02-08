@@ -12,6 +12,7 @@
     <ProjectReference Include="..\SV.Builder.Domain\SV.Builder.Domain.csproj" />
     <ProjectReference Include="..\SV.Builder.Mobile.Common\SV.Builder.Mobile.Common.csproj" />
     <ProjectReference Include="..\SV.Builder.Repository\SV.Builder.Repository.csproj" />
+    <ProjectReference Include="..\SV.Builder.Service\SV.Builder.Service.csproj" />
   </ItemGroup>
 
 </Project>

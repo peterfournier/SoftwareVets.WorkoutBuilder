@@ -6,7 +6,7 @@ using Xamarin.Forms;
 
 namespace SV.Builder.Mobile.ViewModels
 {
-    public class LoginViewModel : BaseViewModel
+    public class LoginViewModel : BaseViewModelOld
     {
         public Command LoginCommand { get; }
 

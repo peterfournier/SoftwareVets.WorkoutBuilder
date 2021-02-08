@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace SV.Builder.Domain
 {
-    internal abstract class DomainModelBase 
+    internal abstract class DomainModelBase : GraniteCore.BaseDomainModel<Guid>
     {
-        public Guid Id { get; set; }
+
     }
 }
