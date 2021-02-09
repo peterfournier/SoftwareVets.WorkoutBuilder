@@ -1,6 +1,8 @@
 ﻿using NUnit.Framework;
+using SV.Builder.WorkoutManagement;
+using System.Linq;
 
-namespace SV.Builder.Domain.Tests.ExerciseTests
+namespace SV.Builder.WorkoutManagement.Tests.ExerciseTests
 {
     public class ExerciseSetsTests
     {
@@ -11,30 +13,19 @@ namespace SV.Builder.Domain.Tests.ExerciseTests
         public void Setup()
         {
             _workout = new Workout("Workout 1");
-            _round = new Round("Round 1");
+            _round = new Round(_workout.ID, "Round 1");
         }
 
         [Test]
         public void Add_Set_Exists()
         {
-            var exercise = new Exercise("Exercise 1");
+            var exercise = new Exercise(_round.ID, "Exercise 1");
 
-            var set = new ExerciseSet();
-
-            exercise.AddSet(set);
-
-            Assert.AreEqual(1, exercise.GetSets().Count);
-        }
-
-        [Test]
-        public void AddSet_Sets_Exercise_Property()
-        {
-            var exercise = new Exercise("Exercise 1");
-            var set = new ExerciseSet();
+            var set = new ExerciseSet(exercise.ID);
 
             exercise.AddSet(set);
 
-            Assert.AreEqual(exercise, set.Exercise);
+            Assert.AreEqual(1, exercise.ExerciseSets.ToList().Count);
         }
     }
 }

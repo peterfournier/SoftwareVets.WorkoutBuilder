@@ -1,11 +1,9 @@
 ﻿using NUnit.Framework;
+using SV.Builder.WorkoutManagement;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace SV.Builder.Domain.Tests.RoundTests
+namespace SV.Builder.WorkoutManagement.Tests.RoundTests
 {
     public class RoundExercisesTests
     {
@@ -20,24 +18,11 @@ namespace SV.Builder.Domain.Tests.RoundTests
         [TestCase("Round 1")]
         public void AddExercise_Exists(string param)
         {
-            var round = new Round(param);
+            var round = new Round(workout.ID, param);
 
-            round.AddExercise(new Exercise("Exercise 1"));
+            round.AddExercise(new Exercise(round.ID, "Exercise 1"));
 
-            Assert.AreEqual(1, round.GetExercises().Count);
-        }
-
-        [Test]
-        public void AddExercise_Sets_Round_Property()
-        {
-            var workout = new Workout("Workout 1");
-            var round = new Round("Round 1");
-            var exercise = new Exercise("Exercise 1");
-
-            workout.AddRound(round);
-            round.AddExercise(exercise);
-
-            Assert.AreEqual(round, exercise.Round);
+            Assert.AreEqual(1, round.Exercises.ToList().Count);
         }
 
         [Test]
@@ -47,7 +32,7 @@ namespace SV.Builder.Domain.Tests.RoundTests
 
             void addExerciseTest()
             {
-                var round = new Round("Round 1");
+                var round = new Round(workout.ID, "Round 1");
 
                 round.AddExercise(null);
             }

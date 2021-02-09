@@ -1,32 +1,32 @@
 ﻿using System;
 
-namespace SV.Builder.Domain.Factories
+namespace SV.Builder.WorkoutManagement.Factories
 {
     public class ExerciseSetFactory
     {
-        public IExerciseSet CreateSet(Set set)
+        public ExerciseSet CreateSet(Guid exerciseId, Set set)
         {
             if (set.Weight > 0 && set.Duration > new TimeSpan(0,0,0))
             {
-                return new IntenseEnduranceSet(set.Weight, set.Duration);
+                return new IntenseEnduranceSet(exerciseId, set.Weight, set.Duration);
             }
             else if (set.Weight > 0 && set.Timed)
             {
-                return new IntensePerformanceSet(set.Weight);
+                return new IntensePerformanceSet(exerciseId, set.Weight);
             }
             else if (set.Weight > 0)
             {
-                return new StrengthSet(set.Weight);
+                return new StrengthSet(exerciseId, set.Weight);
             }
             else if(set.Duration > new TimeSpan(0, 0, 0))
             {
-                return new EnduranceSet(set.Duration);
+                return new EnduranceSet(exerciseId, set.Duration);
             }
             else if (set.Timed)
             {
-                return new PerformanceSet();
+                return new PerformanceSet(exerciseId);
             }
-            return new ExerciseSet();
+            return new ExerciseSet(exerciseId);
         }
     }
 }

@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace SV.Builder.Domain
+namespace SV.Builder.WorkoutManagement
 {
-    internal class EnduranceSet : ExerciseSet, IEnduranceSet
+    public class EnduranceSet : ExerciseSet
     {
         public delegate void DurationChanged(TimeSpan duration);
         public event DurationChanged OnDurationChanged;
@@ -18,7 +18,7 @@ namespace SV.Builder.Domain
             }
         }
 
-        public EnduranceSet(TimeSpan duration)
+        public EnduranceSet(Guid exerciseId, TimeSpan duration) : base(exerciseId)
         {
             Duration = duration.TotalMilliseconds <= 0 ? throw new ArgumentOutOfRangeException(nameof(duration)) : duration;
         }

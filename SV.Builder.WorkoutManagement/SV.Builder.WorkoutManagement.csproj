@@ -17,9 +17,4 @@
   <ItemGroup>
     <PackageReference Include="GraniteCore" Version="3.0.0-alpha" />
   </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="EntityModels\" />
-    <Folder Include="Models\Shared\" />
-  </ItemGroup>
 </Project>

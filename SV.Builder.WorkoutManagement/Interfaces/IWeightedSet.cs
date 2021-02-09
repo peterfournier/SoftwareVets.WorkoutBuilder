@@ -1,6 +1,6 @@
-﻿namespace SV.Builder.Domain
+﻿namespace SV.Builder.WorkoutManagement
 {
-    public interface IWeightedSet : IExerciseSet
+    public interface IWeightedSet
     {
         double Weight { get; }
     }

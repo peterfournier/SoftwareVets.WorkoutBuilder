@@ -3,15 +3,15 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
 
-namespace SV.Builder.Domain
+namespace SV.Builder.WorkoutManagement
 {
-    internal class PerformanceSet : ExerciseSet, IPerformanceSet
+    public class PerformanceSet : ExerciseSet
     {
         private readonly Stopwatch _stopwatch;
 
         public TimeSpan ElapsedTime { get; private set; }
 
-        public PerformanceSet()
+        public PerformanceSet(Guid exerciseId) : base(exerciseId)
         {
             _stopwatch = new Stopwatch();
         }

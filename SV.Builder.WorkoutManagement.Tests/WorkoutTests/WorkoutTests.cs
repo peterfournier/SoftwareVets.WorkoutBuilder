@@ -1,8 +1,9 @@
 using NUnit.Framework;
 using System;
-using SV.Builder.Domain;
+using SV.Builder.WorkoutManagement;
+using System.Linq;
 
-namespace SV.Builder.Domain.Tests.WorkoutTests
+namespace SV.Builder.WorkoutManagement.Tests.WorkoutTests
 {
     public class WorkoutTests
     {
@@ -35,25 +36,39 @@ namespace SV.Builder.Domain.Tests.WorkoutTests
         }
 
         [Test]
-        public void ChangeName_WithValidInput_IsChanged()
+        public void AddRound_NewRound_AddsRoundToWorkout()
         {
-            var workout = new Workout("Workout A");
-            var newName = "Pete's awesome workout name";
+            int expectedRoundCount = 1;
+            string workoutName = "Workout Name";
+            string roundName = "Round 1";
 
-            workout.ChangeName(newName);
+            var workout = new Workout(workoutName);
+            var round = new Round(workout.ID, roundName);
 
-            Assert.AreEqual(newName, workout.Name);
+            workout.AddRound(round);
+
+            Assert.AreEqual(expectedRoundCount, workout.Rounds.ToList().Count);
         }
 
-        [TestCase("")]
-        public void ChangeName_WithInvalidInput_ThrowsException(string newWorkoutNameParam)
+        [TestCase("Workout Name")]
+        public void AddRound_NewRound_SetsWorkoutIdProperty(string param)
         {
-            Assert.Throws<ArgumentNullException>(new TestDelegate(changeWorkoutNameDelegate));
+            var workout = new Workout(param);
+            var round = new Round(workout.ID, "Round 1");
+            workout.AddRound(round);
 
-            void changeWorkoutNameDelegate()
+            Assert.AreEqual(workout.ID, round.WorkoutId);
+        }
+
+        [Test]
+        public void AddRound_Null_ThrowsException()
+        {
+            Assert.Throws(typeof(ArgumentNullException), new TestDelegate(addRoundTest), "AddRound: Round parameter does not allow nulls");
+
+            void addRoundTest()
             {
-                var workout = new Workout("Workout A");
-                workout.ChangeName(newWorkoutNameParam);
+                var workout = new Workout("Workout 1");
+                workout.AddRound(null);
             }
         }
     }

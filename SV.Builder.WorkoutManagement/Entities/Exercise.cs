@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
-namespace SV.Builder.Domain
+namespace SV.Builder.WorkoutManagement
 {
-    internal class Exercise : DomainModelBase, IExercise
+    public class Exercise : Entity
     {
         private List<ExerciseSet> _sets = new List<ExerciseSet>();
 
@@ -15,22 +16,22 @@ namespace SV.Builder.Domain
 
         public string Name { get; set; }
         public string Description { get; set; }
-        public Round Round { get; private set; }
+        public Guid RoundId { get; private set; }
 
-        public Exercise(string exerciseName)
+        public IEnumerable<ExerciseSet> ExerciseSets
         {
-            Name = string.IsNullOrWhiteSpace(exerciseName) ? throw new ArgumentNullException(nameof(exerciseName)) : exerciseName;
+            get { return _sets; }
+            private set { _sets = value.ToList(); }
         }
 
-        public List<ExerciseSet> GetSets()
+        public Exercise(Guid roundId, string exerciseName)
         {
-            return _sets;
+            RoundId = roundId.Equals(default(Guid)) ? throw new ArgumentException(nameof(roundId)) : roundId;
+            Name = string.IsNullOrWhiteSpace(exerciseName) ? throw new ArgumentNullException(nameof(exerciseName)) : exerciseName;
         }
 
         public void AddSet(ExerciseSet set)
         {
-            set.SetExercise(this);
-
             if (set is EnduranceSet enduranceSet)
                 enduranceSet.OnDurationChanged += Set_OnDurationChanged;
 
@@ -39,25 +40,9 @@ namespace SV.Builder.Domain
             OnSetAdded?.Invoke(set);
         }
 
-        public void AddSet(IExerciseSet set)
-        {
-            this.AddSet(set as ExerciseSet);
-        }
-
         private void Set_OnDurationChanged(TimeSpan duration)
         {
             OnSetLengthChanged?.Invoke(duration);
-        }
-
-        public void SetRound(Round round)
-        {
-            if (round == null)
-                throw new ArgumentNullException(nameof(round));
-
-            if (Round != null)
-                throw new Exception("Round cannot be set twice");
-
-            Round = round;
         }
     }
 }

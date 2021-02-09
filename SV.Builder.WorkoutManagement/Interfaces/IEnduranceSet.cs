@@ -1,11 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿//using System;
+//using System.Collections.Generic;
+//using System.Text;
 
-namespace SV.Builder.Domain
-{
-    public interface IEnduranceSet : IExerciseSet
-    {
-        TimeSpan Duration { get; }
-    }
-}
+//namespace SV.Builder.Domain
+//{
+//    public interface IEnduranceSet : IExerciseSet
+//    {
+//        TimeSpan Duration { get; }
+//    }
+//}

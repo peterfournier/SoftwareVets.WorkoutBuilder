@@ -1,12 +1,10 @@
 ﻿using NUnit.Framework;
-using SV.Builder.Domain.Factories;
+using SV.Builder.WorkoutManagement;
+using SV.Builder.WorkoutManagement.Factories;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
-namespace SV.Builder.Domain.Tests.FactoryTests
+namespace SV.Builder.WorkoutManagement.Tests.FactoryTests
 {
     public class ExerciseSetFactoryTests
     {
@@ -14,17 +12,21 @@ namespace SV.Builder.Domain.Tests.FactoryTests
         private double _expectedWeight = 135.00;
         private TimeSpan _expectedLength = new TimeSpan(0, 0, 30);
         private ExerciseSetFactory _setFactory;
+        private Exercise _exercise;
 
         [SetUp]
         public void Setup()
         {
+            var workout = new Workout("Workout Name");
+            var round = new Round(workout.ID, "Round 1");
+            _exercise = new Exercise(round.ID, "Exercise Name");
             _setFactory = new ExerciseSetFactory();
         }
 
         [Test]
         public void CreateSet_WithSetObject_CreatesDefaultExerciseSet()
         {
-            var defaultSet = _setFactory.CreateSet(new Set());
+            var defaultSet = _setFactory.CreateSet(_exercise.ID, new Set());
 
             Assert.AreEqual(typeof(ExerciseSet), defaultSet?.GetType());
         }
@@ -34,7 +36,7 @@ namespace SV.Builder.Domain.Tests.FactoryTests
         {
             bool notTimed = false;
             var set = new Set(_expectedWeight, TimeSpan.MinValue, notTimed);
-            var strengthSet = _setFactory.CreateSet(set);
+            var strengthSet = _setFactory.CreateSet(_exercise.ID, set);
 
             Assert.AreEqual(typeof(StrengthSet), strengthSet?.GetType());
         }
@@ -45,7 +47,7 @@ namespace SV.Builder.Domain.Tests.FactoryTests
             double noWeight = 0;
             bool notTimed = false;
             var set = new Set(noWeight, _expectedLength, notTimed);
-            var enduranceSet = _setFactory.CreateSet(set);
+            var enduranceSet = _setFactory.CreateSet(_exercise.ID, set);
 
             Assert.AreEqual(typeof(EnduranceSet), enduranceSet?.GetType());
         }
@@ -56,7 +58,7 @@ namespace SV.Builder.Domain.Tests.FactoryTests
             double noWeight = 0;
             bool timed = true;
             var set = new Set(noWeight, TimeSpan.MinValue, timed);
-            var performanceSet = _setFactory.CreateSet(set);
+            var performanceSet = _setFactory.CreateSet(_exercise.ID, set);
 
             Assert.AreEqual(typeof(PerformanceSet), performanceSet?.GetType());
         }
@@ -66,7 +68,7 @@ namespace SV.Builder.Domain.Tests.FactoryTests
         {
             bool notTimed = false;
             var set = new Set(_expectedWeight, _expectedLength, notTimed);
-            var intenseEnduranceSet = _setFactory.CreateSet(set);
+            var intenseEnduranceSet = _setFactory.CreateSet(_exercise.ID, set);
 
             Assert.AreEqual(typeof(IntenseEnduranceSet), intenseEnduranceSet?.GetType());
         }
@@ -76,7 +78,7 @@ namespace SV.Builder.Domain.Tests.FactoryTests
         {
             bool timed = true;
             var set = new Set(_expectedWeight, TimeSpan.MinValue, timed);
-            var intensePerformanceSet = _setFactory.CreateSet(set);
+            var intensePerformanceSet = _setFactory.CreateSet(_exercise.ID, set);
 
             Assert.AreEqual(typeof(IntensePerformanceSet), intensePerformanceSet?.GetType());
         }
@@ -98,14 +100,14 @@ namespace SV.Builder.Domain.Tests.FactoryTests
             {
                 var timed = true;
                 var set = new Set(duration: _expectedLength, timed: timed);
-                var exerciseSet = _setFactory.CreateSet(set);
+                var exerciseSet = _setFactory.CreateSet(_exercise.ID, set);
             }
         }
 
 
-        private IExerciseSet createDefaultSet()
+        private ExerciseSet createDefaultSet()
         {
-            return _setFactory.CreateSet(new Set());
+            return _setFactory.CreateSet(_exercise.ID, new Set());
         }
 
         [Test]
@@ -156,7 +158,7 @@ namespace SV.Builder.Domain.Tests.FactoryTests
 
             void createStrengthSet()
             {
-                new StrengthSet(invalidWeight);
+                new StrengthSet(_exercise.ID, invalidWeight);
             }
         }
 
@@ -165,13 +167,13 @@ namespace SV.Builder.Domain.Tests.FactoryTests
         {
             var enduranceSet = createDefaultEnduranceSet(_expectedLength);
 
-            Assert.IsTrue(enduranceSet is IEnduranceSet);
+            Assert.IsTrue(enduranceSet is EnduranceSet);
         }
 
         [Test]
         public void CreateEnduranceSet_WithTime_AddsLengthToSet()
         {
-            var enduranceSet = createDefaultEnduranceSet(_expectedLength) as IEnduranceSet;
+            var enduranceSet = createDefaultEnduranceSet(_expectedLength) as EnduranceSet;
 
             Assert.AreEqual(_expectedLength, enduranceSet.Duration);
 
@@ -185,7 +187,7 @@ namespace SV.Builder.Domain.Tests.FactoryTests
 
             void createEnduranceSet()
             {
-                new EnduranceSet(invalidTimeSpan);
+                new EnduranceSet(_exercise.ID, invalidTimeSpan);
             }
         }
 
@@ -240,33 +242,33 @@ namespace SV.Builder.Domain.Tests.FactoryTests
             Assert.IsNotNull(intenseEnduranceSet);
         }
 
-        private object createDefaultIntenseEnduranceSet()
+        private IntenseEnduranceSet createDefaultIntenseEnduranceSet()
         {
-            var set = _setFactory.CreateSet(new Set(weight: _expectedWeight,duration: _expectedLength)) as IIntenseEnduranceSet;
+            var set = _setFactory.CreateSet(_exercise.ID, new Set(weight: _expectedWeight,duration: _expectedLength)) as IntenseEnduranceSet;
             return set;
         }
 
-        private IIntensePerformanceSet createDefaultIntensePerformanceSet()
+        private IntensePerformanceSet createDefaultIntensePerformanceSet()
         {
             bool timed = true;
-            var set = _setFactory.CreateSet(new Set(_expectedWeight, TimeSpan.MinValue, timed)) as IIntensePerformanceSet;
+            var set = _setFactory.CreateSet(_exercise.ID, new Set(_expectedWeight, TimeSpan.MinValue, timed)) as IntensePerformanceSet;
             return set;
         }
 
-        private IPerformanceSet createDefaultPerformanceSetSet()
+        private PerformanceSet createDefaultPerformanceSetSet()
         {
             bool timed = true;
-            return _setFactory.CreateSet(new Set(timed: timed)) as PerformanceSet;
+            return _setFactory.CreateSet(_exercise.ID, new Set(timed: timed)) as PerformanceSet;
         }
 
-        private IExerciseSet createDefaultEnduranceSet(TimeSpan expectedLength)
+        private ExerciseSet createDefaultEnduranceSet(TimeSpan expectedLength)
         {
-            return _setFactory.CreateSet(new Set(duration: expectedLength));
+            return _setFactory.CreateSet(_exercise.ID, new Set(duration: expectedLength));
         }
 
-        private IExerciseSet createDefaultStrengthSet(double weight)
+        private StrengthSet createDefaultStrengthSet(double weight)
         {
-            var strengthSet = _setFactory.CreateSet(new Set(weight: weight));
+            var strengthSet = _setFactory.CreateSet(_exercise.ID, new Set(weight: weight)) as StrengthSet;
             return strengthSet;
         }
     }
