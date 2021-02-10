@@ -1,5 +1,4 @@
 ﻿using GraniteCore;
-using SV.Builder.Domain.EntityModels;
 using SV.Builder.Mobile.Common.MessageCenter;
 using SV.Builder.Mobile.Common.Themes;
 using SV.Builder.Mobile.Services;
@@ -22,9 +21,9 @@ namespace SV.Builder.Mobile
             InitializeComponent();
 
             DependencyService.Register<MockDataStore>();
-            DependencyService.Register<IBaseRepository<WorkoutEntity, Guid>, SVLocalRepository<WorkoutEntity, Guid>>();
+            //DependencyService.Register<IBaseRepository<WorkoutEntity, Guid>, SVLocalRepository<WorkoutEntity, Guid>>();
             DependencyService.Register<IGraniteMapper, SvMapper>();
-            DependencyService.Register<LocalWorkoutService>();
+            //DependencyService.Register<LocalWorkoutService>();
 
             MainPage = new AppShell();
 

@@ -1,7 +1,7 @@
-﻿using SV.Builder.Domain;
-using SV.Builder.Mobile.ViewModels;
+﻿using SV.Builder.Mobile.ViewModels;
 using Xamarin.Forms;
 using System;
+using SV.Builder.WorkoutManagement;
 
 namespace SV.Builder.Mobile.Views.Shared
 {
@@ -28,23 +28,23 @@ namespace SV.Builder.Mobile.Views.Shared
         {
             if (item is SetViewModel setViewModel)
             {
-                if (setViewModel.ExerciseSet is IIntenseEnduranceSet)
+                if (setViewModel.ExerciseSet is IntenseEnduranceSet)
                 {
                     return intenseEnduranceSetTemplate;
                 }
-                else if (setViewModel.ExerciseSet is IIntensePerformanceSet)
+                else if (setViewModel.ExerciseSet is IntensePerformanceSet)
                 {
                     return intensePerformanceSetTemplate;
                 }
-                else if (setViewModel.ExerciseSet is IEnduranceSet)
+                else if (setViewModel.ExerciseSet is EnduranceSet)
                 {
                     return enduranceSetTemplate;
                 }
-                else if (setViewModel.ExerciseSet is IPerformanceSet)
+                else if (setViewModel.ExerciseSet is PerformanceSet)
                 {
                     return performanceSetTemplate;
                 }
-                else if (setViewModel.ExerciseSet is IWeightedSet)
+                else if (setViewModel.ExerciseSet is StrengthSet)
                 {
                     return strengthSetTemplate;
                 }

@@ -1,6 +1,7 @@
-﻿using SV.Builder.Domain;
-using SV.Builder.Domain.Factories;
+﻿
 using SV.Builder.Mobile.Common.MessageCenter;
+using SV.Builder.WorkoutManagement;
+using SV.Builder.WorkoutManagement.Factories;
 using System;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -11,7 +12,7 @@ namespace SV.Builder.Mobile.ViewModels.Pages
 {
     public class CreateExercisePageViewModel : BaseFormContentPageViewModel
     {
-        private IExercise _exercise;
+        private Exercise _exercise;
         private readonly RoundViewModel _roundViewModel;
 
         private string _name;
@@ -31,7 +32,7 @@ namespace SV.Builder.Mobile.ViewModels.Pages
                 throw new ArgumentNullException(nameof(roundViewModel));
 
             _roundViewModel = roundViewModel;
-            
+
             addSet(null);
             AddSetCommand = new Command(addSet);
         }
@@ -57,16 +58,15 @@ namespace SV.Builder.Mobile.ViewModels.Pages
         public override void OnSaveCommand()
         {
             var setFactory = new ExerciseSetFactory();
-            var exerciseFactory = new ExerciseFactory();
-            _exercise = exerciseFactory.CreateExercise(Name);
+            _exercise = new Exercise(_roundViewModel.RoundId, Name);
             var exerciseViewModel = new ExerciseViewModel(_exercise)
-            { 
+            {
                 Name = Name
             };
 
             foreach (var setViewModel in Sets)
             {
-                IExerciseSet exerciseSet = createDomainExerciseSet(setFactory, setViewModel);
+                ExerciseSet exerciseSet = createDomainExerciseSet(setFactory, setViewModel);
 
                 setDataBackingField(setViewModel, exerciseSet);
 
@@ -80,12 +80,15 @@ namespace SV.Builder.Mobile.ViewModels.Pages
             base.OnSaveCommand();
         }
 
-        private void setDataBackingField(SetViewModel setViewModel, IExerciseSet exerciseSet)
+        private void setDataBackingField(SetViewModel setViewModel, ExerciseSet exerciseSet)
         {
             setViewModel.SetExerciseSet(exerciseSet);
         }
 
-        private IExerciseSet createDomainExerciseSet(ExerciseSetFactory setFactory, SetViewModel setViewModel)
+        private ExerciseSet createDomainExerciseSet(
+            ExerciseSetFactory setFactory, 
+            SetViewModel setViewModel
+            )
         {
             double.TryParse(setViewModel.Weight, out double weight);
 
@@ -93,7 +96,7 @@ namespace SV.Builder.Mobile.ViewModels.Pages
                                 , duration: setViewModel.Duration
                                 , timed: setViewModel.StopwatchSet);
 
-            var exerciseSet = setFactory.CreateSet(set);
+            var exerciseSet = setFactory.CreateSet(_exercise.ID, set);
             return exerciseSet;
         }
     }

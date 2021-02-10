@@ -1,8 +1,7 @@
-﻿using SV.Builder.Domain;
-using SV.Builder.Domain.Factories;
-using SV.Builder.Mobile.Common.MessageCenter;
+﻿using SV.Builder.Mobile.Common.MessageCenter;
 using SV.Builder.Mobile.ViewModels.Shared;
 using SV.Builder.Service;
+using SV.Builder.WorkoutManagement;
 using System;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
@@ -12,8 +11,8 @@ namespace SV.Builder.Mobile.ViewModels.Pages
 {
     public class CreateWorkoutPageViewModel : BaseFormContentPageViewModel
     {
-        private IWorkout _workout;
-        private LocalWorkoutService workoutService =  DependencyService.Resolve<LocalWorkoutService>();
+        private Workout _workout;
+        //private LocalWorkoutService workoutService = DependencyService.Resolve<LocalWorkoutService>();
         public string DefaultWorkoutName = "Enter a name";
         public string DefaultDescription = "Description";
 
@@ -44,8 +43,10 @@ namespace SV.Builder.Mobile.ViewModels.Pages
             get { return _goEditWorkoutNameCommand; }
             set { SetProperty(ref _goEditWorkoutNameCommand, value); }
         }
-        
+
         public ObservableCollection<RoundViewModel> Rounds { get; set; } = new ObservableCollection<RoundViewModel>();
+
+        public Guid WorkoutId { get; private set;}
 
         public CreateWorkoutPageViewModel()
         {
@@ -66,8 +67,8 @@ namespace SV.Builder.Mobile.ViewModels.Pages
 
         protected override void WireUpSubscriptions()
         {
-            MessagingCenter.Subscribe<EditWorkoutNamePageViewModel, IWorkout>(this, Messages.CreateWorkout, workoutCreatedHandler);
-            MessagingCenter.Subscribe<CreateRoundPageViewModel, IRound>(this, Messages.CreateRound, roundCreatedHandler);
+            MessagingCenter.Subscribe<EditWorkoutNamePageViewModel, Workout>(this, Messages.CreateWorkout, workoutCreatedHandler);
+            MessagingCenter.Subscribe<CreateRoundPageViewModel, Round>(this, Messages.CreateRound, roundCreatedHandler);
         }
 
         private void setNewWorkout()
@@ -75,11 +76,14 @@ namespace SV.Builder.Mobile.ViewModels.Pages
             Name = DefaultWorkoutName;
             Description = DefaultDescription;
 
-            var factory = new WorkoutFactory();
-            _workout = factory.CreateWorkout(Name, Description);
+            _workout = new Workout(Name)
+            {
+                Description = Description
+            };
+            WorkoutId = _workout.ID;
         }
 
-        private void roundCreatedHandler(CreateRoundPageViewModel createRoundPage, IRound round)
+        private void roundCreatedHandler(CreateRoundPageViewModel createRoundPage, Round round)
         {
             _workout.AddRound(round);
             var roundViewModel = new RoundViewModel(round)
@@ -93,19 +97,19 @@ namespace SV.Builder.Mobile.ViewModels.Pages
         }
 
 
-        private void workoutCreatedHandler(EditWorkoutNamePageViewModel viewModel, IWorkout workout)
+        private void workoutCreatedHandler(EditWorkoutNamePageViewModel viewModel, Workout workout)
         {
             Name = workout.Name;
             Description = workout.Description;
 
-            _workout.ChangeName(Name);
+            _workout.Name = Name;
             _workout.Description = Description;
         }
 
         public override void OnSaveCommand()
         {
 
-            workoutService.Create(_workout);
+            //workoutService.Create(_workout);
 
             base.OnSaveCommand();
         }

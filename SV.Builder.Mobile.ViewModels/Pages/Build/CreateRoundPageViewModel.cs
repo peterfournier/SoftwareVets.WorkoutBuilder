@@ -1,5 +1,6 @@
-﻿using SV.Builder.Domain.Factories;
-using SV.Builder.Mobile.Common.MessageCenter;
+﻿using SV.Builder.Mobile.Common.MessageCenter;
+using SV.Builder.WorkoutManagement;
+using System;
 using Xamarin.Forms;
 
 namespace SV.Builder.Mobile.ViewModels.Pages
@@ -27,11 +28,20 @@ namespace SV.Builder.Mobile.ViewModels.Pages
             set => SetProperty(ref _description, value);
         }
 
+        private readonly Guid _workoutId;
+
+        public CreateRoundPageViewModel(Guid workoutId)
+        {
+            _workoutId = workoutId;
+        }
+
         public override void OnSaveCommand()
         {
-            var roundFactory = new RoundFactory();
-
-            var round = roundFactory.CreateRound(Name, Description, Iterations);
+            var round = new Round(_workoutId, Name)
+            {
+                Description = Description,
+                Iterations = Iterations
+            };
 
             MessagingCenter.Send(this, Messages.CreateRound, round);
 

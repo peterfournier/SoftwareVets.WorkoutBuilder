@@ -26,6 +26,12 @@ namespace SV.Builder.WorkoutManagement
             Name = string.IsNullOrWhiteSpace(workoutName) ? throw new ArgumentNullException(nameof(workoutName)) : workoutName;
         }
 
+        /// For EF ONLY
+        public Workout()
+        {
+
+        }
+
         private void Round_OnDurationChanged(TimeSpan duration)
         {
             CalulateWorkoutDuration();

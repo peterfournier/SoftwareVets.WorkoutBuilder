@@ -1,5 +1,5 @@
-﻿using SV.Builder.Domain;
-using SV.Builder.Mobile.Common.MessageCenter;
+﻿using SV.Builder.Mobile.Common.MessageCenter;
+using SV.Builder.WorkoutManagement;
 using System;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
@@ -9,7 +9,7 @@ namespace SV.Builder.Mobile.ViewModels
 {
     public class RoundViewModel : BaseViewModel
     {
-        private IRound _round;
+        private Round _round;
 
         private string _name;
         public string Name
@@ -40,13 +40,15 @@ namespace SV.Builder.Mobile.ViewModels
         }
 
         public ICommand AddExerciseToRoundCommand { get; set; }
+        public Guid RoundId { get; private set; }
 
         public ObservableCollection<ExerciseViewModel> Exercises { get; private set; } = new ObservableCollection<ExerciseViewModel>();
 
-        public RoundViewModel(IRound round)
+        public RoundViewModel(Round round)
         {
             AddExerciseToRoundCommand = new Command(addNewExerciseToRound);
             _round = round;
+            RoundId = round.ID;
         }
 
         private void addNewExerciseToRound(object arg)

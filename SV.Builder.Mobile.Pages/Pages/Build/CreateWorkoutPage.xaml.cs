@@ -1,13 +1,7 @@
-﻿using SV.Builder.Domain;
-using SV.Builder.Mobile.Common.MessageCenter;
+﻿using SV.Builder.Mobile.Common.MessageCenter;
 using SV.Builder.Mobile.ViewModels;
 using SV.Builder.Mobile.ViewModels.Pages;
 using SV.Builder.Mobile.ViewModels.Shared;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -41,7 +35,7 @@ namespace SV.Builder.Mobile.Views.Pages
         {
             using (new BusyStatus(createWorkoutPageViewModel))
             {
-                await Shell.Current.Navigation.PushModalAsync(new CreateRoundPage());
+                await Shell.Current.Navigation.PushModalAsync(new CreateRoundPage(createWorkoutPageViewModel.WorkoutId));
             }
         }
 

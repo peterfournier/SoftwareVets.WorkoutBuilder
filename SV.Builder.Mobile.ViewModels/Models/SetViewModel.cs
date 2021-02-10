@@ -1,5 +1,5 @@
-﻿using SV.Builder.Domain;
-using SV.Builder.Mobile.Common.MessageCenter;
+﻿using SV.Builder.Mobile.Common.MessageCenter;
+using SV.Builder.WorkoutManagement;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -56,7 +56,7 @@ namespace SV.Builder.Mobile.ViewModels
             set { SetProperty(ref _removeSetCommand, value); }
         }
 
-        public IExerciseSet ExerciseSet { get; private set; }
+        public ExerciseSet ExerciseSet { get; private set; }
 
         public List<string> SecondsList { get; set; } = new List<string>();
         public List<string> MinutesList { get; set; } = new List<string>();
@@ -114,7 +114,7 @@ namespace SV.Builder.Mobile.ViewModels
             MessagingCenter.Send(this, Messages.RemoveSetViewModel, this);
         }
 
-        internal void SetExerciseSet(IExerciseSet exerciseSet)
+        internal void SetExerciseSet(ExerciseSet exerciseSet)
         {
             if (ExerciseSet == null)
             {

@@ -1,5 +1,5 @@
-﻿using SV.Builder.Domain.Factories;
-using SV.Builder.Mobile.Common.MessageCenter;
+﻿using SV.Builder.Mobile.Common.MessageCenter;
+using SV.Builder.WorkoutManagement;
 using Xamarin.Forms;
 
 namespace SV.Builder.Mobile.ViewModels.Pages
@@ -27,9 +27,8 @@ namespace SV.Builder.Mobile.ViewModels.Pages
 
         public override void OnSaveCommand()
         {
-            var workoutFactory = new WorkoutFactory();
 
-            var workout = workoutFactory.CreateWorkout(Name, Description);
+            var workout = new Workout(Name) { Description = Description };
 
             MessagingCenter.Send(this, Messages.CreateWorkout, workout);
 

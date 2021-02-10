@@ -1,14 +1,11 @@
-﻿using SV.Builder.Domain;
-using System;
-using System.Collections.Generic;
+﻿using SV.Builder.WorkoutManagement;
 using System.Collections.ObjectModel;
-using System.Text;
 
 namespace SV.Builder.Mobile.ViewModels.Pages
 {
     public class WorkoutListPageViewModel : BaseFormContentPageViewModel
     {
-        public ObservableCollection<IWorkout> Workouts { get; set; } = new ObservableCollection<IWorkout>();
+        public ObservableCollection<Workout> Workouts { get; set; } = new ObservableCollection<Workout>();
 
 
         public WorkoutListPageViewModel()
