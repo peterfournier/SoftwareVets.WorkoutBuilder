@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30717.126
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SV.Builder.WorkoutManagement", "SV.Builder.WorkoutManagement\SV.Builder.WorkoutManagement.csproj", "{97884A3E-7555-471C-8D33-DB2D69EFCB39}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SV.Builder.WorkoutManagement.Core", "SV.Builder.WorkoutManagement\SV.Builder.WorkoutManagement.Core.csproj", "{97884A3E-7555-471C-8D33-DB2D69EFCB39}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WorkoutManagement", "WorkoutManagement", "{A96E9498-03F4-407E-B24A-6679C9A12329}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SV.Builder.WorkoutManagement.Tests", "SV.Builder.WorkoutManagement.Tests\SV.Builder.WorkoutManagement.Tests.csproj", "{29476A9E-AE31-445D-B766-15C527DA1AEF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SV.Builder.WorkoutManagement.Core.Tests", "SV.Builder.WorkoutManagement.Tests\SV.Builder.WorkoutManagement.Core.Tests.csproj", "{29476A9E-AE31-445D-B766-15C527DA1AEF}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Mobile", "Mobile", "{D2E8B2BC-85E8-463A-8ACE-581C2F8600CB}"
 EndProject

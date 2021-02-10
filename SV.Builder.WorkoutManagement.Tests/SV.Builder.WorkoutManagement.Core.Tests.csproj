@@ -14,7 +14,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\SV.Builder.Domain\SV.Builder.WorkoutManagement.csproj" />
-    <ProjectReference Include="..\SV.Builder.WorkoutManagement\SV.Builder.WorkoutManagement.csproj" />
+    <ProjectReference Include="..\SV.Builder.WorkoutManagement\SV.Builder.WorkoutManagement.Core.csproj" />
   </ItemGroup>
 
 </Project>
