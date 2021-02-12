@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace SV.Builder.WorkoutManagement
 {
-    public class Workout : Entity
+    public sealed class Workout : Entity
     {
         public string Description { get; set; }
         public string Name { get; set; }

@@ -6,6 +6,7 @@
                              xmlns:partials="clr-namespace:SV.Builder.Mobile.Views.Partial"
                              xmlns:shared="clr-namespace:SV.Builder.Mobile.Views.Shared"
                              xmlns:modelVMs="clr-namespace:SV.Builder.Mobile.ViewModels;assembly=SV.Builder.Mobile.ViewModels"
+                             xmlns:buttons="clr-namespace:SV.Builder.Mobile.Views.Buttons"
                              x:Name="createWorkoutPage"
                              >
     <local:CreateWorkoutPageXaml.Resources>
@@ -155,18 +156,24 @@
                                                         <Expander x:Name="exerciseExpander"
                                                                   >
                                                             <Expander.Header>
-                                                                <Label FontSize="Default"
-                                                                       FontAttributes="Bold"
-                                                                       >
-                                                                    <Label.FormattedText>
-                                                                        <FormattedString>
-                                                                            <Span Text="{Binding Name}"></Span>
-                                                                            <Span Text=" - "></Span>
-                                                                            <Span Text="{Binding Sets.Count}"></Span>
-                                                                            <Span Text=" Set(s)"></Span>
-                                                                        </FormattedString>
-                                                                    </Label.FormattedText>
-                                                                </Label>
+                                                                <StackLayout Orientation="Horizontal">
+                                                                    
+                                                                    <Label FontSize="Default"
+                                                                           FontAttributes="Bold"
+                                                                           >
+                                                                        <Label.FormattedText>
+                                                                            <FormattedString>
+                                                                                <Span Text="{Binding Name}"></Span>
+                                                                                <Span Text=" - "></Span>
+                                                                                <Span Text="{Binding Sets.Count}"></Span>
+                                                                                <Span Text=" Set(s)"></Span>
+                                                                            </FormattedString>
+                                                                        </Label.FormattedText>
+                                                                    </Label>
+
+                                                                    <buttons:PencilIconButton HorizontalOptions="EndAndExpand"
+                                                                        ></buttons:PencilIconButton>
+                                                                </StackLayout>
                                                             </Expander.Header>
                                                             <Expander.ContentTemplate>
                                                                 <DataTemplate>
