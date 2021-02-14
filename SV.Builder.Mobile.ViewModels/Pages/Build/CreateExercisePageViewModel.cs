@@ -11,15 +11,6 @@ namespace SV.Builder.Mobile.ViewModels.Pages
     {
         private readonly RoundViewModel _roundViewModel;
 
-        //private string _name;
-        //public string Name
-        //{
-        //    get => _name;
-        //    set => SetProperty(ref _name, value);
-        //}
-
-        //public ObservableCollection<SetViewModel> Sets { get; private set; } = new ObservableCollection<SetViewModel>();
-
         private ExerciseViewModel _exerciseViewModel;
         public ExerciseViewModel ExerciseViewModel
         {
@@ -62,47 +53,9 @@ namespace SV.Builder.Mobile.ViewModels.Pages
 
         public override void OnSaveCommand()
         {
-            //var setFactory = new ExerciseSetFactory();
-            //_exercise = new Exercise(_roundViewModel.RoundId, Name);
-            //var exerciseViewModel = new ExerciseViewModel(_exercise)
-            //{
-            //    Name = Name
-            //};
-
-            //foreach (var setViewModel in Sets)
-            //{
-            //    ExerciseSet exerciseSet = createDomainExerciseSet(setFactory, setViewModel);
-
-            //    setDataBackingField(setViewModel, exerciseSet);
-
-            //    exerciseViewModel.AddSet(setViewModel);
-            //}
-
             _roundViewModel.AddExercise(ExerciseViewModel);
-
-            //MessagingCenter.Send(this, Messages.ExerciseViewModelCreated);
 
             base.OnSaveCommand();
         }
-
-        //private void setDataBackingField(SetViewModel setViewModel, ExerciseSet exerciseSet)
-        //{
-        //    //setViewModel.SetExerciseSet(exerciseSet);
-        //}
-
-        //private ExerciseSet createDomainExerciseSet(
-        //    ExerciseSetFactory setFactory, 
-        //    SetViewModel setViewModel
-        //    )
-        //{
-        //    double.TryParse(setViewModel.Weight, out double weight);
-
-        //    var set = new Set(weight: weight
-        //                        , duration: setViewModel.Duration
-        //                        , timed: setViewModel.StopwatchSet);
-
-        //    var exerciseSet = setFactory.CreateSet(_exercise.ID, set);
-        //    return exerciseSet;
-        //}
     }
 }

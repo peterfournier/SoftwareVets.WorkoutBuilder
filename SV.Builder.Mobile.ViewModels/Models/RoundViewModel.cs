@@ -17,7 +17,7 @@ namespace SV.Builder.Mobile.ViewModels
             set => SetProperty(ref _name, value);
         }
 
-        private int _interations;
+        private int _interations = 1;
         public int Iterations
         {
             get { return _interations; }
@@ -44,11 +44,6 @@ namespace SV.Builder.Mobile.ViewModels
 
         public RoundViewModel()
         {
-            //Name = Guard.ForNullOrEmpty(name, nameof(name));
-            //Description = Guard.ForNullOrEmpty(description, nameof(description));
-            //Iterations = Guard.ForLessThanOne(iterations, nameof(iterations));
-            //Length = length;
-
             AddExerciseToRoundCommand = new Command(addNewExerciseToRound);
         }
 
@@ -59,8 +54,6 @@ namespace SV.Builder.Mobile.ViewModels
 
         internal void AddExercise(ExerciseViewModel exerciseViewModel)
         {
-            //_roundOptions.AddExercise(exerciseViewModel.Exercise);
-
             Exercises.Add(exerciseViewModel);
         }
     }

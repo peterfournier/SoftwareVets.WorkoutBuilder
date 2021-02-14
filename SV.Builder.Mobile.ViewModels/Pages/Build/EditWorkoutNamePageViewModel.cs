@@ -27,9 +27,7 @@ namespace SV.Builder.Mobile.ViewModels.Pages
         public override void OnSaveCommand()
         {
 
-            //var workout = new Workout(Name) { Description = Description };
-
-            //MessagingCenter.Send(this, Messages.CreateWorkout, workout);
+            MessagingCenter.Send(this, Messages.WorkoutDetailsEdited);
 
             base.OnSaveCommand();
         }

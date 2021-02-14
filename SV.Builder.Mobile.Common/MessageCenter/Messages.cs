@@ -3,7 +3,7 @@
     public static class Messages
     {
         public static string CreateRound = nameof(CreateRound);
-        public static string CreateWorkout = nameof(CreateWorkout);
+        public static string WorkoutDetailsEdited = nameof(WorkoutDetailsEdited);
         //public static string ExerciseViewModelCreated = nameof(ExerciseViewModelCreated);
         public static string GoToNewExercisePage = nameof(GoToNewExercisePage);
         public static string GoToEditWorkoutNamePage = nameof(GoToEditWorkoutNamePage);
