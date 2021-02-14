@@ -69,7 +69,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\SV.Builder.Mobile.ViewModels\SV.Builder.Mobile.ViewModels.csproj" />
-    <ProjectReference Include="..\SV.Builder.WorkoutManagement\SV.Builder.WorkoutManagement.Core.csproj" />
   </ItemGroup>
 
 </Project>

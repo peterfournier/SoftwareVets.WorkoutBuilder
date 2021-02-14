@@ -13,7 +13,6 @@
     <ProjectReference Include="..\SV.Builder.Mobile.Common\SV.Builder.Mobile.Common.csproj" />
     <ProjectReference Include="..\SV.Builder.Repository\SV.Builder.Repository.csproj" />
     <ProjectReference Include="..\SV.Builder.Service\SV.Builder.Service.csproj" />
-    <ProjectReference Include="..\SV.Builder.WorkoutManagement\SV.Builder.WorkoutManagement.Core.csproj" />
   </ItemGroup>
 
 </Project>
