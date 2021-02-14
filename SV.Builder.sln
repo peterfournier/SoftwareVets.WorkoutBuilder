@@ -35,9 +35,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SV.Builder.Service", "SV.Bu
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SV.Builder.Service.IntegrationTests", "SV.Builder.Service.IntegrationTests\SV.Builder.Service.IntegrationTests.csproj", "{40089A13-3870-4F94-AD5F-68E136079012}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SV.WorkoutBuilder.Core", "SV.WorkoutBuilder.Core\SV.WorkoutBuilder.Core.csproj", "{58DCEE84-8C04-497A-BB98-B9DC72FA05F0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SV.Builder.Core", "SV.WorkoutBuilder.Core\SV.Builder.Core.csproj", "{58DCEE84-8C04-497A-BB98-B9DC72FA05F0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SV.WorkoutBuilder.Core.Tests", "SV.WorkoutBuilder.Core.Tests\SV.WorkoutBuilder.Core.Tests.csproj", "{BBD1F58E-AE2A-469D-BD38-378A26F58D6C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SV.Builder.Core.Tests", "SV.WorkoutBuilder.Core.Tests\SV.Builder.Core.Tests.csproj", "{BBD1F58E-AE2A-469D-BD38-378A26F58D6C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -1,11 +1,11 @@
 ﻿using FluentAssertions;
 using NUnit.Framework;
-using SV.WorkoutBuilder.Core.SharedKernel;
+using SV.Builder.Core.SharedKernel;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace SV.WorkoutBuilder.Core.Tests
+namespace SV.Builder.Core.Tests
 {
     public class DurationTests
     {

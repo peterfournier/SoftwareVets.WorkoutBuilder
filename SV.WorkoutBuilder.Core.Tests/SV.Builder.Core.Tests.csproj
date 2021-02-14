@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\SV.WorkoutBuilder.Core\SV.WorkoutBuilder.Core.csproj" />
+    <ProjectReference Include="..\SV.WorkoutBuilder.Core\SV.Builder.Core.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,12 +1,12 @@
 using FluentAssertions;
 using NUnit.Framework;
-using SV.WorkoutBuilder.Core.SharedKernel;
-using SV.WorkoutBuilder.Core.WorkoutManagement;
+using SV.Builder.Core.SharedKernel;
+using SV.Builder.Core.WorkoutManagement;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace SV.WorkoutBuilder.Core.Tests
+namespace SV.Builder.Core.Tests
 {
     public class WorkoutTests
     {

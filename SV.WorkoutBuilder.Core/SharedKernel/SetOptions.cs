@@ -1,7 +1,7 @@
-﻿using SV.WorkoutBuilder.Core.Common;
+﻿using SV.Builder.Core.Common;
 using System;
 
-namespace SV.WorkoutBuilder.Core.SharedKernel
+namespace SV.Builder.Core.SharedKernel
 {
     public class SetOptions : ValueObject<SetOptions>
     {

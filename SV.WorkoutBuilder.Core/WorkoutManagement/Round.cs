@@ -1,10 +1,10 @@
-﻿using SV.WorkoutBuilder.Core.Common;
-using SV.WorkoutBuilder.Core.SharedKernel;
+﻿using SV.Builder.Core.Common;
+using SV.Builder.Core.SharedKernel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace SV.WorkoutBuilder.Core.WorkoutManagement
+namespace SV.Builder.Core.WorkoutManagement
 {
     public class Round : Entity
     {

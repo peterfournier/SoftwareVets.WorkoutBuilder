@@ -1,9 +1,9 @@
-﻿using SV.WorkoutBuilder.Core.Common;
+﻿using SV.Builder.Core.Common;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace SV.WorkoutBuilder.Core.SharedKernel
+namespace SV.Builder.Core.SharedKernel
 {
     public sealed class Duration : ValueObject<Duration>
     {

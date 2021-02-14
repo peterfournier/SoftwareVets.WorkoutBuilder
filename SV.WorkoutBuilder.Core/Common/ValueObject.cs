@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace SV.WorkoutBuilder.Core.Common
+namespace SV.Builder.Core.Common
 {
     public abstract class ValueObject<T>
         where T : ValueObject<T>
