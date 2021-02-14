@@ -85,6 +85,17 @@ namespace SV.WorkoutBuilder.Core.Tests
             };
         }
 
+        private static List<ExerciseOptions> createExercisesWithTimedSet()
+        {
+            return new List<ExerciseOptions>()
+            {
+                new ExerciseOptions("Push ups", "push your body up", new List<SetOptions>()
+                {
+                    new SetOptions(Duration.FiveMinutes, 10, timed: true)
+                })
+            };
+        }
+
         private static List<ExerciseOptions> createExercisesWithTwoSets()
         {
             return new List<ExerciseOptions>()
@@ -178,6 +189,14 @@ namespace SV.WorkoutBuilder.Core.Tests
         public void Negative_weights_throws_exception()
         {
             Action act = () => createExercisesWithNegativeReps();
+
+            act.Should().Throw<ArgumentOutOfRangeException>();
+        }
+
+        [Test]
+        public void If_timed_set_duration_must_be_zero()
+        {
+            Action act = () => createExercisesWithTimedSet();
 
             act.Should().Throw<ArgumentOutOfRangeException>();
         }

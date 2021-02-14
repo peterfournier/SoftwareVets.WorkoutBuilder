@@ -1,7 +1,5 @@
 ﻿using SV.WorkoutBuilder.Core.Common;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace SV.WorkoutBuilder.Core.SharedKernel
 {
@@ -9,11 +7,19 @@ namespace SV.WorkoutBuilder.Core.SharedKernel
     {
         public Duration Duration { get; }
         public int Reps { get; }
+        public bool Timed { get; }
 
-        public SetOptions(Duration duration, int reps)
+        public SetOptions(
+            Duration duration, 
+            int reps,
+            bool timed = false
+            )
         {
             if (reps < 0) throw new ArgumentOutOfRangeException(nameof(reps));
 
+            if (timed && duration != Duration.None) throw new ArgumentOutOfRangeException(nameof(duration));
+
+            Timed = timed;
             Duration = duration;
             Reps = reps;
         }
