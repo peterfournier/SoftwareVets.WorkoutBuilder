@@ -6,7 +6,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\SV.Builder.Domain\SV.Builder.WorkoutManagement.csproj" />
-    <ProjectReference Include="..\SV.Builder.Repository\SV.Builder.Repository.csproj" />
   </ItemGroup>
 
   <ItemGroup>
