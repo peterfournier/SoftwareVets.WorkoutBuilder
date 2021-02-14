@@ -18,7 +18,7 @@ namespace SV.Builder.Core.Tests
         [Test]
         public void Create_new_workout_Id_is_set()
         {
-            var workout = new Workout("Workout Name");
+            var workout = new Workout("Workout Name", "Description");
 
             workout.Id.Should().NotBeEmpty();
         }
@@ -27,7 +27,7 @@ namespace SV.Builder.Core.Tests
         public void Create_new_workoutName_is_set()
         {
             var name = "workout name";
-            var workout = new Workout(name);
+            var workout = new Workout(name, "Description");
 
             workout.Name.Should().Be(name);
         }
@@ -35,7 +35,7 @@ namespace SV.Builder.Core.Tests
         [Test]
         public void Create_new_workout_when_name_is_null_throws_exception()
         {
-            Action act = () => new Workout(null);
+            Action act = () => new Workout(null, "Description");
 
             act.Should().Throw<ArgumentNullException>();
         }
@@ -44,11 +44,11 @@ namespace SV.Builder.Core.Tests
         public void Add_new_round()
         {
             var name = "workout name";
-            var workout = new Workout(name);
-            workout.AddRound("Round 1", new List<ExerciseOptions>()
+            var workout = new Workout(name, "Description");
+            workout.AddRound(new RoundOptions("Round 1", "Description", 1, new List<ExerciseOptions>()
             {
 
-            });
+            }));
 
             workout.Rounds.Should().HaveCount(1, "Only added one round");
         }
@@ -57,8 +57,8 @@ namespace SV.Builder.Core.Tests
         public void Add_new_round_exercise_should_be_added()
         {
             var name = "workout name";
-            var workout = new Workout(name);
-            workout.AddRound("Round 1", createExercisesWithNoSets());
+            var workout = new Workout(name, "Description");
+            workout.AddRound(new RoundOptions("name", "description", 1, createExercisesWithNoSets()));
 
             workout.Rounds.FirstOrDefault().Exercises.Should().HaveCount(1, "Only added one exercise");
         }
@@ -123,20 +123,19 @@ namespace SV.Builder.Core.Tests
         public void Add_round_when_roundName_is_null_throwsException()
         {
             var name = "workout name";
-            var workout = new Workout(name);
+            var workout = new Workout(name, "Description");
 
-            Action act = () => workout.AddRound(null, null);
+            Action act = () => new RoundOptions(null, "Description", 1, null);
 
             act.Should().Throw<ArgumentNullException>();
         }
 
         [Test]
-        public void Add_round_when_exercises_are_null_throwsException()
+        public void When_exercises_are_null_throwsException()
         {
             var name = "workout name";
-            var workout = new Workout(name);
-
-            Action act = () => workout.AddRound("Round 1", null);
+            var workout = new Workout(name, "Description");
+            Action act = () => new RoundOptions("Round 1", "Description", 1, null);
 
             act.Should().Throw<ArgumentNullException>();
         }
@@ -145,9 +144,10 @@ namespace SV.Builder.Core.Tests
         public void Exercise_duration_increase_withSets()
         {
             var name = "workout name";
-            var workout = new Workout(name);
+            var workout = new Workout(name, "Description");
 
-            workout.AddRound("Round 1", createExercisesWithSets());
+            var roundOptions = new RoundOptions("Round 1", "Description", 1, createExercisesWithSets());
+            workout.AddRound(roundOptions);
 
             workout.EstimatedDuration.Should().Be(workout.Rounds.FirstOrDefault().Exercises.FirstOrDefault().EstimatedDuration);
         }
@@ -156,9 +156,10 @@ namespace SV.Builder.Core.Tests
         public void Round_duration_increase_withSets()
         {
             var name = "workout name";
-            var workout = new Workout(name);
+            var workout = new Workout(name, "Description");
 
-            workout.AddRound("Round 1", createExercisesWithSets());
+            var roundOptions = new RoundOptions("Round 1", "Description", 1, createExercisesWithSets());
+            workout.AddRound(roundOptions);
 
             workout.EstimatedDuration.Should().Be(workout.Rounds.FirstOrDefault().EstimatedDuration);
         }
@@ -167,9 +168,10 @@ namespace SV.Builder.Core.Tests
         public void Workout_duration_increase_with_sets()
         {
             var name = "workout name";
-            var workout = new Workout(name);
+            var workout = new Workout(name, "Description");
 
-            workout.AddRound("Round 1", createExercisesWithSets());
+            var roundOptions = new RoundOptions("Round 1", "Description", 1, createExercisesWithSets());
+            workout.AddRound(roundOptions);
 
             workout.EstimatedDuration.Should().Be(workout.Rounds.FirstOrDefault().Exercises.FirstOrDefault().Sets.FirstOrDefault().Duration);
         }
@@ -178,9 +180,10 @@ namespace SV.Builder.Core.Tests
         public void Workout_duration_increase_with_two_sets()
         {
             var name = "workout name";
-            var workout = new Workout(name);
+            var workout = new Workout(name, "Description");
 
-            workout.AddRound("Round 1", createExercisesWithTwoSets());
+            var roundOptions = new RoundOptions("Round 1", "Description", 1, createExercisesWithTwoSets());
+            workout.AddRound(roundOptions);
 
             workout.EstimatedDuration.Should().Be(Duration.TenMinutes);
         }
@@ -199,6 +202,17 @@ namespace SV.Builder.Core.Tests
             Action act = () => createExercisesWithTimedSet();
 
             act.Should().Throw<ArgumentOutOfRangeException>();
+        }
+
+        [Test]
+        public void Add_round_with_options()
+        {
+            var name = "workout name";
+            var workout = new Workout(name, "Description");
+            var roundOptions = new RoundOptions("Round 1", "Description", 1, createExercisesWithTwoSets());
+            workout.AddRound(roundOptions);
+
+            workout.EstimatedDuration.Should().Be(Duration.TenMinutes);
         }
     }
 }

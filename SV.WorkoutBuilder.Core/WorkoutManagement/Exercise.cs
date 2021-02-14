@@ -25,8 +25,8 @@ namespace SV.Builder.Core.WorkoutManagement
             ) : base(Guid.NewGuid())
         {
             Round = round;
-            Name = string.IsNullOrEmpty(name) ? throw new ArgumentNullException(nameof(name)) : name;
-            Description = string.IsNullOrEmpty(description) ? throw new ArgumentNullException(nameof(description)) : description;
+            Name = Guard.ForNullOrEmpty(name, nameof(name));
+            Description = Guard.ForNullOrEmpty(description, nameof(description));
         }
 
         internal virtual void AddSet(Set set)

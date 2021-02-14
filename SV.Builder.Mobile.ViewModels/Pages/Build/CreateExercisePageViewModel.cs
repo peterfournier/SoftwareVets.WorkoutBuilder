@@ -1,7 +1,4 @@
-﻿
-using SV.Builder.Mobile.Common.MessageCenter;
-using SV.Builder.WorkoutManagement;
-using SV.Builder.WorkoutManagement.Factories;
+﻿using SV.Builder.Mobile.Common.MessageCenter;
 using System;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -12,17 +9,24 @@ namespace SV.Builder.Mobile.ViewModels.Pages
 {
     public class CreateExercisePageViewModel : BaseFormContentPageViewModel
     {
-        private Exercise _exercise;
         private readonly RoundViewModel _roundViewModel;
 
-        private string _name;
-        public string Name
+        //private string _name;
+        //public string Name
+        //{
+        //    get => _name;
+        //    set => SetProperty(ref _name, value);
+        //}
+
+        //public ObservableCollection<SetViewModel> Sets { get; private set; } = new ObservableCollection<SetViewModel>();
+
+        private ExerciseViewModel _exerciseViewModel;
+        public ExerciseViewModel ExerciseViewModel
         {
-            get => _name;
-            set => SetProperty(ref _name, value);
+            get { return _exerciseViewModel; }
+            set { SetProperty(ref _exerciseViewModel, value); }
         }
 
-        public ObservableCollection<SetViewModel> Sets { get; private set; } = new ObservableCollection<SetViewModel>();
 
         public ICommand AddSetCommand { get; set; }
 
@@ -32,6 +36,7 @@ namespace SV.Builder.Mobile.ViewModels.Pages
                 throw new ArgumentNullException(nameof(roundViewModel));
 
             _roundViewModel = roundViewModel;
+            ExerciseViewModel = new ExerciseViewModel();
 
             addSet(null);
             AddSetCommand = new Command(addSet);
@@ -41,63 +46,63 @@ namespace SV.Builder.Mobile.ViewModels.Pages
         {
             var set = new SetViewModel()
             {
-                Name = $"Set {Sets.Count + 1}"
+                Name = $"Set {ExerciseViewModel.Sets.Count + 1}"
             };
-            Sets.Add(set);
+            ExerciseViewModel.Sets.Add(set);
         }
 
         public void RemoveSet(SetViewModel setViewModelArg)
         {
-            var setToRemove = Sets.FirstOrDefault(x => x == setViewModelArg);
+            var setToRemove = ExerciseViewModel.Sets.FirstOrDefault(x => x == setViewModelArg);
             if (setToRemove != null)
             {
-                Sets.Remove(setToRemove);
+                ExerciseViewModel.Sets.Remove(setToRemove);
             }
         }
 
         public override void OnSaveCommand()
         {
-            var setFactory = new ExerciseSetFactory();
-            _exercise = new Exercise(_roundViewModel.RoundId, Name);
-            var exerciseViewModel = new ExerciseViewModel(_exercise)
-            {
-                Name = Name
-            };
+            //var setFactory = new ExerciseSetFactory();
+            //_exercise = new Exercise(_roundViewModel.RoundId, Name);
+            //var exerciseViewModel = new ExerciseViewModel(_exercise)
+            //{
+            //    Name = Name
+            //};
 
-            foreach (var setViewModel in Sets)
-            {
-                ExerciseSet exerciseSet = createDomainExerciseSet(setFactory, setViewModel);
+            //foreach (var setViewModel in Sets)
+            //{
+            //    ExerciseSet exerciseSet = createDomainExerciseSet(setFactory, setViewModel);
 
-                setDataBackingField(setViewModel, exerciseSet);
+            //    setDataBackingField(setViewModel, exerciseSet);
 
-                exerciseViewModel.AddSet(setViewModel);
-            }
+            //    exerciseViewModel.AddSet(setViewModel);
+            //}
 
-            _roundViewModel.AddExercise(exerciseViewModel);
+            _roundViewModel.AddExercise(ExerciseViewModel);
 
-            //MessagingCenter.Send(this, Messages.CreateExercise, _roundViewModel);
+            //MessagingCenter.Send(this, Messages.ExerciseViewModelCreated);
 
             base.OnSaveCommand();
         }
 
-        private void setDataBackingField(SetViewModel setViewModel, ExerciseSet exerciseSet)
-        {
-            setViewModel.SetExerciseSet(exerciseSet);
-        }
+        //private void setDataBackingField(SetViewModel setViewModel, ExerciseSet exerciseSet)
+        //{
+        //    //setViewModel.SetExerciseSet(exerciseSet);
+        //}
 
-        private ExerciseSet createDomainExerciseSet(
-            ExerciseSetFactory setFactory, 
-            SetViewModel setViewModel
-            )
-        {
-            double.TryParse(setViewModel.Weight, out double weight);
+        //private ExerciseSet createDomainExerciseSet(
+        //    ExerciseSetFactory setFactory, 
+        //    SetViewModel setViewModel
+        //    )
+        //{
+        //    double.TryParse(setViewModel.Weight, out double weight);
 
-            var set = new Set(weight: weight
-                                , duration: setViewModel.Duration
-                                , timed: setViewModel.StopwatchSet);
+        //    var set = new Set(weight: weight
+        //                        , duration: setViewModel.Duration
+        //                        , timed: setViewModel.StopwatchSet);
 
-            var exerciseSet = setFactory.CreateSet(_exercise.ID, set);
-            return exerciseSet;
-        }
+        //    var exerciseSet = setFactory.CreateSet(_exercise.ID, set);
+        //    return exerciseSet;
+        //}
     }
 }

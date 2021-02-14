@@ -16,22 +16,22 @@ namespace SV.Builder.Core.WorkoutManagement
         public virtual IReadOnlyList<Round> Rounds => _rounds.ToList();
 
         protected Workout() { }
-        public Workout(string name) : base(Guid.NewGuid())
+        public Workout(
+            string name,
+            string description) : base(Guid.NewGuid())
         {
-            Name = string.IsNullOrEmpty(name) ? throw new ArgumentNullException(nameof(name)) : name;
+            Name = Guard.ForNullOrEmpty(name, nameof(name));
+            Description = Guard.ForNullOrEmpty(description, nameof(description));
         }
 
 
-        public virtual void AddRound(
-            string roundName,
-            List<ExerciseOptions> exerciseOptions
-            )
+        public virtual void AddRound(RoundOptions roundOptions)
         {
-            if (exerciseOptions == null) throw new ArgumentNullException();
+            if (roundOptions == null) throw new ArgumentNullException();
 
-            var round = new Round(this, roundName);
+            var round = new Round(this, roundOptions.Name, roundOptions.Description, roundOptions.Iterations);
 
-            foreach (var options in exerciseOptions)
+            foreach (var options in roundOptions.ExerciseOptions)
             {
                 var exercise = new Exercise(round, options.Name, options.Description);
 

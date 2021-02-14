@@ -36,7 +36,7 @@
                        FontSize="Medium" 
                        FontAttributes="Bold"
                        />
-                <Entry Text="{Binding Name}" 
+                <Entry Text="{Binding ExerciseViewModel.Name}" 
                        FontSize="Medium" 
                        />
 
@@ -51,7 +51,7 @@
                          Spacing="0"
                          >
                 <CollectionView x:Name="exerciseSetsCollectionView"
-                                ItemsSource="{Binding Sets}"
+                                ItemsSource="{Binding ExerciseViewModel.Sets}"
                                 BackgroundColor="LightGray"
                                 ItemsUpdatingScrollMode="KeepLastItemInView"
                                 >

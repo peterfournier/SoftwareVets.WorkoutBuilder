@@ -1,5 +1,4 @@
 ﻿using SV.Builder.Mobile.Common.MessageCenter;
-using SV.Builder.WorkoutManagement;
 using Xamarin.Forms;
 
 namespace SV.Builder.Mobile.ViewModels.Pages
@@ -28,9 +27,9 @@ namespace SV.Builder.Mobile.ViewModels.Pages
         public override void OnSaveCommand()
         {
 
-            var workout = new Workout(Name) { Description = Description };
+            //var workout = new Workout(Name) { Description = Description };
 
-            MessagingCenter.Send(this, Messages.CreateWorkout, workout);
+            //MessagingCenter.Send(this, Messages.CreateWorkout, workout);
 
             base.OnSaveCommand();
         }

@@ -1,10 +1,8 @@
 ﻿using SV.Builder.Mobile.ViewModels.Shared;
-using SV.Builder.Repository;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using Xamarin.Forms;
 
 namespace SV.Builder.Mobile.ViewModels
 {

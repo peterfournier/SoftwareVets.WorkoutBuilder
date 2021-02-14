@@ -10,6 +10,7 @@ namespace SV.Builder.Core.WorkoutManagement
     {
         public virtual string Name { get; }
         public virtual string Description { get; }
+        public virtual int Iterations { get; }
         public virtual Duration EstimatedDuration { get; private set; } = Duration.None;
 
         public virtual Workout Workout { get; }
@@ -18,10 +19,17 @@ namespace SV.Builder.Core.WorkoutManagement
         public virtual IReadOnlyList<Exercise> Exercises => _exercises.ToList();
 
         protected Round() { }
-        public Round(Workout workout, string name) : base(Guid.NewGuid())
+        public Round(
+            Workout workout, 
+            string name,
+            string description,
+            int iterations
+            ) : base(Guid.NewGuid())
         {
             Workout = workout;
-            Name = string.IsNullOrEmpty(name) ? throw new ArgumentNullException(nameof(name)) : name;
+            Name = Guard.ForNullOrEmpty(name, nameof(name));
+            Description = Guard.ForNullOrEmpty(description, nameof(description));
+            Iterations = Guard.ForLessThanOne(iterations, nameof(iterations));
         }
 
         internal virtual void AddExercise(Exercise exercise)

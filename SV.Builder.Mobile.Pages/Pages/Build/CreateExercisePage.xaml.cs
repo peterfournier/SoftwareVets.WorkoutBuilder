@@ -30,7 +30,7 @@ namespace SV.Builder.Mobile.Views.Pages
         {
             if (BindingContext is CreateExercisePageViewModel viewModel)
             {
-                if (viewModel.Sets.Count > 1)
+                if (viewModel.ExerciseViewModel.Sets.Count > 1)
                 {
                     if (await DisplayAlert("Comfirm", "Are you sure you want to remove this set?", "Yes Remove", "Cancel"))
                     {

@@ -7,12 +7,11 @@ namespace SV.Builder.Mobile.Views.Pages
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class CreateRoundPage : CreateRoundPageXaml
     {
-        public CreateRoundPage(Guid workoutId)
+        public CreateRoundPage()
         {
             InitializeComponent();
-            BindingContext = new CreateRoundPageViewModel(workoutId);
         }
     }
 
-    public class CreateRoundPageXaml : ContentPageBase { }
+    public class CreateRoundPageXaml : ContentPageBase<CreateRoundPageViewModel> { }
 }

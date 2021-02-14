@@ -1,5 +1,6 @@
-﻿using SV.Builder.Mobile.Common.MessageCenter;
-using SV.Builder.WorkoutManagement;
+﻿using SV.Builder.Core.Common;
+using SV.Builder.Core.SharedKernel;
+using SV.Builder.Mobile.Common.MessageCenter;
 using System;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
@@ -9,8 +10,6 @@ namespace SV.Builder.Mobile.ViewModels
 {
     public class RoundViewModel : BaseViewModel
     {
-        private Round _round;
-
         private string _name;
         public string Name
         {
@@ -19,7 +18,7 @@ namespace SV.Builder.Mobile.ViewModels
         }
 
         private int _interations;
-        public int Iternations
+        public int Iterations
         {
             get { return _interations; }
             set { SetProperty(ref _interations, value); }
@@ -40,26 +39,27 @@ namespace SV.Builder.Mobile.ViewModels
         }
 
         public ICommand AddExerciseToRoundCommand { get; set; }
-        public Guid RoundId { get; private set; }
 
         public ObservableCollection<ExerciseViewModel> Exercises { get; private set; } = new ObservableCollection<ExerciseViewModel>();
 
-        public RoundViewModel(Round round)
+        public RoundViewModel()
         {
+            //Name = Guard.ForNullOrEmpty(name, nameof(name));
+            //Description = Guard.ForNullOrEmpty(description, nameof(description));
+            //Iterations = Guard.ForLessThanOne(iterations, nameof(iterations));
+            //Length = length;
+
             AddExerciseToRoundCommand = new Command(addNewExerciseToRound);
-            _round = round;
-            RoundId = round.ID;
         }
 
         private void addNewExerciseToRound(object arg)
         {
-            if (arg is RoundViewModel round)
-                MessagingCenter.Send(this, Messages.GoToNewExercisePage, round);
+            MessagingCenter.Send(this, Messages.GoToNewExercisePage);
         }
 
         internal void AddExercise(ExerciseViewModel exerciseViewModel)
         {
-            _round.AddExercise(exerciseViewModel.Exercise);
+            //_roundOptions.AddExercise(exerciseViewModel.Exercise);
 
             Exercises.Add(exerciseViewModel);
         }

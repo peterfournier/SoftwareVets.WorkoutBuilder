@@ -15,7 +15,7 @@ namespace SV.Builder.Mobile.Views.Pages
         {
             InitializeComponent();
 
-            MessagingCenter.Subscribe<RoundViewModel, RoundViewModel>(this, Messages.GoToNewExercisePage, addExerciseHandler);
+            MessagingCenter.Subscribe<RoundViewModel>(this, Messages.GoToNewExercisePage, addExerciseHandler);
             MessagingCenter.Subscribe<CreateWorkoutPageViewModel>(this, Messages.GoToNewRoundPage, goToNewRoundPageHandler);
             MessagingCenter.Subscribe<CreateWorkoutPageViewModel>(this, Messages.GoToEditWorkoutNamePage, goToEditWorkoutNamePageHandler);
         }
@@ -35,15 +35,15 @@ namespace SV.Builder.Mobile.Views.Pages
         {
             using (new BusyStatus(createWorkoutPageViewModel))
             {
-                await Shell.Current.Navigation.PushModalAsync(new CreateRoundPage(createWorkoutPageViewModel.WorkoutId));
+                await Shell.Current.Navigation.PushModalAsync(new CreateRoundPage());
             }
         }
 
-        private async void addExerciseHandler(object sender, RoundViewModel roundViewModel)
+        private async void addExerciseHandler(RoundViewModel sender)
         {
-            using (new BusyStatus(roundViewModel))
+            using (new BusyStatus(sender))
             {
-                await Shell.Current.Navigation.PushModalAsync(new CreateExercisePage(roundViewModel));
+                await Shell.Current.Navigation.PushModalAsync(new CreateExercisePage(sender));
             }
         }
     }

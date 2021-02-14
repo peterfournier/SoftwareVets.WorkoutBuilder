@@ -1,7 +1,7 @@
-﻿using SV.Builder.Mobile.Common.MessageCenter;
+﻿using SV.Builder.Core.SharedKernel;
+using SV.Builder.Core.WorkoutManagement;
+using SV.Builder.Mobile.Common.MessageCenter;
 using SV.Builder.Mobile.ViewModels.Shared;
-using SV.Builder.Service;
-using SV.Builder.WorkoutManagement;
 using System;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
@@ -46,8 +46,6 @@ namespace SV.Builder.Mobile.ViewModels.Pages
 
         public ObservableCollection<RoundViewModel> Rounds { get; set; } = new ObservableCollection<RoundViewModel>();
 
-        public Guid WorkoutId { get; private set;}
-
         public CreateWorkoutPageViewModel()
         {
             setNewWorkout();
@@ -68,7 +66,7 @@ namespace SV.Builder.Mobile.ViewModels.Pages
         protected override void WireUpSubscriptions()
         {
             MessagingCenter.Subscribe<EditWorkoutNamePageViewModel, Workout>(this, Messages.CreateWorkout, workoutCreatedHandler);
-            MessagingCenter.Subscribe<CreateRoundPageViewModel, Round>(this, Messages.CreateRound, roundCreatedHandler);
+            MessagingCenter.Subscribe<CreateRoundPageViewModel, RoundViewModel>(this, Messages.CreateRound, roundCreatedHandler);
         }
 
         private void setNewWorkout()
@@ -76,34 +74,30 @@ namespace SV.Builder.Mobile.ViewModels.Pages
             Name = DefaultWorkoutName;
             Description = DefaultDescription;
 
-            _workout = new Workout(Name)
-            {
-                Description = Description
-            };
-            WorkoutId = _workout.ID;
+            _workout = new Workout(Name, Description);
         }
 
-        private void roundCreatedHandler(CreateRoundPageViewModel createRoundPage, Round round)
+        private void roundCreatedHandler(CreateRoundPageViewModel sender, RoundViewModel roundViewModel)
         {
-            _workout.AddRound(round);
-            var roundViewModel = new RoundViewModel(round)
-            {
-                Name = round.Name,
-                Length = round.Duration,
-                Iternations = round.Iterations,
-                Description = round.Description
-            };
+            //_workout.AddRound(roundOptions);
+
+            //var roundViewModel = new RoundViewModel(roundOptions)
+            //{
+            //    Name = roundOptions.Name,
+            //    Length = roundOptions.Duration,
+            //    Iterations = roundOptions.Iterations,
+            //    Description = roundOptions.Description
+            //};
             Rounds.Add(roundViewModel);
         }
-
 
         private void workoutCreatedHandler(EditWorkoutNamePageViewModel viewModel, Workout workout)
         {
             Name = workout.Name;
             Description = workout.Description;
 
-            _workout.Name = Name;
-            _workout.Description = Description;
+            //_workout.Name = Name;
+            //_workout.Description = Description;
         }
 
         public override void OnSaveCommand()

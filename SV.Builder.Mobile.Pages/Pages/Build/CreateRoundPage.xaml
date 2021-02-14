@@ -21,14 +21,14 @@
             <Label Text="Round Name" 
                    FontSize="Medium" 
                    />
-            <Entry Text="{Binding Name}" 
+            <Entry Text="{Binding RoundViewModel.Name}" 
                    FontSize="Medium" 
                    />
 
             <Label Text="Description" 
                    FontSize="Medium" 
                    />
-            <Editor Text="{Binding Description}" 
+            <Editor Text="{Binding RoundViewModel.Description}" 
                     AutoSize="TextChanges" 
                     FontSize="Medium" 
                     Margin="0" />
@@ -36,7 +36,7 @@
             <Label Text="Iterations" 
                    FontSize="Medium" 
                    />
-            <Entry Text="{Binding Iterations}" 
+            <Entry Text="{Binding RoundViewModel.Iterations}" 
                    FontSize="Medium" 
                    Keyboard="Numeric"
                    />
