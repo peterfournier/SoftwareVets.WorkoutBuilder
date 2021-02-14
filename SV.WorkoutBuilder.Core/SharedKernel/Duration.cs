@@ -37,6 +37,30 @@ namespace SV.Builder.Core.SharedKernel
             return duration;
         }
 
+        public static bool operator >(Duration duration1, Duration duration2)
+        {
+            if (duration1.Length.Hours > duration2.Length.Hours
+                || duration1.Length.Minutes > duration2.Length.Minutes
+                || duration1.Length.Seconds > duration2.Length.Seconds)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        public static bool operator <(Duration duration1, Duration duration2)
+        {
+            if (duration1.Length.Hours < duration2.Length.Hours
+                || duration1.Length.Minutes < duration2.Length.Minutes
+                || duration1.Length.Seconds < duration2.Length.Seconds)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
         protected override bool EqualsCore(Duration other)
         {
             return Length.Hours == other.Length.Hours

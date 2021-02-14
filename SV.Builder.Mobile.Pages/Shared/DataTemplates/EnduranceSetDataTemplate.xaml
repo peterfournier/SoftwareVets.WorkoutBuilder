@@ -15,7 +15,7 @@
             <Label>
                 <Label.FormattedText>
                     <FormattedString>
-                        <Span Text="{Binding ExerciseSet.Duration}"></Span>
+                        <Span Text="{Binding Duration}"></Span>
                     </FormattedString>
                 </Label.FormattedText>
             </Label>

@@ -24,11 +24,25 @@ namespace SV.Builder.Core.Common
             return value;
         }
 
-        public static int ForLessThanOne(int iterations, string propertyName)
+        public static int ForLessThanOne(int val, string propertyName)
         {
-            if (iterations < 1) throw new ArgumentOutOfRangeException(nameof(propertyName));
+            if (val < 1) throw new ArgumentOutOfRangeException(nameof(propertyName));
 
-            return iterations;
+            return val;
+        }
+
+        public static int ForLessThanZero(int val, string propertyName)
+        {
+            if (val < 0) throw new ArgumentOutOfRangeException(nameof(propertyName));
+
+            return val;
+        }
+
+        public static decimal ForLessThanZero(decimal val, string propertyName)
+        {
+            if (val < 0) throw new ArgumentOutOfRangeException(nameof(propertyName));
+
+            return val;
         }
     }
 }

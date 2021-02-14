@@ -43,10 +43,10 @@
     <EmbeddedResource Update="Shared\DataTemplates\ExerciseSetDataTemplate.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Shared\DataTemplates\IntenseEnduranceSetDataTemplate.xaml">
+    <EmbeddedResource Update="Shared\DataTemplates\StrengthEnduranceSetDataTemplate.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Shared\DataTemplates\IntensePerformanceSetDataTemplate.xaml">
+    <EmbeddedResource Update="Shared\DataTemplates\StrengthPerformanceSetDataTemplate.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Shared\DataTemplates\PerformanceSetDataTemplate.xaml">
@@ -69,6 +69,15 @@
 
   <ItemGroup>
     <ProjectReference Include="..\SV.Builder.Mobile.ViewModels\SV.Builder.Mobile.ViewModels.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Shared\DataTemplates\StrengthPerformanceSetDataTemplate.xaml.cs">
+      <DependentUpon>StrengthPerformanceSetDataTemplate.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Shared\DataTemplates\StrengthEnduranceSetDataTemplate.xaml.cs">
+      <DependentUpon>StrengthEnduranceSetDataTemplate.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
 
 </Project>

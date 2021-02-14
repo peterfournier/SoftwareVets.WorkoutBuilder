@@ -10,9 +10,9 @@ using Xamarin.Forms.Xaml;
 namespace SV.Builder.Mobile.Views.Shared
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class IntenseEnduranceSetDataTemplate : ContentView
+    public partial class StrengthEnduranceSetDataTemplate : ContentView
     {
-        public IntenseEnduranceSetDataTemplate()
+        public StrengthEnduranceSetDataTemplate()
         {
             InitializeComponent();
         }

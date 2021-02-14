@@ -37,7 +37,7 @@ namespace SV.Builder.Core.WorkoutManagement
 
                 foreach (var setOptions in options.SetOptions)
                 {
-                    var set = new Set(exercise, setOptions.Duration, setOptions.Reps, setOptions.Timed);
+                    var set = new Set(exercise, setOptions.Duration, setOptions.Reps, setOptions.Timed, setOptions.Type);
                     exercise.AddSet(set);
                     EstimatedDuration += set.Duration;
                 }

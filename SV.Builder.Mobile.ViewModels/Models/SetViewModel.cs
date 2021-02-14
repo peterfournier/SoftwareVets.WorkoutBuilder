@@ -1,4 +1,5 @@
-﻿using SV.Builder.Mobile.Common.MessageCenter;
+﻿using SV.Builder.Core.SharedKernel;
+using SV.Builder.Mobile.Common.MessageCenter;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -171,6 +172,15 @@ namespace SV.Builder.Mobile.ViewModels
                 return unit;
             }
             return 0;
+        }
+
+        public SetOptions GetSetOptions()
+        {
+            decimal.TryParse(Weight, out decimal weight);
+            return new SetOptions(new Duration(Duration.Hours, Duration.Minutes, Duration.Seconds), 
+                Repetitions, 
+                weight, 
+                StopwatchSet);
         }
     }
 }

@@ -6,52 +6,48 @@ namespace SV.Builder.Mobile.Views.Shared
 {
     public class ExerciseSetTemplateSelector : DataTemplateSelector
     {
-        private readonly DataTemplate exerciseSetTemplate;
-        private readonly DataTemplate strengthSetTemplate;
-        private readonly DataTemplate performanceSetTemplate;
-        private readonly DataTemplate intensePerformanceSetTemplate;
         private readonly DataTemplate enduranceSetTemplate;
-        private readonly DataTemplate intenseEnduranceSetTemplate;
+        private readonly DataTemplate exerciseSetTemplate;
+        private readonly DataTemplate performanceSetTemplate;
+        private readonly DataTemplate strengthEnduranceSetTemplate;
+        private readonly DataTemplate strengthPerformanceSetTemplate;
+        private readonly DataTemplate strengthSetTemplate;
 
 
         public ExerciseSetTemplateSelector()
         {
             enduranceSetTemplate = new DataTemplate(typeof(EnduranceSetDataTemplate));
             exerciseSetTemplate = new DataTemplate(typeof(ExerciseSetDataTemplate));
-            intenseEnduranceSetTemplate = new DataTemplate(typeof(IntenseEnduranceSetDataTemplate));
-            intensePerformanceSetTemplate = new DataTemplate(typeof(IntensePerformanceSetDataTemplate));
             performanceSetTemplate = new DataTemplate(typeof(PerformanceSetDataTemplate));
+            strengthEnduranceSetTemplate = new DataTemplate(typeof(StrengthEnduranceSetDataTemplate));
+            strengthPerformanceSetTemplate = new DataTemplate(typeof(StrengthPerformanceSetDataTemplate));
             strengthSetTemplate = new DataTemplate(typeof(StrengthSetDataTemplate));
         }
         protected override DataTemplate OnSelectTemplate(object item, BindableObject container)
         {
             if (item is SetViewModel setViewModel)
             {
-                return exerciseSetTemplate;
-                //if (setViewModel.ExerciseSet is IntenseEnduranceSet)
-                //{
-                //    return intenseEnduranceSetTemplate;
-                //}
-                //else if (setViewModel.ExerciseSet is IntensePerformanceSet)
-                //{
-                //    return intensePerformanceSetTemplate;
-                //}
-                //else if (setViewModel.ExerciseSet is EnduranceSet)
-                //{
-                //    return enduranceSetTemplate;
-                //}
-                //else if (setViewModel.ExerciseSet is PerformanceSet)
-                //{
-                //    return performanceSetTemplate;
-                //}
-                //else if (setViewModel.ExerciseSet is StrengthSet)
-                //{
-                //    return strengthSetTemplate;
-                //}
-                //else
-                //{
-                //    return exerciseSetTemplate;
-                //}
+                switch (setViewModel.GetSetOptions().Type)
+                {
+                    case Core.SharedKernel.SetType.Performance:
+                        return performanceSetTemplate;
+
+                    case Core.SharedKernel.SetType.Endurance:
+                        return enduranceSetTemplate;
+
+                    case Core.SharedKernel.SetType.Strength:
+                        return strengthSetTemplate;
+
+                    case Core.SharedKernel.SetType.StrengthPerformance:
+                        return strengthPerformanceSetTemplate;
+
+                    case Core.SharedKernel.SetType.StrengthEndurance:
+                        return strengthEnduranceSetTemplate;
+
+                    case Core.SharedKernel.SetType.None:
+                    default:
+                        return exerciseSetTemplate;
+                }
             }
 
             throw new NotImplementedException();

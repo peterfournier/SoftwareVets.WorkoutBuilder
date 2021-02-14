@@ -11,7 +11,7 @@
         <Label Grid.Column="1">
             <Label.FormattedText>
                 <FormattedString>
-                    <Span Text="{Binding ExerciseSet.Reps}"></Span>
+                    <Span Text="{Binding Repetitions}"></Span>
                     <Span Text="x"></Span>
                 </FormattedString>
             </Label.FormattedText>
@@ -21,7 +21,7 @@
             <Label.FormattedText>
                 <FormattedString>
                     <Span Text="Weight: "></Span>
-                    <Span Text="{Binding ExerciseSet.Weight}"></Span>
+                    <Span Text="{Binding Weight}"></Span>
                 </FormattedString>
             </Label.FormattedText>
         </Label>
