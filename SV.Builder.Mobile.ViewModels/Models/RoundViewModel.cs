@@ -3,6 +3,7 @@ using SV.Builder.Core.SharedKernel;
 using SV.Builder.Mobile.Common.MessageCenter;
 using System;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -24,11 +25,11 @@ namespace SV.Builder.Mobile.ViewModels
             set { SetProperty(ref _interations, value); }
         }
 
-        private TimeSpan _length;
-        public TimeSpan Length
+        private Duration _duration = Duration.None;
+        public Duration Duration
         {
-            get { return _length; }
-            set { SetProperty(ref _length, value); }
+            get { return _duration; }
+            set { SetProperty(ref _duration, value); }
         }
 
         private string _description;
@@ -54,6 +55,10 @@ namespace SV.Builder.Mobile.ViewModels
 
         internal void AddExercise(ExerciseViewModel exerciseViewModel)
         {
+            foreach (var set in exerciseViewModel.Sets)
+            {
+                Duration += set.Duration;
+            }
             Exercises.Add(exerciseViewModel);
         }
     }

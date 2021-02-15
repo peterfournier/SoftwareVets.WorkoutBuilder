@@ -73,5 +73,10 @@ namespace SV.Builder.Core.SharedKernel
         {
             return Length.GetHashCode() * 397;
         }
+
+        public override string ToString()
+        {
+            return Length.ToString();
+        }
     }
 }

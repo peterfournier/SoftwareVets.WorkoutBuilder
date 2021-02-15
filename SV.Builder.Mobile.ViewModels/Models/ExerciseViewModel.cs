@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using SV.Builder.Core.SharedKernel;
+using System.Collections.ObjectModel;
 
 namespace SV.Builder.Mobile.ViewModels
 {
@@ -17,6 +18,7 @@ namespace SV.Builder.Mobile.ViewModels
             get { return _description; }
             set { SetProperty(ref _description, value); }
         }
+        public Duration Duration { get; private set; } = Duration.None;
 
         public ObservableCollection<SetViewModel> Sets { get; set; } = new ObservableCollection<SetViewModel>();
 
@@ -27,6 +29,7 @@ namespace SV.Builder.Mobile.ViewModels
 
         internal void AddSet(SetViewModel setViewModel)
         {
+            Duration += setViewModel.Duration;
             Sets.Add(setViewModel);
         }
     }

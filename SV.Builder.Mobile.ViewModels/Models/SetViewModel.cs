@@ -28,8 +28,8 @@ namespace SV.Builder.Mobile.ViewModels
             set { SetProperty(ref _repetitions, value); }
         }
 
-        private TimeSpan _duration;
-        public TimeSpan Duration
+        private Duration _duration;
+        public Duration Duration
         {
             get { return _duration; }
             private set { SetProperty(ref _duration, value); }
@@ -143,7 +143,7 @@ namespace SV.Builder.Mobile.ViewModels
             int minutes = getMinutes();
             int hours = getHours();
 
-            Duration = new TimeSpan(hours, minutes, seconds);
+            Duration = new Duration(hours, minutes, seconds);
         }
 
         private int getHours()
@@ -177,7 +177,7 @@ namespace SV.Builder.Mobile.ViewModels
         public SetOptions GetSetOptions()
         {
             decimal.TryParse(Weight, out decimal weight);
-            return new SetOptions(new Duration(Duration.Hours, Duration.Minutes, Duration.Seconds), 
+            return new SetOptions(Duration, 
                 Repetitions, 
                 weight, 
                 StopwatchSet);
