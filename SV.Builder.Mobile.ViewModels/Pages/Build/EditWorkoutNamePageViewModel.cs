@@ -27,7 +27,7 @@ namespace SV.Builder.Mobile.ViewModels.Pages
         public override void OnSaveCommand()
         {
 
-            MessagingCenter.Send(this, Messages.WorkoutDetailsEdited);
+            MessagingCenter.Send(this, Messages.OnWorkoutDetailsSaved);
 
             base.OnSaveCommand();
         }

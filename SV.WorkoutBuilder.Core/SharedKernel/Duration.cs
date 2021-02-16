@@ -28,6 +28,9 @@ namespace SV.Builder.Core.SharedKernel
 
         public static Duration operator +(Duration duration1, Duration duration2)
         {
+            if (duration2 == null)
+                duration2 = None;
+
             var duration = new Duration(
                 duration1.Length.Hours + duration2.Length.Hours,
                 duration1.Length.Minutes + duration2.Length.Minutes,
@@ -39,6 +42,9 @@ namespace SV.Builder.Core.SharedKernel
 
         public static bool operator >(Duration duration1, Duration duration2)
         {
+            if (duration2 == null)
+                duration2 = None;
+
             if (duration1.Length.Hours > duration2.Length.Hours
                 || duration1.Length.Minutes > duration2.Length.Minutes
                 || duration1.Length.Seconds > duration2.Length.Seconds)
@@ -51,6 +57,9 @@ namespace SV.Builder.Core.SharedKernel
 
         public static bool operator <(Duration duration1, Duration duration2)
         {
+            if (duration2 == null)
+                duration2 = None;
+
             if (duration1.Length.Hours < duration2.Length.Hours
                 || duration1.Length.Minutes < duration2.Length.Minutes
                 || duration1.Length.Seconds < duration2.Length.Seconds)

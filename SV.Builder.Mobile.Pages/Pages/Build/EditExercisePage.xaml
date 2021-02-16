@@ -1,0 +1,210 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<local:EditExercisePageXaml xmlns="http://xamarin.com/schemas/2014/forms"
+                              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                              x:Class="SV.Builder.Mobile.Views.Pages.EditExercisePage"
+                              xmlns:local="clr-namespace:SV.Builder.Mobile.Views.Pages"
+                              Title="Add Exercise"
+                              xmlns:partials="clr-namespace:SV.Builder.Mobile.Views.Partial"
+                              xmlns:pageVMs="clr-namespace:SV.Builder.Mobile.ViewModels.Pages;assembly=SV.Builder.Mobile.ViewModels"
+                              xmlns:modelVMs="clr-namespace:SV.Builder.Mobile.ViewModels;assembly=SV.Builder.Mobile.ViewModels"
+                              x:DataType="pageVMs:EditExercisePageViewModel"
+                              xmlns:converters="clr-namespace:SV.Builder.Mobile.ViewModels.Converters;assembly=SV.Builder.Mobile.ViewModels"
+                              >
+
+    <local:EditExercisePageXaml.Resources>
+        <ResourceDictionary>
+            <converters:InverseBoolConverter x:Key="inverseBoolConverter"/>
+        </ResourceDictionary>
+    </local:EditExercisePageXaml.Resources>
+    <Grid RowSpacing="0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="52" />
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <partials:FormTitleBar></partials:FormTitleBar>
+
+        <StackLayout Spacing="0"
+                     Grid.Row="1"
+                     Padding="0"
+                     Margin="0"
+                     >
+
+            <StackLayout Padding="15">
+
+                <Label Text="Exercise Name" 
+                       FontSize="Medium" 
+                       FontAttributes="Bold"
+                       />
+                <Entry Text="{Binding ExerciseViewModel.Name}" 
+                       FontSize="Medium" 
+                       />
+
+                <Label Text="Sets"
+                        FontSize="Medium"
+                        FontAttributes="Bold"
+                        ></Label>
+            </StackLayout>
+            <!--sets-->
+            <StackLayout Margin="0,0,0,0"
+                         Padding="0"
+                         Spacing="0"
+                         >
+                <CollectionView x:Name="exerciseSetsCollectionView"
+                                ItemsSource="{Binding ExerciseViewModel.Sets}"
+                                BackgroundColor="LightGray"
+                                ItemsUpdatingScrollMode="KeepLastItemInView"
+                                >
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="modelVMs:SetViewModel">
+                            <Grid>
+                                <Frame Visual="Material"
+                                       Padding="0"
+                                       Margin="5"
+                                       >
+                                    <StackLayout Spacing="25"
+                                                 Padding="15"
+                                                 >
+
+                                        <!--header-->
+                                        <StackLayout Orientation="Horizontal">
+
+                                            <Label Text="{Binding Name}"
+                                                   VerticalOptions="Center"
+                                                   FontSize="Medium"
+                                                   FontAttributes="Bold"
+                                                   ></Label>
+
+                                            <StackLayout HorizontalOptions="EndAndExpand">
+                                                <Switch x:Name="timedSwitch"
+                                                        IsToggled="{Binding StopwatchSet}"
+                                                        ></Switch>
+                                                <Label Text="Use Stopwatch"
+                                                       HorizontalOptions="Center"
+                                                       />
+                                            </StackLayout>
+                                        </StackLayout>
+                                        <!--/header-->
+
+                                        <!--reps-->
+                                        <StackLayout Orientation="Horizontal">
+                                            <Label VerticalOptions="Center"
+                                                   IsVisible="{Binding MaxSet, Converter={StaticResource inverseBoolConverter}}"
+                                                   >
+                                                <Label.FormattedText>
+                                                    <FormattedString>
+                                                        <Span Text="{Binding Repetitions}"></Span>
+                                                        <Span Text=" Rep(s)"></Span>
+                                                    </FormattedString>
+                                                </Label.FormattedText>
+                                            </Label>
+
+                                            <Label Text="Max Reps" 
+                                                   VerticalOptions="Center"
+                                                   IsVisible="{Binding MaxSet}"
+                                                   ></Label>
+
+                                            <Entry Text="{Binding Repetitions}"
+                                                   Keyboard="Numeric"
+                                                   HorizontalOptions="EndAndExpand"
+                                                   WidthRequest="80"
+                                                   IsVisible="{Binding MaxSet, Converter={StaticResource inverseBoolConverter}}"
+                                                   >
+                                            </Entry>
+
+                                            <StackLayout HorizontalOptions="EndAndExpand">
+                                                <Switch x:Name="maxSetSwitch"
+                                                        IsToggled="{Binding MaxSet}"
+                                                        ></Switch>
+                                                <Label Text="Max Set"
+                                                       HorizontalOptions="Center"
+                                                       />
+                                            </StackLayout>
+
+                                        </StackLayout>
+                                        <!--/reps-->
+
+                                        <!--time-->
+                                        <StackLayout Orientation="Horizontal"
+                                                     IsVisible="{Binding StopwatchSet, Converter={x:StaticResource inverseBoolConverter}}"
+                                                     >
+                                            <Label Text="Timed Duration"
+                                                   VerticalOptions="Center"
+                                                   ></Label>
+
+                                            <Picker Title="Hours"
+                                                    HorizontalOptions="EndAndExpand"
+                                                    ItemsSource="{Binding HoursList}"
+                                                    SelectedItem="{Binding SelectedHours}"
+                                                    WidthRequest="70"
+                                                    FontSize="Small"
+                                                    >
+                                            </Picker>
+
+                                            <Picker Title="Mins"
+                                                    ItemsSource="{Binding MinutesList}"
+                                                    SelectedItem="{Binding SelectedMinutes}"
+                                                    WidthRequest="60"
+                                                    FontSize="Small"
+                                                    >
+                                            </Picker>
+
+                                            <Picker Title="Secs"
+                                                    WidthRequest="60"
+                                                    ItemsSource="{Binding SecondsList}"
+                                                    SelectedItem="{Binding SelectedSeconds}"
+                                                    FontSize="Small"
+                                                    >
+                                            </Picker>
+                                        </StackLayout>
+                                        <!--/time-->
+
+                                        <!--weight-->
+                                        <StackLayout Orientation="Horizontal">
+                                            <Label Text="Weight"
+                                                   VerticalOptions="Center"
+                                                   ></Label>
+
+                                            <Entry Placeholder="Enter Weight"
+                                                   Keyboard="Numeric"
+                                                   HorizontalOptions="EndAndExpand"
+                                                   Text="{Binding Weight}"
+                                                   >
+                                            </Entry>
+                                        </StackLayout>
+                                        <!--/weight-->
+
+                                        <StackLayout Orientation="Horizontal"
+                                                     >
+                                            <Button Text="Remove Set"
+                                                    BackgroundColor="Transparent"
+                                                    TextColor="{StaticResource Primary}"
+                                                    Command="{Binding RemoveSetCommand}"
+                                                    ></Button>
+
+                                            <Button Text="Copy Set"
+                                                    HorizontalOptions="EndAndExpand"
+                                                    BackgroundColor="Transparent"
+                                                    TextColor="{StaticResource Primary}"
+                                                    ></Button>
+                                        </StackLayout>
+                                    </StackLayout>
+                                </Frame>
+                            </Grid>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+
+                <Button Text="Add Set"
+                        HorizontalOptions="End"
+                        BackgroundColor="Transparent"
+                        TextColor="{StaticResource Primary}"
+                        Command="{Binding AddSetCommand}"
+                        ></Button>
+
+            </StackLayout>
+            <!--/sets-->
+        </StackLayout>
+
+    </Grid>
+</local:EditExercisePageXaml>

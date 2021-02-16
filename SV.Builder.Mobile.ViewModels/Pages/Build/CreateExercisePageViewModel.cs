@@ -1,25 +1,10 @@
-﻿using SV.Builder.Mobile.Common.MessageCenter;
-using System;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Windows.Input;
-using Xamarin.Forms;
+﻿using System;
 
 namespace SV.Builder.Mobile.ViewModels.Pages
 {
-    public class CreateExercisePageViewModel : BaseFormContentPageViewModel
+    public class CreateExercisePageViewModel : ExercisePageViewModel
     {
         private readonly RoundViewModel _roundViewModel;
-
-        private ExerciseViewModel _exerciseViewModel;
-        public ExerciseViewModel ExerciseViewModel
-        {
-            get { return _exerciseViewModel; }
-            set { SetProperty(ref _exerciseViewModel, value); }
-        }
-
-
-        public ICommand AddSetCommand { get; set; }
 
         public CreateExercisePageViewModel(RoundViewModel roundViewModel)
         {
@@ -29,31 +14,16 @@ namespace SV.Builder.Mobile.ViewModels.Pages
             _roundViewModel = roundViewModel;
             ExerciseViewModel = new ExerciseViewModel();
 
-            addSet(null);
-            AddSetCommand = new Command(addSet);
+            AddDefaultSet();
         }
 
-        private void addSet(object sender)
+        private void AddDefaultSet()
         {
-            var set = new SetViewModel()
-            {
-                Name = $"Set {ExerciseViewModel.Sets.Count + 1}"
-            };
-            ExerciseViewModel.Sets.Add(set);
+            AddSet(null);
         }
-
-        public void RemoveSet(SetViewModel setViewModelArg)
-        {
-            var setToRemove = ExerciseViewModel.Sets.FirstOrDefault(x => x == setViewModelArg);
-            if (setToRemove != null)
-            {
-                ExerciseViewModel.Sets.Remove(setToRemove);
-            }
-        }
-
         public override void OnSaveCommand()
         {
-            _roundViewModel.AddExercise(ExerciseViewModel);
+            _roundViewModel.AddExercise(ExerciseViewModel); // todo this is leaky
 
             base.OnSaveCommand();
         }

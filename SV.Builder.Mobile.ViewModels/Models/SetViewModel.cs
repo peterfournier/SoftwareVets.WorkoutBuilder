@@ -21,14 +21,21 @@ namespace SV.Builder.Mobile.ViewModels
             set { SetProperty(ref _stopwatchSet, value); }
         }
 
-        private int _repetitions = 1;
+        private bool _maxSet;
+        public bool MaxSet
+        {
+            get { return _maxSet; }
+            set { SetProperty(ref _maxSet, value); }
+        }
+
+        private int _repetitions;
         public int Repetitions
         {
             get { return _repetitions; }
             set { SetProperty(ref _repetitions, value); }
         }
 
-        private Duration _duration;
+        private Duration _duration = Duration.None;
         public Duration Duration
         {
             get { return _duration; }
@@ -112,7 +119,6 @@ namespace SV.Builder.Mobile.ViewModels
             MessagingCenter.Send(this, Messages.RemoveSetViewModel, this);
         }
 
-
         private void populateHoursList()
         {
             for (int i = 0; i < 61; i++)
@@ -177,10 +183,11 @@ namespace SV.Builder.Mobile.ViewModels
         public SetOptions GetSetOptions()
         {
             decimal.TryParse(Weight, out decimal weight);
-            return new SetOptions(Duration, 
-                Repetitions, 
+            return new SetOptions(Duration,
+                MaxSet ? 0 : Repetitions, 
                 weight, 
                 StopwatchSet);
         }
+        
     }
 }

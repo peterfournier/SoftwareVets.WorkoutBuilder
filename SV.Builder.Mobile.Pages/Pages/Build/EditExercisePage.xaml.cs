@@ -1,4 +1,5 @@
-﻿using SV.Builder.Mobile.Common.MessageCenter;
+﻿using SV.Builder.Core.Common;
+using SV.Builder.Mobile.Common.MessageCenter;
 using SV.Builder.Mobile.ViewModels;
 using SV.Builder.Mobile.ViewModels.Pages;
 using System;
@@ -13,26 +14,26 @@ using Xamarin.Forms.Xaml;
 namespace SV.Builder.Mobile.Views.Pages
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class CreateExercisePage : CreateExercisePageXaml
+    public partial class EditExercisePage : EditExercisePageXaml
     {
-        public CreateExercisePage(RoundViewModel roundViewModel)
+        public EditExercisePage(ExerciseViewModel exerciseViewModel)
         {
-            if (roundViewModel == null)
-                throw new ArgumentNullException(nameof(roundViewModel));
+            Guard.ForNull(exerciseViewModel, nameof(exerciseViewModel));
 
             InitializeComponent();
 
-            BindingContext = new CreateExercisePageViewModel(roundViewModel);
+            BindingContext = new EditExercisePageViewModel(exerciseViewModel);
             MessagingCenter.Subscribe<SetViewModel, SetViewModel>(this, Messages.RemoveSetViewModel, removeSetHandler);
         }
-        ~CreateExercisePage()
+        ~EditExercisePage()
         {
             MessagingCenter.Unsubscribe<SetViewModel, SetViewModel>(this, Messages.RemoveSetViewModel);
         }
 
+        // todo base class?
         private async void removeSetHandler(SetViewModel sender, SetViewModel setViewModelArg)
         {
-            if (BindingContext is CreateExercisePageViewModel viewModel)
+            if (BindingContext is ExercisePageViewModel viewModel)
             {
                 if (viewModel.ExerciseViewModel.Sets.Count > 1)
                 {
@@ -47,8 +48,8 @@ namespace SV.Builder.Mobile.Views.Pages
                 }
             }
         }
-        
+
     }
 
-    public partial class CreateExercisePageXaml : ContentPageBase { }
+    public partial class EditExercisePageXaml : ContentPageBase { }
 }

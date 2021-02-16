@@ -15,9 +15,18 @@ namespace SV.Builder.Mobile.Views.Pages
         {
             InitializeComponent();
 
-            MessagingCenter.Subscribe<RoundViewModel>(this, Messages.GoToNewExercisePage, addExerciseHandler);
+            MessagingCenter.Subscribe<RoundViewModel>(this, Messages.GoToCreateExercisePage, addExerciseHandler);
+            MessagingCenter.Subscribe<ExerciseViewModel>(this, Messages.GoToEditExercisePage, editExerciseHandler);
             MessagingCenter.Subscribe<CreateWorkoutPageViewModel>(this, Messages.GoToNewRoundPage, goToNewRoundPageHandler);
             MessagingCenter.Subscribe<CreateWorkoutPageViewModel>(this, Messages.GoToEditWorkoutNamePage, goToEditWorkoutNamePageHandler);
+        }
+
+        ~CreateWorkoutPage()
+        {
+            MessagingCenter.Unsubscribe<RoundViewModel>(this, Messages.GoToCreateExercisePage);
+            MessagingCenter.Unsubscribe<ExerciseViewModel>(this, Messages.GoToEditExercisePage);
+            MessagingCenter.Unsubscribe<CreateWorkoutPageViewModel>(this, Messages.GoToNewRoundPage);
+            MessagingCenter.Unsubscribe<CreateWorkoutPageViewModel>(this, Messages.GoToEditWorkoutNamePage);
         }
 
         private async void goToEditWorkoutNamePageHandler(CreateWorkoutPageViewModel createWorkoutPageViewModel)
@@ -46,6 +55,15 @@ namespace SV.Builder.Mobile.Views.Pages
                 await Shell.Current.Navigation.PushModalAsync(new CreateExercisePage(sender));
             }
         }
+
+        private async void editExerciseHandler(ExerciseViewModel sender)
+        {
+            using (new BusyStatus(sender))
+            {
+                await Shell.Current.Navigation.PushModalAsync(new EditExercisePage(sender));
+            }
+        }
+
     }
 
     public class CreateWorkoutPageXaml : ContentPageBase<CreateWorkoutPageViewModel> { }

@@ -5,7 +5,7 @@ namespace SV.Builder.Core.SharedKernel
 {
     public class SetOptions : ValueObject<SetOptions>
     {
-        public Duration Duration { get; }
+        public Duration Duration { get; } = Duration.None;
         public int Reps { get; }
         public bool Timed { get; }
         public decimal Weight { get; }
