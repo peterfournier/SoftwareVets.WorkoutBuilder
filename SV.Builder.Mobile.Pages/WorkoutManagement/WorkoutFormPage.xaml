@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<local:WorkoutFormPageXaml xmlns="http://xamarin.com/schemas/2014/forms"
+                           xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                           xmlns:local="clr-namespace:SV.Builder.Mobile.Views.WorkoutManagement"
+                           x:Class="SV.Builder.Mobile.Views.WorkoutManagement.WorkoutFormPage"
+                           xmlns:partials="clr-namespace:SV.Builder.Mobile.Views.Partial"
+                           >
+    <Grid RowSpacing="0"
+          >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="52"></RowDefinition>
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <partials:FormTitleBar></partials:FormTitleBar>
+
+        <StackLayout Grid.Row="1"
+                     Spacing="0"
+                     >
+
+            <!--workout header-->
+            <StackLayout Padding="15">
+                <Label Text="{Binding WorkoutName}"
+                            FontSize="Large"
+                            FontAttributes="Bold"
+                            >
+                </Label>
+
+                <Label Text="{Binding WorkoutDescription}"
+                            FontSize="Default"
+                            ></Label>
+
+                <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding GoToEditWorkoutNamePageCommand}"></TapGestureRecognizer>
+                </StackLayout.GestureRecognizers>
+            </StackLayout>
+            <!--/workout header-->
+
+            <Button Text="Add Round"
+                    x:Name="addRoundButton"
+                    VerticalOptions="EndAndExpand"
+                    
+                    ></Button>
+        </StackLayout>
+    </Grid>
+</local:WorkoutFormPageXaml>

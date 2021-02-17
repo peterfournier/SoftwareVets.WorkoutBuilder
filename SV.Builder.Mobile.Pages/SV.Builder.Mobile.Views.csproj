@@ -22,9 +22,6 @@
     <EmbeddedResource Update="Pages\Build\EditExercisePage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Pages\Build\EditWorkoutNamePage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
     <EmbeddedResource Update="Pages\Build\GettingStarted.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
@@ -58,6 +55,9 @@
     <EmbeddedResource Update="Shared\DataTemplates\StrengthSetDataTemplate.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="WorkoutManagement\WorkoutFormPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
   </ItemGroup>
 
   <ItemGroup>
@@ -80,6 +80,12 @@
     </Compile>
     <Compile Update="Shared\DataTemplates\StrengthEnduranceSetDataTemplate.xaml.cs">
       <DependentUpon>StrengthEnduranceSetDataTemplate.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="WorkoutManagement\EditWorkoutNamePage.xaml.cs">
+      <DependentUpon>%(Filename)</DependentUpon>
+    </Compile>
+    <Compile Update="WorkoutManagement\GettingStarted.xaml.cs">
+      <DependentUpon>%(Filename)</DependentUpon>
     </Compile>
   </ItemGroup>
 

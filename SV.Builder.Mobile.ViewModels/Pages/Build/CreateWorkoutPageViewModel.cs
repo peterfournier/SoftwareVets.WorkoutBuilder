@@ -65,7 +65,6 @@ namespace SV.Builder.Mobile.ViewModels.Pages
 
         protected override void WireUpSubscriptions()
         {
-            MessagingCenter.Subscribe<EditWorkoutNamePageViewModel>(this, Messages.OnWorkoutDetailsSaved, workoutDetailsEdited);
             MessagingCenter.Subscribe<CreateRoundPageViewModel, RoundViewModel>(this, Messages.CreateRound, roundCreatedHandler);
             MessagingCenter.Subscribe<EditExercisePageViewModel, ExerciseViewModel>(this, Messages.OnExerciseSaved, onExerciseSaved);
         }
@@ -88,11 +87,6 @@ namespace SV.Builder.Mobile.ViewModels.Pages
             Rounds.Add(roundViewModel);
         }
 
-        private void workoutDetailsEdited(EditWorkoutNamePageViewModel viewModel)
-        {
-            Name = viewModel.Name;
-            Description = viewModel.Description;
-        }
 
         public override void OnSaveCommand()
         {

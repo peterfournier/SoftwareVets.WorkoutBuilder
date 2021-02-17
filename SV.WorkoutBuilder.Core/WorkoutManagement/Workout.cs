@@ -8,8 +8,10 @@ namespace SV.Builder.Core.WorkoutManagement
 {
     public class Workout : Entity // aggregate root
     {
+        public static Workout New = new Workout("Workout A", "A brief description of your workout");
+
         public virtual string Name { get; set; }
-        public virtual string Description { get; }
+        public virtual string Description { get; set; }
         public virtual Duration EstimatedDuration { get; private set; } = Duration.None;
 
         private IList<Round> _rounds = new List<Round>();

@@ -18,7 +18,6 @@ namespace SV.Builder.Mobile.Views.Pages
             MessagingCenter.Subscribe<RoundViewModel>(this, Messages.GoToCreateExercisePage, addExerciseHandler);
             MessagingCenter.Subscribe<ExerciseViewModel>(this, Messages.GoToEditExercisePage, editExerciseHandler);
             MessagingCenter.Subscribe<CreateWorkoutPageViewModel>(this, Messages.GoToNewRoundPage, goToNewRoundPageHandler);
-            MessagingCenter.Subscribe<CreateWorkoutPageViewModel>(this, Messages.GoToEditWorkoutNamePage, goToEditWorkoutNamePageHandler);
         }
 
         ~CreateWorkoutPage()
@@ -27,17 +26,6 @@ namespace SV.Builder.Mobile.Views.Pages
             MessagingCenter.Unsubscribe<ExerciseViewModel>(this, Messages.GoToEditExercisePage);
             MessagingCenter.Unsubscribe<CreateWorkoutPageViewModel>(this, Messages.GoToNewRoundPage);
             MessagingCenter.Unsubscribe<CreateWorkoutPageViewModel>(this, Messages.GoToEditWorkoutNamePage);
-        }
-
-        private async void goToEditWorkoutNamePageHandler(CreateWorkoutPageViewModel createWorkoutPageViewModel)
-        {
-            using (new BusyStatus(createWorkoutPageViewModel))
-            {
-                var workoutName = createWorkoutPageViewModel.Name.Equals(createWorkoutPageViewModel.DefaultWorkoutName) ? string.Empty : createWorkoutPageViewModel.Name;
-                var workoutDescription = createWorkoutPageViewModel.Description.Equals(createWorkoutPageViewModel.DefaultDescription) ? string.Empty : createWorkoutPageViewModel.Description;
-
-                await Shell.Current.Navigation.PushModalAsync(new EditWorkoutNamePage(workoutName, workoutDescription));
-            }
         }
 
         private async void goToNewRoundPageHandler(CreateWorkoutPageViewModel createWorkoutPageViewModel)

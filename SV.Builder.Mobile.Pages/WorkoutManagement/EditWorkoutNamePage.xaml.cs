@@ -1,4 +1,6 @@
-﻿using SV.Builder.Mobile.ViewModels.Pages;
+﻿using SV.Builder.Core.WorkoutManagement;
+using SV.Builder.Mobile.ViewModels.WorkoutManagement;
+using SV.Builder.Mobile.Views.Shared;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,18 +10,15 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace SV.Builder.Mobile.Views.Pages
+namespace SV.Builder.Mobile.Views.WorkoutManagement
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class EditWorkoutNamePage : EditWorkoutNamePageXaml
     {
-        public EditWorkoutNamePage(string workoutName, string workoutDescription)
+        public EditWorkoutNamePage(Workout workout)
         {
+            BindingContext = new EditWorkoutNamePageViewModel(workout);
             InitializeComponent();
-            var viewModel = new EditWorkoutNamePageViewModel();
-            viewModel.Name = workoutName;
-            viewModel.Description = workoutDescription;
-            BindingContext = viewModel;
         }
     }
 

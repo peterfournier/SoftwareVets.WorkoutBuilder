@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <local:EditWorkoutNamePageXaml xmlns="http://xamarin.com/schemas/2014/forms"
                                xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-                               x:Class="SV.Builder.Mobile.Views.Pages.EditWorkoutNamePage"
-                               xmlns:local="clr-namespace:SV.Builder.Mobile.Views.Pages"
+                               x:Class="SV.Builder.Mobile.Views.WorkoutManagement.EditWorkoutNamePage"
+                               xmlns:local="clr-namespace:SV.Builder.Mobile.Views.WorkoutManagement"
                                xmlns:partials="clr-namespace:SV.Builder.Mobile.Views.Partial"
-                               xmlns:viewModels="clr-namespace:SV.Builder.Mobile.ViewModels.Pages;assembly=SV.Builder.Mobile.ViewModels"
+                               xmlns:viewModels="clr-namespace:SV.Builder.Mobile.ViewModels.WorkoutManagement;assembly=SV.Builder.Mobile.ViewModels"
                                x:DataType="viewModels:EditWorkoutNamePageViewModel"
                                Title="Edit Workout Name"
                                >
