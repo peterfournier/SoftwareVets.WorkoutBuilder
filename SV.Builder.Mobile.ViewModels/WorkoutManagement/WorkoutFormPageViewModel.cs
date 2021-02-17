@@ -13,7 +13,8 @@ namespace SV.Builder.Mobile.ViewModels.WorkoutManagement
 
         public string WorkoutName => _workout.Name;
         public string WorkoutDescription => _workout.Description;
-
+        public string WorkoutDuration => _workout.EstimatedDuration.Length.ToString();
+        public string NumberOfWorkoutRounds => _workout.Rounds.Count.ToString();
 
         public ICommand GoToEditWorkoutNamePageCommand { get; }
 
@@ -41,6 +42,8 @@ namespace SV.Builder.Mobile.ViewModels.WorkoutManagement
         {
             OnPropertyChanged(nameof(WorkoutName));
             OnPropertyChanged(nameof(WorkoutDescription));
+            OnPropertyChanged(nameof(WorkoutDuration));
+            OnPropertyChanged(nameof(NumberOfWorkoutRounds));
         }
     }
 }

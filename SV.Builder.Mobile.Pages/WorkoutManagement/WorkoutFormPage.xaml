@@ -36,6 +36,50 @@
             </StackLayout>
             <!--/workout header-->
 
+            <BoxView HeightRequest="1"
+                            Color="LightGray"
+                            Margin="15,0,0,0"
+                            >
+
+            </BoxView>
+
+            <StackLayout x:Name="workoutDetailsStack"
+                                Padding="15">
+
+                <!--workout details-->
+                <StackLayout Orientation="Horizontal"
+                                    Spacing="50"
+                                    >
+                    <StackLayout>
+                        <Label Text="{Binding WorkoutDuration}"
+                                    HorizontalTextAlignment="Center"
+                                    ></Label>
+                        <Label Text="Est. Duration"
+                                    HorizontalTextAlignment="Center"
+                                    ></Label>
+                    </StackLayout>
+
+                    <StackLayout>
+                        <Label Text="{Binding NumberOfWorkoutRounds}"
+                                    HorizontalTextAlignment="Center"
+                                    ></Label>
+                        
+                        <Label Text="Round(s)"
+                                    HorizontalTextAlignment="Center"
+                                    ></Label>
+
+                    </StackLayout>
+                </StackLayout>
+                <!--/workout details-->
+
+            </StackLayout>
+
+            <BoxView HeightRequest="1"
+                            Color="LightGray"
+                            Margin="15,0,0,0"
+                            ></BoxView>
+
+
             <Button Text="Add Round"
                     x:Name="addRoundButton"
                     VerticalOptions="EndAndExpand"
