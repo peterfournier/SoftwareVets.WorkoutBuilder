@@ -49,7 +49,7 @@ namespace SV.Builder.Mobile.ViewModels.Pages
         public CreateWorkoutPageViewModel()
         {
             setNewWorkout();
-            GoToNewRoundPageCommand = new DisableWhenBusyCommand(this, goToNewRoundPageHandler);
+            //GoToNewRoundPageCommand = new DisableWhenBusyCommand(this, goToNewRoundPageHandler);
             GoToEditWorkoutNameCommand = new DisableWhenBusyCommand(this, goToEditWorkoutNameCommandHandler);
         }
 
@@ -58,14 +58,13 @@ namespace SV.Builder.Mobile.ViewModels.Pages
             MessagingCenter.Send(this, Messages.GoToEditWorkoutNamePage);
         }
 
-        private void goToNewRoundPageHandler(object obj)
-        {
-            MessagingCenter.Send(this, Messages.GoToNewRoundPage);
-        }
+        //private void goToNewRoundPageHandler(object obj)
+        //{
+        //    MessagingCenter.Send(this, Messages.GoToNewRoundPage);
+        //}
 
         protected override void WireUpSubscriptions()
         {
-            MessagingCenter.Subscribe<CreateRoundPageViewModel, RoundViewModel>(this, Messages.CreateRound, roundCreatedHandler);
             MessagingCenter.Subscribe<EditExercisePageViewModel, ExerciseViewModel>(this, Messages.OnExerciseSaved, onExerciseSaved);
         }
 
@@ -80,11 +79,6 @@ namespace SV.Builder.Mobile.ViewModels.Pages
             Description = DefaultDescription;
 
             _workout = new Workout(Name, Description);
-        }
-
-        private void roundCreatedHandler(CreateRoundPageViewModel sender, RoundViewModel roundViewModel)
-        {
-            Rounds.Add(roundViewModel);
         }
 
 

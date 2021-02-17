@@ -27,8 +27,8 @@ namespace SV.Builder.Mobile.ViewModels.WorkoutManagement
         public EditWorkoutNamePageViewModel(Workout workout)
         {
             _workout = Guard.ForNull(workout, nameof(workout));
-            Name = _workout.Name.Equals(Workout.New.Name) ? "" : _workout.Name;
-            Description = _workout.Description.Equals(Workout.New.Description) ? "" : _workout.Description;
+            Name = _workout.Name;
+            Description = _workout.Description;
         }
 
         public override void OnSaveCommand()

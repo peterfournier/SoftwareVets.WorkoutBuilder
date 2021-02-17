@@ -4,6 +4,8 @@
                            xmlns:local="clr-namespace:SV.Builder.Mobile.Views.WorkoutManagement"
                            x:Class="SV.Builder.Mobile.Views.WorkoutManagement.WorkoutFormPage"
                            xmlns:partials="clr-namespace:SV.Builder.Mobile.Views.Partial"
+                           xmlns:vms="clr-namespace:SV.Builder.Mobile.ViewModels.WorkoutManagement;assembly=SV.Builder.Mobile.ViewModels"
+                           xmlns:buttons="clr-namespace:SV.Builder.Mobile.Views.Buttons"
                            >
     <Grid RowSpacing="0"
           >
@@ -17,74 +19,161 @@
         <StackLayout Grid.Row="1"
                      Spacing="0"
                      >
+            <StackLayout x:Name="mainContentStack"
+                         BackgroundColor="LightGray"
+                         Spacing="0"
+                         >
 
-            <!--workout header-->
-            <StackLayout Padding="15">
-                <Label Text="{Binding WorkoutName}"
-                            FontSize="Large"
-                            FontAttributes="Bold"
-                            >
-                </Label>
+                <!--workout header-->
+                <StackLayout Padding="15">
+                    <Label Text="{Binding WorkoutName}"
+                           FontSize="Large"
+                           FontAttributes="Bold"
+                           >
+                    </Label>
 
-                <Label Text="{Binding WorkoutDescription}"
-                            FontSize="Default"
-                            ></Label>
+                    <Label Text="{Binding WorkoutDescription}"
+                           FontSize="Default"
+                           ></Label>
 
-                <StackLayout.GestureRecognizers>
-                    <TapGestureRecognizer Command="{Binding GoToEditWorkoutNamePageCommand}"></TapGestureRecognizer>
-                </StackLayout.GestureRecognizers>
-            </StackLayout>
-            <!--/workout header-->
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding GoToEditWorkoutNamePageCommand}"></TapGestureRecognizer>
+                    </StackLayout.GestureRecognizers>
+                </StackLayout>
+                <!--/workout header-->
 
-            <BoxView HeightRequest="1"
-                            Color="LightGray"
-                            Margin="15,0,0,0"
-                            >
+                <BoxView HeightRequest="1"
+                         Color="LightGray"
+                         Margin="15,0,0,0"
+                         >
+                </BoxView>
 
-            </BoxView>
-
-            <StackLayout x:Name="workoutDetailsStack"
+                <StackLayout x:Name="workoutDetailsStack"
                                 Padding="15">
 
-                <!--workout details-->
-                <StackLayout Orientation="Horizontal"
+                    <!--workout details-->
+                    <StackLayout Orientation="Horizontal"
                                     Spacing="50"
                                     >
-                    <StackLayout>
-                        <Label Text="{Binding WorkoutDuration}"
+                        <StackLayout>
+                            <Label Text="{Binding WorkoutDuration}"
                                     HorizontalTextAlignment="Center"
                                     ></Label>
-                        <Label Text="Est. Duration"
+                            <Label Text="Est. Duration"
                                     HorizontalTextAlignment="Center"
                                     ></Label>
-                    </StackLayout>
+                        </StackLayout>
 
-                    <StackLayout>
-                        <Label Text="{Binding NumberOfWorkoutRounds}"
-                                    HorizontalTextAlignment="Center"
-                                    ></Label>
-                        
-                        <Label Text="Round(s)"
+                        <StackLayout>
+                            <Label Text="{Binding NumberOfWorkoutRounds}"
                                     HorizontalTextAlignment="Center"
                                     ></Label>
 
+                            <Label Text="Round(s)"
+                                    HorizontalTextAlignment="Center"
+                                    ></Label>
+
+                        </StackLayout>
                     </StackLayout>
+                    <!--/workout details-->
+
                 </StackLayout>
-                <!--/workout details-->
+
+                <BoxView HeightRequest="1"
+                         Color="LightGray"
+                         Margin="15,0,0,0"
+                         ></BoxView>
+
+                <!--rounds-->
+                <CollectionView ItemsSource="{Binding Rounds}"
+                                ItemsUpdatingScrollMode="KeepLastItemInView"
+                                >
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="vms:RoundViewModel">
+                            <Grid>
+                                <Frame Visual="Material"
+                                        Margin="5"
+                                        Padding="0"
+                                        >
+                                    <StackLayout Padding="15">
+
+                                        <!--round header-->
+                                        <StackLayout x:Name="roundHeader"
+                                                        Orientation="Horizontal"
+                                                        >
+                                            <Label Text="{Binding Name}"
+                                                    FontSize="Medium"
+                                                    FontAttributes="Bold"
+                                                    ></Label>
+
+                                            <Label HorizontalOptions="CenterAndExpand"
+                                                    VerticalTextAlignment="Center"
+                                                    >
+                                                <Label.FormattedText>
+                                                    <FormattedString>
+                                                        <Span Text="x"></Span>
+                                                        <Span Text="{Binding Iterations}"></Span>
+                                                    </FormattedString>
+                                                </Label.FormattedText>
+                                            </Label>
+
+
+                                            <Label Text="{Binding Duration}"
+                                                    VerticalTextAlignment="Center"
+                                                    ></Label>
+
+                                            <buttons:PencilIconButton HorizontalOptions="EndAndExpand"
+                                                                      Command="{Binding EditRoundCommand}"
+                                                                      WidthRequest="18"
+                                                                      HeightRequest="18"
+                                                                      >
+                                            </buttons:PencilIconButton>
+                                        </StackLayout>
+                                        <!--/round header-->
+
+                                        <Label Text="{Binding Description}"></Label>
+
+                                        <Label Text="Exercises"
+                                               FontSize="Medium"
+                                               FontAttributes="Bold"
+                                               HorizontalOptions="CenterAndExpand"
+                                               Margin="0,10,0,0"
+                                               ></Label>
+
+                                        <BoxView HeightRequest="1"
+                                                 Color="Gray"
+                                                 WidthRequest="100"
+                                                 HorizontalOptions="Center"
+                                                ></BoxView>
+
+                                        <!--exercises-->
+
+                                        <!--/exercises-->
+
+                                        <!--<Button Text="Add Exercise"
+                                                HorizontalOptions="End"
+                                                Command="{Binding AddExerciseToRoundCommand}"
+                                                CommandParameter="{Binding .}"
+                                                BackgroundColor="Transparent"
+                                                TextColor="{StaticResource Primary}"
+                                                ></Button>-->
+                                    </StackLayout>
+                                </Frame>
+                            </Grid>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+                <!--/rounds-->
 
             </StackLayout>
-
-            <BoxView HeightRequest="1"
-                            Color="LightGray"
-                            Margin="15,0,0,0"
-                            ></BoxView>
-
 
             <Button Text="Add Round"
                     x:Name="addRoundButton"
                     VerticalOptions="EndAndExpand"
-                    
+                    Command="{Binding AddNewRoundCommand}"
                     ></Button>
+
+
         </StackLayout>
     </Grid>
 </local:WorkoutFormPageXaml>

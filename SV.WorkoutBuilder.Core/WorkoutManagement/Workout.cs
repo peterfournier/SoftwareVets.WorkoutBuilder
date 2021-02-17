@@ -49,5 +49,11 @@ namespace SV.Builder.Core.WorkoutManagement
 
             _rounds.Add(round);
         }
+
+        public virtual void AddRound(Round round) // unit test this
+        {
+            Guard.ForNull(round,nameof(round));
+            _rounds.Add(round);
+        }
     }
 }

@@ -22,21 +22,34 @@ namespace SV.Builder.Mobile.Views.WorkoutManagement
             BindingContext = new WorkoutFormPageViewModel(workout);
             InitializeComponent();
 
-            //MessagingCenter.Subscribe<RoundViewModel>(this, Messages.GoToCreateExercisePage, addExerciseHandler);
             //MessagingCenter.Subscribe<ExerciseViewModel>(this, Messages.GoToEditExercisePage, editExerciseHandler);
             //MessagingCenter.Subscribe<CreateWorkoutPageViewModel>(this, Messages.GoToNewRoundPage, goToNewRoundPageHandler);
-            MessagingCenter.Subscribe<WorkoutFormPageViewModel, Workout>(this, Messages.GoToEditWorkoutNamePage, goToEditWorkoutNamePageHandler);
+            MessagingCenter.Subscribe<RoundViewModel, Round>(this, Messages.GoToRoundFormPage, GoToRoundFormPage);
+            MessagingCenter.Subscribe<WorkoutFormPageViewModel, Round>(this, Messages.GoToRoundFormPage, GoToRoundFormPage);
+            MessagingCenter.Subscribe<WorkoutFormPageViewModel, Workout>(this, Messages.GoToEditWorkoutNamePage, GoToEditWorkoutNamePageHandler);
         }
+
 
         ~WorkoutFormPage()
         {
             //MessagingCenter.Unsubscribe<RoundViewModel>(this, Messages.GoToCreateExercisePage);
             //MessagingCenter.Unsubscribe<ExerciseViewModel>(this, Messages.GoToEditExercisePage);
             //MessagingCenter.Unsubscribe<CreateWorkoutPageViewModel>(this, Messages.GoToNewRoundPage);
+            MessagingCenter.Unsubscribe<WorkoutFormPageViewModel, Round>(this, Messages.GoToRoundFormPage);
             MessagingCenter.Unsubscribe<WorkoutFormPageViewModel>(this, Messages.GoToEditWorkoutNamePage);
         }
+        private async void GoToRoundFormPage(object sender, Round roundArg)
+        {
+            if (sender is IBusyStatus busy)
+            {
+                using (new BusyStatus(busy))
+                {
+                    await Shell.Current.Navigation.PushModalAsync(new RoundFormPage(roundArg));
+                }
+            }
+        }
 
-        private async void goToEditWorkoutNamePageHandler(WorkoutFormPageViewModel sender, Workout workout)
+        private async void GoToEditWorkoutNamePageHandler(WorkoutFormPageViewModel sender, Workout workout)
         {
             using (new BusyStatus(sender))
             {

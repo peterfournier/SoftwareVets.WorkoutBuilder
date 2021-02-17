@@ -1,11 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<local:CreateRoundPageXaml xmlns="http://xamarin.com/schemas/2014/forms"
+<local:RoundFormPageXaml xmlns="http://xamarin.com/schemas/2014/forms"
                            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-                           x:Class="SV.Builder.Mobile.Views.Pages.CreateRoundPage"
-                           xmlns:local="clr-namespace:SV.Builder.Mobile.Views.Pages"
+                           x:Class="SV.Builder.Mobile.Views.WorkoutManagement.RoundFormPage"
+                           xmlns:local="clr-namespace:SV.Builder.Mobile.Views.WorkoutManagement"
                            xmlns:partials="clr-namespace:SV.Builder.Mobile.Views.Partial"
-                           xmlns:viewModels="clr-namespace:SV.Builder.Mobile.ViewModels.Pages;assembly=SV.Builder.Mobile.ViewModels"
-                           x:DataType="viewModels:CreateRoundPageViewModel"
                            >
     <Grid RowSpacing="0">
         <Grid.RowDefinitions>
@@ -21,14 +19,14 @@
             <Label Text="Round Name" 
                    FontSize="Medium" 
                    />
-            <Entry Text="{Binding RoundViewModel.Name}" 
+            <Entry Text="{Binding Name}" 
                    FontSize="Medium" 
                    />
 
             <Label Text="Description" 
                    FontSize="Medium" 
                    />
-            <Editor Text="{Binding RoundViewModel.Description}" 
+            <Editor Text="{Binding Description}" 
                     AutoSize="TextChanges" 
                     FontSize="Medium" 
                     Margin="0" />
@@ -36,11 +34,11 @@
             <Label Text="Iterations" 
                    FontSize="Medium" 
                    />
-            <Entry Text="{Binding RoundViewModel.Iterations}" 
+            <Entry Text="{Binding Iterations}" 
                    FontSize="Medium" 
                    Keyboard="Numeric"
                    />
         </StackLayout>
 
     </Grid>
-</local:CreateRoundPageXaml>
+</local:RoundFormPageXaml>
