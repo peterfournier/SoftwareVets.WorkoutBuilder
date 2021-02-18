@@ -5,6 +5,7 @@ using SV.Builder.Mobile.Common.MessageCenter;
 using SV.Builder.Mobile.ViewModels.Shared;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -22,11 +23,11 @@ namespace SV.Builder.Mobile.ViewModels.WorkoutManagement
 
         public string Description => _round.Description;
 
-        public ICommand AddExerciseToRoundCommand { get; }
+        public ICommand AddNewExerciseToRoundCommand { get; }
 
         public ICommand EditRoundCommand { get; }
 
-        //public IReadOnlyList<ExerciseViewModel> Exercises => _round.Exercises;
+        public IReadOnlyList<ExerciseViewModel> Exercises => _round.Exercises.Select(x => new ExerciseViewModel(x)).ToList();
 
         public RoundViewModel(Round round)
         {
@@ -35,7 +36,16 @@ namespace SV.Builder.Mobile.ViewModels.WorkoutManagement
             EditRoundCommand = new DisableWhenBusyCommand(this, (args)
                 => MessagingCenter.Send(this, Messages.GoToRoundFormPage, _round));
 
-            //AddExerciseToRoundCommand = new Command(addNewExerciseToRound);
+            AddNewExerciseToRoundCommand = new DisableWhenBusyCommand(this, AddNewExercise);
+        }
+
+        private void AddNewExercise(object obj)
+        {
+            var exercise = new Exercise(_round, "Exercise Name", "Brief Description");
+
+            _round.AddExercise(exercise); // todo how to handle if the new exercise is not saved on this page? Use a temperary list?
+
+            MessagingCenter.Send(this, Messages.GoToExerciseFormPage, exercise);
         }
 
         //private void addNewExerciseToRound(object arg)

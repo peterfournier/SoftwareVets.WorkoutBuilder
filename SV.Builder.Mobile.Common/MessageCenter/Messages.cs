@@ -9,7 +9,9 @@
 
 
         // new
+        public static string ExerciseUpdated { get;} = nameof(ExerciseUpdated);
         public static string SwitchApplicationTheme { get; } = nameof(SwitchApplicationTheme);
+        public static string GoToExerciseFormPage { get; } = nameof(GoToExerciseFormPage);
         public static string GoToEditWorkoutNamePage { get; } = nameof(GoToEditWorkoutNamePage);
         public static string GoToRoundFormPage { get; } = nameof(GoToRoundFormPage);
         public static string RoundUpdated { get; } = nameof(RoundUpdated);

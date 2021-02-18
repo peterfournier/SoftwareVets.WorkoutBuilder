@@ -24,6 +24,9 @@ namespace SV.Builder.Mobile.Views.WorkoutManagement
 
             //MessagingCenter.Subscribe<ExerciseViewModel>(this, Messages.GoToEditExercisePage, editExerciseHandler);
             //MessagingCenter.Subscribe<CreateWorkoutPageViewModel>(this, Messages.GoToNewRoundPage, goToNewRoundPageHandler);
+            
+            MessagingCenter.Subscribe<ExerciseViewModel, Exercise>(this, Messages.GoToExerciseFormPage, GoToExerciseFormPage);
+            MessagingCenter.Subscribe<RoundViewModel, Exercise>(this, Messages.GoToExerciseFormPage, GoToExerciseFormPage);
             MessagingCenter.Subscribe<RoundViewModel, Round>(this, Messages.GoToRoundFormPage, GoToRoundFormPage);
             MessagingCenter.Subscribe<WorkoutFormPageViewModel, Round>(this, Messages.GoToRoundFormPage, GoToRoundFormPage);
             MessagingCenter.Subscribe<WorkoutFormPageViewModel, Workout>(this, Messages.GoToEditWorkoutNamePage, GoToEditWorkoutNamePageHandler);
@@ -37,6 +40,17 @@ namespace SV.Builder.Mobile.Views.WorkoutManagement
             //MessagingCenter.Unsubscribe<CreateWorkoutPageViewModel>(this, Messages.GoToNewRoundPage);
             MessagingCenter.Unsubscribe<WorkoutFormPageViewModel, Round>(this, Messages.GoToRoundFormPage);
             MessagingCenter.Unsubscribe<WorkoutFormPageViewModel>(this, Messages.GoToEditWorkoutNamePage);
+        }
+
+        private async void GoToExerciseFormPage(object sender, Exercise exerciseArg)
+        {
+            if (sender is IBusyStatus busy)
+            {
+                using (new BusyStatus(busy))
+                {
+                    await Shell.Current.Navigation.PushModalAsync(new ExerciseFormPage(exerciseArg));
+                }
+            }
         }
         private async void GoToRoundFormPage(object sender, Round roundArg)
         {

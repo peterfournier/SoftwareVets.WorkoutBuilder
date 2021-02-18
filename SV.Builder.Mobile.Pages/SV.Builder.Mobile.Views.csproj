@@ -75,6 +75,9 @@
     <Compile Update="Shared\DataTemplates\StrengthEnduranceSetDataTemplate.xaml.cs">
       <DependentUpon>StrengthEnduranceSetDataTemplate.xaml</DependentUpon>
     </Compile>
+    <Compile Update="WorkoutManagement\ExerciseFormPage.xaml.cs">
+      <DependentUpon>ExerciseFormPage.xaml</DependentUpon>
+    </Compile>
     <Compile Update="WorkoutManagement\RoundFormPage.xaml.cs">
       <DependentUpon>RoundFormPage.xaml</DependentUpon>
     </Compile>

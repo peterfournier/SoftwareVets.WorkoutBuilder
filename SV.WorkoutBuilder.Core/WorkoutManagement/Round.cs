@@ -37,7 +37,8 @@ namespace SV.Builder.Core.WorkoutManagement
             Iterations = Guard.ForLessThanOne(iterations, nameof(iterations));
         }
 
-        internal virtual void AddExercise(Exercise exercise)
+        public virtual void AddExercise(Exercise exercise) 
+            // todo should we expose this? // no since it breaks the invariants of the workout entity
         {
             EstimatedDuration += exercise.EstimatedDuration;
             _exercises.Add(exercise);

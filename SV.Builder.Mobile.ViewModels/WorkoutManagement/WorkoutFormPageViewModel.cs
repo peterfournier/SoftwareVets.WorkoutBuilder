@@ -48,6 +48,7 @@ namespace SV.Builder.Mobile.ViewModels.WorkoutManagement
         {
             MessagingCenter.Subscribe<EditWorkoutNamePageViewModel>(this, Messages.WorkoutDetailsUpdated, (sender) => UpdateClient());
             MessagingCenter.Subscribe<RoundFormPageViewModel>(this, Messages.RoundUpdated, (sender) => UpdateClient());
+            MessagingCenter.Subscribe<ExerciseFormPageViewModel>(this, Messages.ExerciseUpdated, (sender) => UpdateClient());
 
             base.WireUpSubscriptions();
         }

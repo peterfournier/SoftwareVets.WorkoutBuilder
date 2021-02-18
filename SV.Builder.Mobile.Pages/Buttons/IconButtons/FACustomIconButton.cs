@@ -1,4 +1,5 @@
-﻿using Xamarin.Forms;
+﻿using SV.Builder.Mobile.Common.Themes;
+using Xamarin.Forms;
 
 namespace SV.Builder.Mobile.Views.Buttons
 {
@@ -10,10 +11,8 @@ namespace SV.Builder.Mobile.Views.Buttons
         public CustomIconButton()
         {
             SetGlyph();
-            HeightRequest = 40;
-            WidthRequest = 40;
-            BackgroundColor = Color.Transparent;
-            Margin = 5;
+            Customize(40, 40, 5, 12);
+            SetDynamicResource(BackgroundColorProperty, nameof(AppTheme.BackgroundColor));
         }
 
         protected void SetGlyph()
@@ -27,5 +26,15 @@ namespace SV.Builder.Mobile.Views.Buttons
             };
         }
 
+        public virtual void Customize(int height,
+            int width,
+            int margin,
+            int padding)
+        {
+            HeightRequest = height;
+            WidthRequest = width;
+            Margin = margin;
+            Padding = padding;
+        }
     }
 }

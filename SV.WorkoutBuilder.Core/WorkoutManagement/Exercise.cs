@@ -9,9 +9,9 @@ namespace SV.Builder.Core.WorkoutManagement
 {
     public class Exercise : Entity
     {
-        public virtual string Name { get; }
-        public virtual string Description { get; }
-        public virtual Round Round { get; }
+        public virtual string Name { get; private set; }
+        public virtual string Description { get; private set; }
+        public virtual Round Round { get; private set; }
 
         public virtual Duration EstimatedDuration { get; private set; } = Duration.None;
 
@@ -19,20 +19,28 @@ namespace SV.Builder.Core.WorkoutManagement
         public virtual IReadOnlyList<Set> Sets => _sets.ToList();
 
         protected Exercise() { }
-        public Exercise(Round round, 
+        public Exercise(Round round,
             string name,
             string description
             ) : base(Guid.NewGuid())
         {
             Round = round;
-            Name = Guard.ForNullOrEmpty(name, nameof(name));
-            Description = Guard.ForNullOrEmpty(description, nameof(description));
+            Update(name, description);
         }
 
         internal virtual void AddSet(Set set)
         {
             _sets.Add(set);
             EstimatedDuration += set.Duration;
+        }
+
+        // this is leaky
+        public void Update(
+            string name,
+            string description)
+        {
+            Name = Guard.ForNullOrEmpty(name, nameof(name));
+            Description = Guard.ForNullOrEmpty(description, nameof(description));
         }
     }
 }
