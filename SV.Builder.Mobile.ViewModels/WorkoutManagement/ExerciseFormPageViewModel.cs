@@ -22,19 +22,28 @@ namespace SV.Builder.Mobile.ViewModels.WorkoutManagement
             set { SetProperty(ref _name, value); }
         }
 
+        private string _description;
+        public string Description
+        {
+            get { return _description; }
+            set { SetProperty(ref _description, value); }
+        }
+
         //public ICommand AddSetCommand { get; set; }
 
         public ExerciseFormPageViewModel(Exercise exercise)
         {
+
             _exercise = Guard.ForNull(exercise, nameof(exercise));
             Name = _exercise.Name;
+            Description = _exercise.Description;
             //AddSetCommand = new Command(AddSet);
         }
 
 
         public override void OnSaveCommand()
         {
-            _exercise.Update(Name, "Description");
+            _exercise.Update(Name, Description);
 
             MessagingCenter.Send(this, Messages.ExerciseUpdated);
 

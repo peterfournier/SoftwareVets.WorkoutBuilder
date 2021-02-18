@@ -29,13 +29,21 @@
                      Margin="0"
                      >
 
-                <StackLayout Padding="15">
-                
+            <StackLayout Padding="15">
+
                 <Label Text="Exercise Name" 
                        FontSize="Medium" 
                        FontAttributes="Bold"
                        />
                 <Entry Text="{Binding Name}" 
+                       FontSize="Medium" 
+                       />
+
+                <Label Text="Description" 
+                       FontSize="Medium" 
+                       FontAttributes="Bold"
+                       />
+                <Entry Text="{Binding Description}" 
                        FontSize="Medium" 
                        />
 
@@ -65,7 +73,9 @@
                                                  Padding="15"
                                                  >
 
-                                        --><!--header--><!--
+                                        -->
+            <!--header-->
+            <!--
                                         <StackLayout Orientation="Horizontal">
 
                                             <Label Text="{Binding Name}"
@@ -83,9 +93,11 @@
                                                        />
                                             </StackLayout>
                                         </StackLayout>
-                                        --><!--/header-->
+                                        -->
+            <!--/header-->
 
-                                        <!--reps--><!--
+            <!--reps-->
+            <!--
                                         <StackLayout Orientation="Horizontal">
                                             <Label VerticalOptions="Center"
                                                    IsVisible="{Binding IsToggled, Source={x:Reference maxSetSwitch},
@@ -122,9 +134,11 @@
                                             </StackLayout>
                                             
                                         </StackLayout>
-                                        --><!--/reps-->
+                                        -->
+            <!--/reps-->
 
-                                        <!--time--><!--
+            <!--time-->
+            <!--
                                         <StackLayout Orientation="Horizontal"
                                                      IsVisible="{Binding StopwatchSet, Converter={x:StaticResource inverseBoolConverter}}"
                                                      >
@@ -157,9 +171,11 @@
                                                     >
                                             </Picker>
                                         </StackLayout>
-                                        --><!--/time-->
+                                        -->
+            <!--/time-->
 
-                                        <!--weight--><!--
+            <!--weight-->
+            <!--
                                         <StackLayout Orientation="Horizontal">
                                             <Label Text="Weight"
                                                    VerticalOptions="Center"
@@ -172,7 +188,9 @@
                                                    >
                                             </Entry>
                                         </StackLayout>
-                                        --><!--/weight--><!--
+                                        -->
+            <!--/weight-->
+            <!--
 
                                         <StackLayout Orientation="Horizontal"
                                                      >
@@ -205,6 +223,6 @@
             </StackLayout>-->
             <!--/sets-->
         </StackLayout>
-        
+
     </Grid>
 </local:ExerciseFormPageXaml>
