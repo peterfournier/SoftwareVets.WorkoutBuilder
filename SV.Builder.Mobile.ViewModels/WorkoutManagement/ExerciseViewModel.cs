@@ -4,7 +4,9 @@ using SV.Builder.Core.WorkoutManagement;
 using SV.Builder.Mobile.Common.MessageCenter;
 using SV.Builder.Mobile.ViewModels.Shared;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -20,7 +22,8 @@ namespace SV.Builder.Mobile.ViewModels.WorkoutManagement
 
         public ICommand EditExerciseCommand { get; }
 
-        //public ObservableCollection<SetViewModel> Sets { get; set; } = new ObservableCollection<SetViewModel>();
+        public IReadOnlyList<SetViewModel> Sets => _exercise.Sets.Select(x => new SetViewModel(x))
+                                                                 .ToList();
 
         public ExerciseViewModel(Exercise exercise)
         {
