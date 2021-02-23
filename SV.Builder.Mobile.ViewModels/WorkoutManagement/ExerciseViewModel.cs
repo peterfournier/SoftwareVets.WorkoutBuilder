@@ -28,8 +28,6 @@ namespace SV.Builder.Mobile.ViewModels.WorkoutManagement
         public ExerciseViewModel(Exercise exercise)
         {
             _exercise = Guard.ForNull(exercise, nameof(exercise));
-            //EditExerciseCommand = new DisableWhenBusyCommand(this, (args)
-            //    => MessagingCenter.Send(this, Messages.GoToExerciseFormPage, _exercise));
 
             EditExerciseCommand = new DisableWhenBusyCommand(this, EditExerciseHandler);
         }

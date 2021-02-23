@@ -1,6 +1,6 @@
-﻿using SV.Builder.Mobile.ViewModels;
-using Xamarin.Forms;
+﻿using Xamarin.Forms;
 using System;
+using SV.Builder.Mobile.ViewModels.WorkoutManagement;
 
 namespace SV.Builder.Mobile.Views.Shared
 {

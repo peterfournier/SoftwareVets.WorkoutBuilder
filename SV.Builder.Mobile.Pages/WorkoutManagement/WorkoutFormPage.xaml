@@ -187,8 +187,6 @@
 
                                                                     <buttons:PencilIconButton HorizontalOptions="EndAndExpand"
                                                                                               Command="{Binding EditExerciseCommand}"
-                                                                                              WidthRequest="18"
-                                                                                              HeightRequest="18"
                                                                                               >
                                                                     </buttons:PencilIconButton>
                                                                 </StackLayout>

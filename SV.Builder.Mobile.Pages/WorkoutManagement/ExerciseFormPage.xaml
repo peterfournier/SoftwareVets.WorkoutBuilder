@@ -1,14 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <local:ExerciseFormPageXaml xmlns="http://xamarin.com/schemas/2014/forms"
-                              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-                              x:Class="SV.Builder.Mobile.Views.WorkoutManagement.ExerciseFormPage"
-                              xmlns:local="clr-namespace:SV.Builder.Mobile.Views.WorkoutManagement"
-                              Title="Add Exercise"
-                              xmlns:partials="clr-namespace:SV.Builder.Mobile.Views.Partial"
-                              xmlns:pageVMs="clr-namespace:SV.Builder.Mobile.ViewModels.WorkoutManagement;assembly=SV.Builder.Mobile.ViewModels"
-                              x:DataType="pageVMs:ExerciseFormPageViewModel"
-                              xmlns:converters="clr-namespace:SV.Builder.Mobile.ViewModels.Converters;assembly=SV.Builder.Mobile.ViewModels"
-                              >
+                            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                            x:Class="SV.Builder.Mobile.Views.WorkoutManagement.ExerciseFormPage"
+                            xmlns:local="clr-namespace:SV.Builder.Mobile.Views.WorkoutManagement"
+                            Title="Add Exercise"
+                            xmlns:partials="clr-namespace:SV.Builder.Mobile.Views.Partial"
+                            xmlns:pageVMs="clr-namespace:SV.Builder.Mobile.ViewModels.WorkoutManagement;assembly=SV.Builder.Mobile.ViewModels"
+                            x:DataType="pageVMs:ExerciseFormPageViewModel"
+                            xmlns:converters="clr-namespace:SV.Builder.Mobile.ViewModels.Converters;assembly=SV.Builder.Mobile.ViewModels"
+                            xmlns:vms="clr-namespace:SV.Builder.Mobile.ViewModels.WorkoutManagement;assembly=SV.Builder.Mobile.ViewModels"
+                            >
 
     <local:ExerciseFormPageXaml.Resources>
         <ResourceDictionary>
@@ -53,17 +54,17 @@
                         ></Label>
             </StackLayout>
             <!--sets-->
-            <!--<StackLayout Margin="0,0,0,0"
+            <StackLayout Margin="0,0,0,0"
                          Padding="0"
                          Spacing="0"
                          >
                 <CollectionView x:Name="exerciseSetsCollectionView"
-                                ItemsSource="{Binding ExerciseViewModel.Sets}"
+                                ItemsSource="{Binding Sets}"
                                 BackgroundColor="LightGray"
                                 ItemsUpdatingScrollMode="KeepLastItemInView"
                                 >
                     <CollectionView.ItemTemplate>
-                        <DataTemplate x:DataType="modelVMs:SetViewModel">
+                        <DataTemplate x:DataType="vms:SetViewModel">
                             <Grid>
                                 <Frame Visual="Material"
                                        Padding="0"
@@ -73,9 +74,9 @@
                                                  Padding="15"
                                                  >
 
-                                        -->
-            <!--header-->
-            <!--
+
+                                        <!--header-->
+
                                         <StackLayout Orientation="Horizontal">
 
                                             <Label Text="{Binding Name}"
@@ -93,11 +94,11 @@
                                                        />
                                             </StackLayout>
                                         </StackLayout>
-                                        -->
-            <!--/header-->
 
-            <!--reps-->
-            <!--
+                                        <!--/header-->
+
+                                        <!--reps-->
+
                                         <StackLayout Orientation="Horizontal">
                                             <Label VerticalOptions="Center"
                                                    IsVisible="{Binding IsToggled, Source={x:Reference maxSetSwitch},
@@ -132,13 +133,13 @@
                                                        HorizontalOptions="Center"
                                                        />
                                             </StackLayout>
-                                            
-                                        </StackLayout>
-                                        -->
-            <!--/reps-->
 
-            <!--time-->
-            <!--
+                                        </StackLayout>
+
+                                        <!--/reps-->
+
+                                        <!--time-->
+
                                         <StackLayout Orientation="Horizontal"
                                                      IsVisible="{Binding StopwatchSet, Converter={x:StaticResource inverseBoolConverter}}"
                                                      >
@@ -171,11 +172,11 @@
                                                     >
                                             </Picker>
                                         </StackLayout>
-                                        -->
-            <!--/time-->
 
-            <!--weight-->
-            <!--
+                                        <!--/time-->
+
+                                        <!--weight-->
+
                                         <StackLayout Orientation="Horizontal">
                                             <Label Text="Weight"
                                                    VerticalOptions="Center"
@@ -188,9 +189,9 @@
                                                    >
                                             </Entry>
                                         </StackLayout>
-                                        -->
-            <!--/weight-->
-            <!--
+
+                                        <!--/weight-->
+
 
                                         <StackLayout Orientation="Horizontal"
                                                      >
@@ -199,7 +200,7 @@
                                                     TextColor="{StaticResource Primary}"
                                                     Command="{Binding RemoveSetCommand}"
                                                     ></Button>
-                                        
+
                                             <Button Text="Copy Set"
                                                     HorizontalOptions="EndAndExpand"
                                                     BackgroundColor="Transparent"
@@ -219,8 +220,8 @@
                         TextColor="{StaticResource Primary}"
                         Command="{Binding AddSetCommand}"
                         ></Button>
-                
-            </StackLayout>-->
+
+            </StackLayout>
             <!--/sets-->
         </StackLayout>
 

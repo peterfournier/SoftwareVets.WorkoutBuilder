@@ -9,27 +9,28 @@ namespace SV.Builder.Core.WorkoutManagement
     public class Set : Entity
     {
         public virtual Exercise Exercise { get; }
-        public virtual int Reps { get; } = 1;
-        public virtual decimal Weight { get; }
-        public virtual Duration Duration { get; }
-        public virtual bool Timed { get; }
-        public virtual SetType Type { get; set; }
+        public virtual int Reps { get; private set; } = 1;
+        public virtual decimal Weight { get; private set; }
+        public virtual Duration Duration { get; private set; }
+        public virtual bool Timed { get; private set; }
+        public virtual SetType Type { get; private set; }
         public bool MaxSet => Reps < 1;
         protected Set() { }
         public Set(Exercise exercise,
-            Duration duration,
-            int reps,
-            decimal weight,
-            bool timed,
-            SetType type
+            SetOptions options
             ) : base(Guid.NewGuid())
         {
-            Weight = weight;
-            Timed = timed;
             Exercise = exercise;
-            Duration = duration;
-            Reps = reps;
-            Type = type;
+            Update(options);
+        }
+
+        public void Update(SetOptions options)
+        {
+            Duration = options.Duration;
+            Reps = options.Reps;
+            Timed = options.Timed;
+            Weight = options.Weight;
+            Type = options.Type;
         }
     }
 }

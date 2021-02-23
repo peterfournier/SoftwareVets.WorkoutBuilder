@@ -40,5 +40,10 @@ namespace SV.Builder.Mobile.ViewModels.WorkoutManagement
 
             base.OnSaveCommand();
         }
+
+        public override void NotifyClients()
+        {
+            
+        }
     }
 }

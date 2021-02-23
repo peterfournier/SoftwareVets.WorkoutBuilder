@@ -43,7 +43,10 @@ namespace SV.Builder.Mobile.ViewModels.WorkoutManagement
         public Duration Duration
         {
             get { return _duration; }
-            private set { SetProperty(ref _duration, value); }
+            private set
+            {
+                SetProperty(ref _duration, value);
+            }
         }
 
         private string _weight;
@@ -112,20 +115,53 @@ namespace SV.Builder.Mobile.ViewModels.WorkoutManagement
 
         public SetViewModel(Set set)
         {
-            populateSecondsList();
-            populateMinutesList();
-            populateHoursList();
 
             _set = Guard.ForNull(set, nameof(set));
             Duration = _set.Duration;
             Weight = _set.Weight.ToString();
             MaxSet = _set.MaxSet;
             StopwatchSet = _set.Timed;
+            Repetitions = _set.Reps;
             RemoveSetCommand = new Command(new Action(removeSetHandler));
-            SelectedSeconds = SecondsList.FirstOrDefault(x => x.Replace(secondsSuffix, "").Trim().Equals(Duration.Length.Seconds));
-            SelectedMinutes = MinutesList.FirstOrDefault(x => x.Replace(minutesSuffix, "").Trim().Equals(Duration.Length.Minutes));
-            SelectedHours = HoursList.FirstOrDefault(x => x.Replace(hoursSuffix, "").Trim().Equals(Duration.Length.Hours));
 
+            populateSecondsList();
+            populateMinutesList();
+            populateHoursList();
+            SetSelectedTimeIntervals();
+
+            PropertyChanged += SetViewModel_PropertyChanged;
+        }
+
+        private void SetSelectedTimeIntervals()
+        {
+            if (SecondsList.Count > 0 
+                && MinutesList.Count > 0 
+                && HoursList.Count > 0)
+            {
+                SelectedSeconds = SecondsList.FirstOrDefault(x => x.Replace(secondsSuffix, "") == Duration.Length.Seconds.ToString());
+                SelectedMinutes = MinutesList.FirstOrDefault(x => x.Replace(minutesSuffix, "") == Duration.Length.Minutes.ToString());
+                SelectedHours = HoursList.FirstOrDefault(x => x.Replace(hoursSuffix, "") == Duration.Length.Hours.ToString());
+            }
+        }
+
+        ~SetViewModel()
+        {
+            PropertyChanged -= SetViewModel_PropertyChanged;
+        }
+        private void SetViewModel_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == nameof(Duration))
+            {
+                if (StopwatchSet && Duration != Duration.None)
+                    StopwatchSet = false;
+            }
+            if (e.PropertyName == nameof(StopwatchSet))
+            {
+                if (StopwatchSet && Duration != Duration.None)
+                {
+                    Duration = Duration.None;
+                }
+            }
         }
 
         private void removeSetHandler()
@@ -197,11 +233,16 @@ namespace SV.Builder.Mobile.ViewModels.WorkoutManagement
         public SetOptions GetSetOptions()
         {
             decimal.TryParse(Weight, out decimal weight);
+
             return new SetOptions(Duration,
-                MaxSet ? 0 : Repetitions, 
-                weight, 
+                MaxSet ? 0 : Repetitions,
+                weight,
                 StopwatchSet);
         }
-        
+
+        public void UpdateSet()
+        {
+            _set.Update(GetSetOptions());
+        }
     }
 }

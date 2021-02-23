@@ -46,9 +46,9 @@ namespace SV.Builder.Mobile.ViewModels.WorkoutManagement
 
         protected override void WireUpSubscriptions()
         {
-            MessagingCenter.Subscribe<EditWorkoutNamePageViewModel>(this, Messages.WorkoutDetailsUpdated, (sender) => UpdateClient());
-            MessagingCenter.Subscribe<RoundFormPageViewModel>(this, Messages.RoundUpdated, (sender) => UpdateClient());
-            MessagingCenter.Subscribe<ExerciseFormPageViewModel>(this, Messages.ExerciseUpdated, (sender) => UpdateClient());
+            MessagingCenter.Subscribe<EditWorkoutNamePageViewModel>(this, Messages.WorkoutDetailsUpdated, (sender) => NotifyClients());
+            MessagingCenter.Subscribe<RoundFormPageViewModel>(this, Messages.RoundUpdated, (sender) => NotifyClients());
+            MessagingCenter.Subscribe<ExerciseFormPageViewModel>(this, Messages.ExerciseUpdated, (sender) => NotifyClients());
 
             base.WireUpSubscriptions();
         }
@@ -60,7 +60,8 @@ namespace SV.Builder.Mobile.ViewModels.WorkoutManagement
             base.Breakdown();
         }
 
-        private void UpdateClient()
+        
+        public override void NotifyClients()
         {
             OnPropertyChanged(nameof(NumberOfWorkoutRounds));
             OnPropertyChanged(nameof(Rounds));

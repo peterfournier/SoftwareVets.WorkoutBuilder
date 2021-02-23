@@ -32,5 +32,7 @@ namespace SV.Builder.Mobile.ViewModels.Shared
         {
 
         }
+
+        public abstract void NotifyClients();
     }
 }

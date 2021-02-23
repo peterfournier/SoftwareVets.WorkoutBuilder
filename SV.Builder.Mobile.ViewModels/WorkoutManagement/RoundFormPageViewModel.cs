@@ -1,12 +1,11 @@
 ﻿using SV.Builder.Core.Common;
 using SV.Builder.Core.WorkoutManagement;
 using SV.Builder.Mobile.Common.MessageCenter;
-using SV.Builder.Mobile.ViewModels.Pages;
 using Xamarin.Forms;
 
 namespace SV.Builder.Mobile.ViewModels.WorkoutManagement
 {
-    public class RoundFormPageViewModel : BaseFormContentPageViewModel
+    public class RoundFormPageViewModel : Shared.BaseFormContentPageViewModel
     {
         private readonly Round _round;
 
@@ -49,5 +48,9 @@ namespace SV.Builder.Mobile.ViewModels.WorkoutManagement
             base.OnSaveCommand();
         }
 
+        public override void NotifyClients()
+        {
+            
+        }
     }
 }

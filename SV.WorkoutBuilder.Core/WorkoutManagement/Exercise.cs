@@ -28,10 +28,10 @@ namespace SV.Builder.Core.WorkoutManagement
             Update(name, description);
         }
 
-        internal virtual void AddSet(Set set)
+        public virtual void AddSet(Set set)
         {
-            _sets.Add(set);
             EstimatedDuration += set.Duration;
+            _sets.Add(set);
         }
 
         // this is leaky
