@@ -6,7 +6,14 @@
                            xmlns:partials="clr-namespace:SV.Builder.Mobile.Views.Partial"
                            xmlns:vms="clr-namespace:SV.Builder.Mobile.ViewModels.WorkoutManagement;assembly=SV.Builder.Mobile.ViewModels"
                            xmlns:buttons="clr-namespace:SV.Builder.Mobile.Views.Buttons"
+                           xmlns:shared="clr-namespace:SV.Builder.Mobile.Views.Shared"
                            >
+    <local:WorkoutFormPageXaml.Resources>
+        <ResourceDictionary>
+            <shared:ExerciseSetTemplateSelector x:Key="exerciseSetTemplateSelector"></shared:ExerciseSetTemplateSelector>
+        </ResourceDictionary>
+    </local:WorkoutFormPageXaml.Resources>
+
     <Grid RowSpacing="0"
           >
         <Grid.RowDefinitions>
@@ -152,7 +159,7 @@
                                                      BindableLayout.ItemsSource="{Binding Exercises}"
                                                      >
                                             <BindableLayout.ItemTemplate>
-                                                <DataTemplate x:DataType="modelVMs:ExerciseViewModel">
+                                                <DataTemplate x:DataType="vms:ExerciseViewModel">
                                                     <Grid x:Name="exercise">
                                                         <Grid.RowDefinitions>
                                                             <RowDefinition Height="*" />

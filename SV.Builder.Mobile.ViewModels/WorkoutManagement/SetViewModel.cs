@@ -122,7 +122,10 @@ namespace SV.Builder.Mobile.ViewModels.WorkoutManagement
             MaxSet = _set.MaxSet;
             StopwatchSet = _set.Timed;
             RemoveSetCommand = new Command(new Action(removeSetHandler));
-            //SelectedSeconds = SecondsList.FirstOrDefault(x => x.Contains())
+            SelectedSeconds = SecondsList.FirstOrDefault(x => x.Replace(secondsSuffix, "").Trim().Equals(Duration.Length.Seconds));
+            SelectedMinutes = MinutesList.FirstOrDefault(x => x.Replace(minutesSuffix, "").Trim().Equals(Duration.Length.Minutes));
+            SelectedHours = HoursList.FirstOrDefault(x => x.Replace(hoursSuffix, "").Trim().Equals(Duration.Length.Hours));
+
         }
 
         private void removeSetHandler()
