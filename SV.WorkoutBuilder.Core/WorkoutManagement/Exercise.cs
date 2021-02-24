@@ -9,6 +9,9 @@ namespace SV.Builder.Core.WorkoutManagement
 {
     public class Exercise : Entity
     {
+        public static string DefaultName => "Exercise Name";
+        public static string DefaultDescription => "Brief Description";
+
         public virtual string Name { get; private set; }
         public virtual string Description { get; private set; }
         public virtual Round Round { get; private set; }
@@ -18,7 +21,11 @@ namespace SV.Builder.Core.WorkoutManagement
         private IList<Set> _sets = new List<Set>();
         public virtual IReadOnlyList<Set> Sets => _sets.ToList();
 
+
         protected Exercise() { }
+
+        public Exercise(Round round) : this(round, DefaultName, DefaultDescription) { }
+
         public Exercise(Round round,
             string name,
             string description
@@ -41,6 +48,15 @@ namespace SV.Builder.Core.WorkoutManagement
         {
             Name = Guard.ForNullOrEmpty(name, nameof(name));
             Description = Guard.ForNullOrEmpty(description, nameof(description));
+        }
+
+        public void RemoveSet(Guid setIdToRemove)
+        {
+            var setToRemove =_sets.Single(x => x.Id.Equals(setIdToRemove));
+            if (setIdToRemove != null)
+            {
+                _sets.Remove(setToRemove);
+            }
         }
     }
 }

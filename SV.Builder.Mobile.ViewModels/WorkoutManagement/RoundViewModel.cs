@@ -41,7 +41,7 @@ namespace SV.Builder.Mobile.ViewModels.WorkoutManagement
 
         private void AddNewExercise(object obj)
         {
-            var exercise = new Exercise(_round, "Exercise Name", "Brief Description");
+            var exercise = new Exercise(_round);
 
             _round.AddExercise(exercise); // todo how to handle if the new exercise is not saved on this page? Use a temperary list?
 

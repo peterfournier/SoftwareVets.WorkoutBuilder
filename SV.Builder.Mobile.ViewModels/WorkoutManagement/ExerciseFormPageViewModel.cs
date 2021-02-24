@@ -5,6 +5,7 @@ using SV.Builder.Mobile.Common.MessageCenter;
 using SV.Builder.Mobile.ViewModels.Shared;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Windows.Input;
@@ -15,6 +16,7 @@ namespace SV.Builder.Mobile.ViewModels.WorkoutManagement
     public class ExerciseFormPageViewModel : BaseFormContentPageViewModel
     {
         private readonly Exercise _exercise;
+        private List<Guid> _setIdsToRemove = new List<Guid>();
 
         private string _name;
         public string Name
@@ -31,17 +33,21 @@ namespace SV.Builder.Mobile.ViewModels.WorkoutManagement
         }
 
         public ICommand AddSetCommand { get; set; }
+        public ICommand RemoveSetCommand { get; set; }
 
-        public IList<SetViewModel> Sets { get; private set; }
+        private List<SetViewModel> _sets;
+        public IReadOnlyList<SetViewModel> Sets => _sets;
+
         public ExerciseFormPageViewModel(Exercise exercise)
         {
-
             _exercise = Guard.ForNull(exercise, nameof(exercise));
             Name = _exercise.Name;
             Description = _exercise.Description;
             AddSetCommand = new DisableWhenBusyCommand(this, AddSet);
+            RemoveSetCommand = new DisableWhenBusyCommand(this, RemoveSet);
 
-            Sets = _exercise.Sets.ToList().GetOrderedVMCollection();
+            _sets = _exercise.Sets.Select(x => new SetViewModel(x))
+                                 .ToList();
 
             if (Sets.Count == 0)
                 AddSet(null);
@@ -49,10 +55,28 @@ namespace SV.Builder.Mobile.ViewModels.WorkoutManagement
 
         public override void OnSaveCommand()
         {
-            foreach (var set in Sets)
+            foreach (var setViewModel in Sets)
             {
-                set.UpdateSet();
+                var existingSet = _exercise.Sets.FirstOrDefault(x => x.Id.Equals(setViewModel.Id));
+                if (existingSet == null)
+                {
+                    _exercise.AddSet(new Set(_exercise, setViewModel.GetSetOptions()));
+                }
+                else
+                {
+                    existingSet.Update(setViewModel.GetSetOptions());
+                }
             }
+
+            foreach (var idToRemove in _setIdsToRemove)
+            {
+                var set = _exercise.Sets.FirstOrDefault(x => x.Id.Equals(idToRemove));
+                if (set != null)
+                {
+                    _exercise.RemoveSet(idToRemove);
+                }
+            }
+
             _exercise.Update(Name, Description);
 
             MessagingCenter.Send(this, Messages.ExerciseUpdated);
@@ -63,43 +87,26 @@ namespace SV.Builder.Mobile.ViewModels.WorkoutManagement
         protected void AddSet(object sender)
         {
             var set = new Set(_exercise, SetOptions.New);
-            _exercise.AddSet(set);
-            Sets.Add(new SetViewModel(set));
+            _sets.Add(new SetViewModel(set));
             NotifyClients();
         }
 
-        //public virtual void RemoveSet(SetViewModel setViewModelArg)
-        //{
-        //    var setToRemove = ExerciseViewModel.Sets.FirstOrDefault(x => x == setViewModelArg);
-        //    if (setToRemove != null)
-        //    {
-        //        ExerciseViewModel.Sets.Remove(setToRemove);
-        //    }
-        //}
+        public virtual void RemoveSet(object setViewModelArg)
+        {
+            if (setViewModelArg is SetViewModel setViewModel)
+            {
+                var setToRemove = Sets.Single(x => x.Id == setViewModel.Id);
+                if (setToRemove != null)
+                {
+                    _sets.Remove(setToRemove);
+                    _setIdsToRemove.Add(setToRemove.Id);
+                }
+            }
+        }
 
         public override void NotifyClients()
         {
             OnPropertyChanged(nameof(Sets));
-        }
-
-    }
-
-    public static class ViewModelHelpers
-    {
-        public static IList<SetViewModel> GetOrderedVMCollection(this IList<Set> set)
-        {
-            Guard.ForNull(set, nameof(set));
-
-            var list = new List<SetViewModel>();
-            for (int i = 0; i < set.Count(); i++)
-            {
-                list.Add(new SetViewModel(set[i])
-                {
-                    Name = $"Set {i + 1}"
-                });
-            }
-
-            return list;
         }
     }
 }

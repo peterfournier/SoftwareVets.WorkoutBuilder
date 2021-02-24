@@ -12,6 +12,8 @@ namespace SV.Builder.Mobile.ViewModels.WorkoutManagement
 {
     public class SetViewModel : BaseViewModel
     {
+        public Guid Id => _set.Id;
+
         private readonly Set _set;
 
         public static string ZeroSeconds = $"0{secondsSuffix}";
@@ -113,6 +115,7 @@ namespace SV.Builder.Mobile.ViewModels.WorkoutManagement
             StopwatchSet = _set.Timed;
             Repetitions = _set.Reps;
             RemoveSetCommand = new Command(new Action(removeSetHandler));
+            Name = _set.Name;
 
             SetSelectedTimeIntervals(_set.Duration);
 
