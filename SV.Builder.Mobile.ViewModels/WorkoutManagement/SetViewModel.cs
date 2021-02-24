@@ -2,6 +2,7 @@
 using SV.Builder.Core.SharedKernel;
 using SV.Builder.Core.WorkoutManagement;
 using SV.Builder.Mobile.Common.MessageCenter;
+using SV.Builder.Mobile.ViewModels.Shared;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -114,7 +115,7 @@ namespace SV.Builder.Mobile.ViewModels.WorkoutManagement
             MaxSet = _set.MaxSet;
             StopwatchSet = _set.Timed;
             Repetitions = _set.Reps;
-            RemoveSetCommand = new Command(new Action(removeSetHandler));
+            RemoveSetCommand = new DisableWhenBusyCommand(this, removeSetHandler);
             Name = _set.Name;
 
             SetSelectedTimeIntervals(_set.Duration);
@@ -151,7 +152,7 @@ namespace SV.Builder.Mobile.ViewModels.WorkoutManagement
             }
         }
 
-        private void removeSetHandler()
+        private void removeSetHandler(object args)
         {
             MessagingCenter.Send(this, Messages.RemoveSetViewModel, this);
         }

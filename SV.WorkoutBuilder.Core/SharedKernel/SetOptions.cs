@@ -12,7 +12,6 @@ namespace SV.Builder.Core.SharedKernel
         public bool Timed { get; }
         public decimal Weight { get; }
         public SetType Type { get; private set; }
-        public string Name { get; set; }
 
         public SetOptions(
             Duration duration,

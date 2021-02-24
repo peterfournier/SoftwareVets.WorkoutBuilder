@@ -33,10 +33,9 @@ namespace SV.Builder.Mobile.ViewModels.WorkoutManagement
         }
 
         public ICommand AddSetCommand { get; set; }
-        public ICommand RemoveSetCommand { get; set; }
 
-        private List<SetViewModel> _sets;
-        public IReadOnlyList<SetViewModel> Sets => _sets;
+        private IList<SetViewModel> _sets;
+        public IReadOnlyList<SetViewModel> Sets => _sets.ToList();
 
         public ExerciseFormPageViewModel(Exercise exercise)
         {
@@ -44,14 +43,17 @@ namespace SV.Builder.Mobile.ViewModels.WorkoutManagement
             Name = _exercise.Name;
             Description = _exercise.Description;
             AddSetCommand = new DisableWhenBusyCommand(this, AddSet);
-            RemoveSetCommand = new DisableWhenBusyCommand(this, RemoveSet);
+
 
             _sets = _exercise.Sets.Select(x => new SetViewModel(x))
                                  .ToList();
 
+            MessagingCenter.Send(this, Messages.RemoveSetViewModel, this);
+
             if (Sets.Count == 0)
                 AddSet(null);
         }
+
 
         public override void OnSaveCommand()
         {
@@ -97,21 +99,20 @@ namespace SV.Builder.Mobile.ViewModels.WorkoutManagement
         protected void AddSet(object sender)
         {
             var set = new Set(_exercise, SetOptions.New);
-            _sets.Add(new SetViewModel(set));
+            var setVM = new SetViewModel(set) { Name = $"Set {_sets.Count + 1}" };
+            _sets.Add(setVM);
             NotifyClients();
         }
 
-        public virtual void RemoveSet(object setViewModelArg)
+        public void RemoveSet(SetViewModel setViewModel)
         {
-            if (setViewModelArg is SetViewModel setViewModel)
+            var setToRemove = Sets.Single(x => x.Id == setViewModel.Id);
+            if (setToRemove != null)
             {
-                var setToRemove = Sets.Single(x => x.Id == setViewModel.Id);
-                if (setToRemove != null)
-                {
-                    _sets.Remove(setToRemove);
-                    _setIdsToRemove.Add(setToRemove.Id);
-                }
+                _sets.Remove(setToRemove);
+                _setIdsToRemove.Add(setToRemove.Id);
             }
+            NotifyClients();
         }
 
         public override void NotifyClients()

@@ -9,7 +9,7 @@ namespace SV.Builder.Core.WorkoutManagement
     public class Set : Entity
     {
         public virtual Exercise Exercise { get; }
-        public virtual string Name { get; }
+        public virtual string Name => $"Set {Exercise.Sets.Count + 1}";
         public virtual int Reps { get; private set; } = 1;
         public virtual decimal Weight { get; private set; }
         public virtual Duration Duration { get; private set; }
@@ -21,7 +21,6 @@ namespace SV.Builder.Core.WorkoutManagement
             SetOptions options
             ) : base(Guid.NewGuid())
         {
-            Name = $"Set {exercise.Sets.Count + 1}";
             Exercise = exercise;
             Update(options);
         }
