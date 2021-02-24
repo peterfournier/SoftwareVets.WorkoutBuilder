@@ -39,6 +39,16 @@ namespace SV.Builder.Application.Tests
         }
 
         [Test]
+        public void Constructor_max_set_is_added()
+        {
+            _exercse.AddSet(new Set(_exercse, new SetOptions(Duration.FiveMinutes, 0, 0)));
+            var pageVM = new ExerciseFormPageViewModel(_exercse);
+            
+            var setView = pageVM.Sets.First();
+            setView.MaxSet.Should().BeTrue();
+        }
+
+        [Test]
         public void AddSet_set_name_is_valid()
         {
             var pageVM = new ExerciseFormPageViewModel(_exercse);
@@ -104,6 +114,20 @@ namespace SV.Builder.Application.Tests
             pageVM.OnSaveCommand();
 
             _exercse.Sets.Count.Should().Be(1);
+        }
+
+        [Test]
+        public void Maxset_is_set_after_save()
+        {
+            var pageVM = new ExerciseFormPageViewModel(_exercse);
+            var setViewModel = pageVM.Sets.Last();
+            setViewModel.MaxSet = true;
+            setViewModel.GetSetOptions().Reps.Should().Be(0);
+
+            pageVM.OnSaveCommand();
+            var set = _exercse.Sets.First();
+            set.MaxSet.Should().Be(true);
+            set.Reps.Should().Be(0);
         }
     }
 }

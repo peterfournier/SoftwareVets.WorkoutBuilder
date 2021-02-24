@@ -55,6 +55,31 @@ namespace SV.Builder.Mobile.ViewModels.WorkoutManagement
 
         public override void OnSaveCommand()
         {
+            UpsertExerciseSets();
+
+            RemoveAnyExerciseSets();
+
+            _exercise.Update(Name, Description);
+
+            MessagingCenter.Send(this, Messages.ExerciseUpdated);
+
+            base.OnSaveCommand();
+        }
+
+        private void RemoveAnyExerciseSets()
+        {
+            foreach (var idToRemove in _setIdsToRemove)
+            {
+                var set = _exercise.Sets.Single(x => x.Id.Equals(idToRemove));
+                if (set != null)
+                {
+                    _exercise.RemoveSet(idToRemove);
+                }
+            }
+        }
+
+        private void UpsertExerciseSets()
+        {
             foreach (var setViewModel in Sets)
             {
                 var existingSet = _exercise.Sets.FirstOrDefault(x => x.Id.Equals(setViewModel.Id));
@@ -67,21 +92,6 @@ namespace SV.Builder.Mobile.ViewModels.WorkoutManagement
                     existingSet.Update(setViewModel.GetSetOptions());
                 }
             }
-
-            foreach (var idToRemove in _setIdsToRemove)
-            {
-                var set = _exercise.Sets.FirstOrDefault(x => x.Id.Equals(idToRemove));
-                if (set != null)
-                {
-                    _exercise.RemoveSet(idToRemove);
-                }
-            }
-
-            _exercise.Update(Name, Description);
-
-            MessagingCenter.Send(this, Messages.ExerciseUpdated);
-
-            base.OnSaveCommand();
         }
 
         protected void AddSet(object sender)

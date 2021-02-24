@@ -80,13 +80,25 @@ namespace SV.Builder.Application.Tests
         }
 
         [Test]
-        public void Switching_to_()
+        public void Switching_to_endurance_set_zeros_out_duration()
         {
             var set = new Set(_exercse, new SetOptions(Duration.None,1, 0));
             var setViewModel = new SetViewModel(set);
             setViewModel.SelectedMinutes = "7 mins";
             setViewModel.SelectedMinutes.Should().Be("7 mins");
-            setViewModel.StopwatchSet.Should().Be(false);
+
+            setViewModel.StopwatchSet = true;
+
+            setViewModel.Duration.Should().Be(Duration.None);
+        }
+
+        [Test]
+        public void Maxset_is_set_when_reps_are_zero()
+        {
+            var set = new Set(_exercse, new SetOptions(Duration.None, 0, 0));
+            var setViewModel = new SetViewModel(set);
+
+            setViewModel.MaxSet.Should().Be(true);
         }
     }
 }
